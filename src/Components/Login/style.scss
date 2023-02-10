@@ -1,0 +1,37 @@
+.LoginPage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  height: 80vh;
+
+  .textBox {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .broder {
+    border: 1px var(--primary-color) solid;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 20px;
+  }
+  @media (max-width: 1280px) {
+    height: 30%;
+  }
+  @media (max-width: 1024px) {
+    height: 40%;
+  }
+  @media (max-width: 480px) {
+    height: 100%;
+  }
+  .style {
+    color: var(--primary-color) solid;
+  }
+}
