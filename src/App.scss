@@ -1,13 +1,20 @@
 .App {
   margin: 0;
   padding: 0;
+  background-image: url("./Assests/images/Background.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  width: 100vw;
+  height: 100vh;
   .main-content {
-    width: 100vw;
-    height: 100vh;
-    background-image: url("./Assests/images/Background.png");
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
     color: var(--primary-color);
+    padding: 60px;
+    @media (max-width: 1280px) {
+      padding: 40px;
+    }
+    @media (max-width: 480px) {
+      padding: 20px;
+    }
   }
 }

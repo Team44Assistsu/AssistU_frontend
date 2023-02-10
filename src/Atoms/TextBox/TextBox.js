@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TextField from "@mui/material/TextField";
+import "./style.scss";
 
 class TextBox extends Component {
   render() {
@@ -12,6 +13,7 @@ class TextBox extends Component {
         onChange={this.props.onChange}
         label={this.props.title}
         value={this.props.value}
+        className={`textBox ${this.props.classes}`}
       />
     );
   }
