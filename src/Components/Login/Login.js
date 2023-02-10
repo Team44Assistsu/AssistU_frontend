@@ -9,6 +9,7 @@ class Login extends Component {
   render() {
     return (
       <div>
+        <div>login</div>
         <TextBox
           title={"Name"}
           value={this.state.name}

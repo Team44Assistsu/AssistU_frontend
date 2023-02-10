@@ -1,0 +1,13 @@
+.App {
+  margin: 0;
+  padding: 0;
+  .main-content {
+    width: 100vw;
+    height: 100vh;
+    background-image: url("./Assests/images/Background.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    color: var(--primary-color);
+  }
+}
