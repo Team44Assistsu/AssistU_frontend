@@ -1,0 +1,25 @@
+.ChatAvatar {
+  display: flex;
+  img {
+    width: 150px;
+    height: 150px;
+    padding: 10px 0;
+  }
+
+  .message-area {
+    border: 2px solid var(--primary-color);
+    color: var(--white);
+    margin-top: 20px;
+    padding: 10px;
+    height: fit-content;
+    border-radius: 5px;
+    width: 300px;
+  }
+  // &:hover {
+  //   transform: scale(1.2);
+  //   .name-area {
+  //     color: var(--white);
+  //     background-color: var(--primary-color);
+  //   }
+  // }
+}

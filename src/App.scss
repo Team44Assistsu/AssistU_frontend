@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   background-image: url("./Assests/images/Background.png");
+  background-color: var(--secondary-color);
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
@@ -14,6 +15,18 @@
     width: 100%;
     color: var(--primary-color);
     padding: 60px;
+    max-width: 1440px;
+
+    .title {
+      color: var(--white);
+      font-size: 70px;
+      margin-bottom: 20px;
+    }
+    .subtitle {
+      color: var(--white);
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
     @media (max-width: 1280px) {
       padding: 40px;
     }

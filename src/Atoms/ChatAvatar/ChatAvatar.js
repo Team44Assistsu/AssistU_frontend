@@ -1,0 +1,16 @@
+import React from "react";
+import "./style.scss";
+import avatar from "../../Assests/images/a.png";
+
+const ChatAvatar = (props) => {
+  return (
+    <div className='ChatAvatar' onClick={props.onClick}>
+      <img src={props.image ? props.image : avatar} alt='avatar_icon' />
+      <div className='message-area'>{`Hey! Message from ${
+        props.name || "buddy"
+      }`}</div>
+    </div>
+  );
+};
+
+export default ChatAvatar;

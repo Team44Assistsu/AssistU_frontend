@@ -4,6 +4,7 @@ import AlterHomePage from "../Components/AlterHomePage/AlterHomePage.js";
 import CreateAccount from "../Components/CreateAccount/CreateAccount.js";
 // import history from "./History";
 import { createBrowserHistory } from "history";
+
 const ForgotPassword = lazy(() =>
   import("../Components/ForgotPassword/ForgotPassword.js")
 );
@@ -11,6 +12,7 @@ const Login = lazy(() => import("../Components/Login/Login.js"));
 const LandingPagePatient = lazy(() =>
   import("../Components/LandingPagePatient/LandingPagePatient")
 );
+const ChatRoom = lazy(() => import("../Components/ChatRoom/ChatRoom.js"));
 
 class RouterClass extends Component {
   render() {
@@ -37,6 +39,7 @@ class RouterClass extends Component {
               path="/create-account"
               element={<CreateAccount history={history} />}
             />
+            <Route path="/chat-room" element={<ChatRoom history={history} />} />
             <Route exact path="/" element={<Login history={history} />} />
           </Routes>
         </Suspense>

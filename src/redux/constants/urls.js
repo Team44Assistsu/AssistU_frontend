@@ -1,3 +1,3 @@
 export const URLS = {
-  // ADD_USER: "/api/user/create",
+  LOGIN_URL: "/login",
 };
