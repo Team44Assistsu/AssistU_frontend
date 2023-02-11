@@ -9,11 +9,13 @@ import { useCharacterAnimations } from "../../contexts/CharacterAnimations";
 const Woman = (props) => {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF("./models/woman.gltf");
-  const { setAnimations, animationIndex } = useCharacterAnimations();
+  const { setAnimations, animationIndex, setAnimationIndex } =
+    useCharacterAnimations();
   const { actions, names } = useAnimations(animations, group);
 
   useEffect(() => {
     setAnimations(names);
+    setAnimationIndex(1);
   }, [names]);
 
   useEffect(() => {

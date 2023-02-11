@@ -11,3 +11,19 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+.modal3Dmessage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  .canva {
+    width: 50% !important;
+  }
+  .ChatSec {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+    border: 2px var(--primary-color) solid;
+    margin: 10px;
+  }
+}
