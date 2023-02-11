@@ -1,0 +1,28 @@
+.btn-main {
+  .MuiButton-root {
+    text-align: center;
+    text-transform: capitalize;
+  }
+  .MuiButton-endIcon {
+    svg {
+      font-size: 18px;
+    }
+  }
+  .MuiButton-contained.MuiButton-containedPrimary {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+  .MuiButton-contained.MuiButton-containedPrimary[class$="MuiButtonBase-root-MuiButton-root"]:hover {
+    color: var(--primary-color);
+    background-color: transparent;
+    border: var(--primary-color) 1px solid;
+  }
+  .MuiButton-root.MuiButton-outlined {
+    color: var(--primary-color);
+    border: var(--primary-color) 1px solid;
+  }
+  .MuiButton-root.MuiButton-outlined[class$="MuiButtonBase-root-MuiButton-root"]:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+}

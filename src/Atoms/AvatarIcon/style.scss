@@ -1,0 +1,28 @@
+.AvatarIcon {
+  .img-area {
+    width: 210px;
+    height: 210px;
+    padding: 10px;
+    border: var(--primary-color) 2px solid;
+    transition: transform 0.2s;
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  .name-area {
+    border: 2px solid var(--primary-color);
+    color: var(--white);
+    margin-top: 20px;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  &:hover {
+    transform: scale(1.2);
+    .name-area {
+      color: var(--white);
+      background-color: var(--primary-color);
+    }
+  }
+}

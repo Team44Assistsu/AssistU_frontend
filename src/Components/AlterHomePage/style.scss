@@ -1,0 +1,17 @@
+.AlterPage {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+
+  .button_alignment {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    button {
+      margin-right: 40px;
+      width: 250px;
+    }
+  }
+}

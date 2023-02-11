@@ -1,22 +1,41 @@
 import React, { Component } from "react";
 import TextBox from "../../Atoms/TextBox/TextBox";
 import Button from "../../Atoms/Button/Button";
+import "./style.scss";
+// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 class Login extends Component {
   state = {
-    name: "",
+    userName: "",
+    passWord: "",
+    forgetpassword: "",
   };
   render() {
     return (
-      <div>
-        <div>login</div>
-        <TextBox
-          title={"Name"}
-          value={this.state.name}
-          onChange={(e) => this.setState({ name: e.target.value })}
-        />
-        <div>{this.state.name}</div>
-        <Button onClick={() => alert(this.state.name)} text={"print"} />
+      <div className="LoginPage">
+        <div className="broder">
+          <TextBox
+            title={"UserName"}
+            value={this.state.userName}
+            onChange={(e) => this.setState({ userName: e.target.value })}
+          />
+          <TextBox
+            title={"password"}
+            value={this.state.passWord}
+            onChange={(e) => this.setState({ passWord: e.target.value })}
+          />
+          <div
+            class="style"
+            onClick={() => (window.location.href = "/forgot-passsword")}
+          >
+            Forgot Password
+          </div>
+          <Button
+            onClick={() => (window.location.href = "/landing-page")}
+            text={"Login"}
+            // endIcon={<ArrowForwardIosIcon />}
+          />
+        </div>
       </div>
     );
   }

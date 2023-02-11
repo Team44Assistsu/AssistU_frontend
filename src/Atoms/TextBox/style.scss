@@ -1,6 +1,9 @@
 .textBox {
-  width: 25%;
+  width: 300px;
   label {
+    color: var(--white);
+  }
+  input {
     color: var(--white);
   }
   label.Mui-focused {
@@ -12,9 +15,7 @@
     .MuiOutlinedInput-notchedOutline {
     border-color: var(--primary-color);
   }
-  @media (max-width: 1280px) {
-    width: 30%;
-  }
+
   @media (max-width: 1024px) {
     width: 40%;
   }

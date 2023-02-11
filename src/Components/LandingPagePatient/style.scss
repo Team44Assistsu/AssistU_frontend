@@ -1,0 +1,17 @@
+.LandingPage {
+  position: relative;
+  .button_create {
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    top: -130px;
+    right: 80px;
+  }
+  .alter_icon {
+    justify-content: center;
+    display: flex;
+    .AvatarIcon {
+      margin: 20px;
+    }
+  }
+}
