@@ -3,6 +3,11 @@
     text-align: center;
     text-transform: capitalize;
   }
+  .MuiButton-endIcon {
+    svg {
+      font-size: 18px;
+    }
+  }
   .MuiButton-contained.MuiButton-containedPrimary {
     background-color: var(--primary-color);
     color: var(--white);

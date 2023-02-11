@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Button from "../../Atoms/Button/Button";
 import "./style.scss";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 class AlterHomePage extends Component {
   render() {
     return (
@@ -14,20 +15,24 @@ class AlterHomePage extends Component {
           <Button
             onClick={() => this.props.history.push("")}
             text={"Chat Room"}
+            endIcon={<ArrowForwardIosIcon />}
           ></Button>
           <Button
             onClick={() => this.props.history.push("")}
-            text={"Avatars"}
+            text={"My Room"}
+            endIcon={<ArrowForwardIosIcon />}
           ></Button>
         </div>
         <div className="button_alignment">
           <Button
             onClick={() => this.props.history.push("")}
             text={"Settings"}
+            endIcon={<ArrowForwardIosIcon />}
           ></Button>
           <Button
             onClick={() => this.props.history.push("")}
             text={"Support"}
+            endIcon={<ArrowForwardIosIcon />}
           ></Button>
         </div>
       </div>

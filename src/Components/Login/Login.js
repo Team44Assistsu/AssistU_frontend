@@ -12,8 +12,8 @@ class Login extends Component {
   };
   render() {
     return (
-      <div className='LoginPage'>
-        <div className='broder'>
+      <div className="LoginPage">
+        <div className="broder">
           <TextBox
             title={"UserName"}
             value={this.state.userName}
@@ -25,7 +25,7 @@ class Login extends Component {
             onChange={(e) => this.setState({ passWord: e.target.value })}
           />
           <div
-            class='style'
+            class="style"
             onClick={() => (window.location.href = "/forgot-passsword")}
           >
             Forgot Password
