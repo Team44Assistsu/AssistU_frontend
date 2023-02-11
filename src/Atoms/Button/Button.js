@@ -4,9 +4,9 @@ import "./style.scss";
 
 const ButtonComp = (props) => {
   return (
-    <div className='btn-main'>
+    <div className="btn-main">
       <Button
-        variant={!props.primary ? "contained" : "outlined"}
+        variant={!props.primary ? "outlined" : "contained"}
         onClick={props.onClick}
         disabled={props.disabled}
         size={

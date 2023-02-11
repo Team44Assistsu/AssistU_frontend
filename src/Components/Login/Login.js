@@ -32,6 +32,7 @@ class Login extends Component {
           <Button
             onClick={() => this.props.history.push("/landing-page")}
             text={"Login"}
+            primary
           />
         </div>
       </div>
