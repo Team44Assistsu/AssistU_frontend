@@ -19,7 +19,11 @@ class RouterClass extends Component {
       <div className="main-content">
         <Suspense fallback={<div>Loading....</div>}>
           <Routes>
-            <Route exact path="/home" element={<AlterHomePage />} />
+            <Route
+              exact
+              path="/home"
+              element={<AlterHomePage history={history} />}
+            />
             <Route
               path="/landing-page"
               element={<LandingPagePatient history={history} />}
