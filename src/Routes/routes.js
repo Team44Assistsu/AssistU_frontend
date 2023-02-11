@@ -1,8 +1,6 @@
 import React, { Component, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import AlterHomePage from "../Components/AlterHomePage/AlterHomePage.js";
-import CreateAccount from "../Components/CreateAccount/CreateAccount.js";
-// import history from "./History";
+
 import { createBrowserHistory } from "history";
 
 const ForgotPassword = lazy(() =>
@@ -13,7 +11,16 @@ const LandingPagePatient = lazy(() =>
   import("../Components/LandingPagePatient/LandingPagePatient")
 );
 const ChatRoom = lazy(() => import("../Components/ChatRoom/ChatRoom.js"));
+const CreateAlter = lazy(() =>
+  import("../Components/CreateAlter/CreateAlter.js")
+);
 
+const CreateAccount = lazy(() =>
+  import("../Components/CreateAccount/CreateAccount.js")
+);
+const AlterHomePage = lazy(() =>
+  import("../Components/AlterHomePage/AlterHomePage.js")
+);
 class RouterClass extends Component {
   render() {
     const history = createBrowserHistory();
@@ -38,6 +45,10 @@ class RouterClass extends Component {
             <Route
               path="/create-account"
               element={<CreateAccount history={history} />}
+            />
+            <Route
+              path="/create-alter"
+              element={<CreateAlter history={history} />}
             />
             <Route path="/chat-room" element={<ChatRoom history={history} />} />
             <Route exact path="/" element={<Login history={history} />} />
