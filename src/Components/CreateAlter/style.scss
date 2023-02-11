@@ -1,0 +1,24 @@
+.CreateAlter {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 30;
+  padding: 40px 20px;
+  align-items: center;
+  margin: auto;
+  border: 3px var(--primary-color) solid;
+  border-radius: 20px;
+  width: 60%;
+  .textBox {
+    margin-bottom: 20px;
+  }
+  @media (max-width: 1280px) {
+    height: 30%;
+  }
+  @media (max-width: 1024px) {
+    height: 40%;
+  }
+  @media (max-width: 480px) {
+    height: 100%;
+  }
+}
