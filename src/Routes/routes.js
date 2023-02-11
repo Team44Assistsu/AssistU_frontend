@@ -1,6 +1,7 @@
 import React, { Component, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 import AlterHomePage from "../Components/AlterHomePage/AlterHomePage.js";
+import CreateAccount from "../Components/CreateAccount/CreateAccount.js";
 // import history from "./History";
 import { createBrowserHistory } from "history";
 const ForgotPassword = lazy(() =>
@@ -31,6 +32,10 @@ class RouterClass extends Component {
             <Route
               path="/forgot-password"
               element={<ForgotPassword history={history} />}
+            />
+            <Route
+              path="/create-account"
+              element={<CreateAccount history={history} />}
             />
             <Route exact path="/" element={<Login history={history} />} />
           </Routes>

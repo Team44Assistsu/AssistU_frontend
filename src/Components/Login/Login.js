@@ -13,6 +13,12 @@ class Login extends Component {
   render() {
     return (
       <div className="LoginPage">
+        <div className="CreateAccount">
+          <Button
+            onClick={() => (window.location.href = "/create-account")}
+            text={"Create Account"}
+          />
+        </div>
         <div className="broder">
           <TextBox
             title={"UserName"}
