@@ -2,7 +2,7 @@ import React from "react";
 import "./App.scss";
 import RouterClass from "./Routes/routes";
 
-function App() {
+const App = (props) => {
   return (
     <React.Fragment>
       <div className='App'>
@@ -10,6 +10,6 @@ function App() {
       </div>
     </React.Fragment>
   );
-}
+};
 
 export default App;

@@ -6,7 +6,7 @@ const ButtonComp = (props) => {
   return (
     <div className='btn-main'>
       <Button
-        variant={!props.primary ? "contained" : "outlined"}
+        variant={!props.primary ? "outlined" : "contained"}
         onClick={props.onClick}
         disabled={props.disabled}
         size={
@@ -17,6 +17,8 @@ const ButtonComp = (props) => {
             : "large"
         }
         className={`Button ${props.classes}`}
+        endIcon={props?.endIcon || null}
+        startIcon={props?.startIcon || null}
       >
         {props.text}
       </Button>
