@@ -23,7 +23,7 @@ class Login extends Component {
     if (prev.login !== cur.login && !cur?.login?.valid) {
       store.addNotification({
         title: "Error!!",
-        message: e.response && e.response.data && e.response.data.loginStatus,
+        message: cur?.login?.loginStatus || "Something went wrong",
         type: "danger",
         container: "top-right",
         animationIn: ["animated", "fadeIn"],
