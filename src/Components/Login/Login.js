@@ -2,18 +2,41 @@ import React, { Component } from "react";
 import TextBox from "../../Atoms/TextBox/TextBox";
 import Button from "../../Atoms/Button/Button";
 import "./style.scss";
-// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as userAction from "../../redux/action/userAction";
 
 class Login extends Component {
   state = {
     userName: "",
     passWord: "",
-    forgetpassword: "",
+  };
+  componentDidUpdate(prevProps) {
+    const prev = prevProps?.UserReducer;
+    const cur = this.props?.UserReducer;
+    console.log(prev?.login, cur?.login);
+
+    if (prev.login !== cur.login && cur?.login?.valid) {
+      window.location.href = "/landing-page";
+    }
+    if (prev.login !== cur.login && !cur?.login?.valid) {
+      alert(cur?.login?.loginStatus || "Something went wrong");
+    }
+  }
+  login = () => {
+    console.log("log");
+    const { userName, passWord } = this.state;
+    if (userName && passWord) {
+      this.props.userActions.login({ username: userName, password: passWord });
+    } else {
+      alert("UserName or password missing");
+    }
   };
   render() {
+    console.log(this.props);
     return (
-      <div className="LoginPage">
-        <div className="broder">
+      <div className='LoginPage'>
+        <div className='broder'>
           <TextBox
             title={"UserName"}
             value={this.state.userName}
@@ -25,20 +48,26 @@ class Login extends Component {
             onChange={(e) => this.setState({ passWord: e.target.value })}
           />
           <div
-            class="style"
+            class='style'
             onClick={() => (window.location.href = "/forgot-passsword")}
           >
             Forgot Password
           </div>
-          <Button
-            onClick={() => (window.location.href = "/landing-page")}
-            text={"Login"}
-            // endIcon={<ArrowForwardIosIcon />}
-          />
+          <Button onClick={this.login} text={"Login"} />
         </div>
       </div>
     );
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  UserReducer: state.UserReducer,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    userActions: bindActionCreators(userAction, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

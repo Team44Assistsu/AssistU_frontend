@@ -1,28 +1,30 @@
 import { USER_ACTIONS } from "../constants";
 
 const initialState = {
-  // isViewUser: false,
-  // viewUser: [],
+  login: null,
+  isLoggedIn: false,
 };
 
 export function UserReducer(state = initialState, action) {
   switch (action.type) {
-    // case USER_ACTIONS.DELETE_USER:
-    //   return {
-    //     ...state,
-    //     isDeleteUser: false,
-    //   };
-    // case USER_ACTIONS.DELETE_USER_SUCCESS:
-    //   return {
-    //     ...state,
-    //     isDeleteUser: true,
-    //     deleteUser: action.payload,
-    //   };
-    // case USER_ACTIONS.DELETE_USER_ERROR:
-    //   return {
-    //     ...state,
-    //     isDeleteUser: false,
-    //   };
+    case USER_ACTIONS.LOGIN:
+      return {
+        ...state,
+        isLoggedIn: false,
+        login: null,
+      };
+    case USER_ACTIONS.LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoggedIn: true,
+        login: action.payload,
+      };
+    case USER_ACTIONS.LOGIN_ERROR:
+      return {
+        ...state,
+        isLoggedIn: false,
+        login: action.payload,
+      };
 
     default:
       return state;

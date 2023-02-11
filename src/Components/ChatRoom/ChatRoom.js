@@ -4,6 +4,9 @@ import ChatAvatar from "../../Atoms/ChatAvatar/ChatAvatar";
 import avatar1 from "../../Assests/images/af1.png";
 import avatar2 from "../../Assests/images/af13.png";
 import Modal from "../../Atoms/Modal/Modal";
+import { Canvas } from "@react-three/fiber";
+import Experience from "../../Atoms/ThreeD/Experience";
+// import Interface from "../../Atoms/ThreeD/Interface";
 
 class Chatroom extends Component {
   state = {
@@ -33,7 +36,9 @@ class Chatroom extends Component {
             open={this.state.openModal}
             handleClose={() => this.setState({ openModal: false })}
           >
-            <div>Hey</div>
+            <Canvas camera={{ position: [1, 1.5, 2.5], fov: 50 }} shadows>
+              <Experience />
+            </Canvas>
           </Modal>
         )}
       </div>

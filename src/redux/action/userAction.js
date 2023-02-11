@@ -1,22 +1,22 @@
-// import { USER_ACTIONS } from "../constants";
+import { USER_ACTIONS } from "../constants";
 
-// export function getUserById(data) {
-//   return {
-//     type: USER_ACTIONS.GET_USER_BY_ID,
-//     payload: data,
-//   };
-// }
+export function login(data) {
+  return {
+    type: USER_ACTIONS.LOGIN,
+    payload: data,
+  };
+}
 
-// export function getUserByIdSuccess(data) {
-//   return {
-//     type: USER_ACTIONS.GET_USER_BY_ID_SUCCESS,
-//     payload: data,
-//   };
-// }
+export function loginSuccess(data) {
+  return {
+    type: USER_ACTIONS.LOGIN_SUCCESS,
+    payload: data,
+  };
+}
 
-// export function getUserByIdError(error) {
-//   return {
-//     type: USER_ACTIONS.GET_USER_BY_ID_ERROR,
-//     payload: error,
-//   };
-// }
+export function loginError(error) {
+  return {
+    type: USER_ACTIONS.LOGIN_ERROR,
+    payload: error,
+  };
+}
