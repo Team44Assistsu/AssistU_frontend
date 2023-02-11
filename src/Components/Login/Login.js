@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextBox from "../../Atoms/TextBox/TextBox";
 import Button from "../../Atoms/Button/Button";
 import "./style.scss";
+// import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 class Login extends Component {
   state = {
@@ -32,7 +33,7 @@ class Login extends Component {
           <Button
             onClick={() => this.props.history.push("/landing-page")}
             text={"Login"}
-            primary
+            // endIcon={<ArrowForwardIosIcon />}
           />
         </div>
       </div>

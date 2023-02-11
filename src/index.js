@@ -8,7 +8,7 @@ import store from "./redux/store";
 import { createBrowserHistory } from "history";
 import { BrowserRouter as Router } from "react-router-dom";
 
-const history = createBrowserHistory();
+const history = createBrowserHistory({ forceRefresh: true });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

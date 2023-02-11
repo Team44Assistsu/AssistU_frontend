@@ -1,0 +1,17 @@
+.LandingPage {
+  //   display: flex;
+  //   justify-content: center;
+  //   align-items: center;
+  display: flex;
+
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  .icons {
+    flex: 0 1 auto;
+    flex-direction: column;
+    align-self: auto;
+    text-align: center; /*optional*/
+  }
+}
