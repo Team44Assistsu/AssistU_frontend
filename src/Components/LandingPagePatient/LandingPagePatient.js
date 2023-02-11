@@ -10,20 +10,18 @@ const Landingpagepatient = () => {
   const navigate = useNavigate();
   return (
     <div className='LandingPage'>
-      <div className='icons'>
-        <Avataricon
-          image={avatar1}
-          onClick={() => navigate("/home", { replace: true })}
-        />
-        <Avataricon
-          image={avatar2}
-          onClick={() => navigate("/home", { replace: true })}
-        />
-        <Avataricon
-          image={avatar3}
-          onClick={() => navigate("/home", { replace: true })}
-        />
-      </div>
+      <Avataricon
+        image={avatar1}
+        onClick={() => navigate("/home", { replace: true })}
+      />
+      <Avataricon
+        image={avatar2}
+        onClick={() => navigate("/home", { replace: true })}
+      />
+      <Avataricon
+        image={avatar3}
+        onClick={() => navigate("/home", { replace: true })}
+      />
     </div>
   );
 };
