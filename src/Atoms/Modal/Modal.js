@@ -11,7 +11,7 @@ const ModalComp = (props) => {
       aria-describedby='modal-modal-description'
     >
       <div style={props.style} className='model-content'>
-        {props.content || props.child}
+        {props.content || props.children}
       </div>
     </Modal>
   );

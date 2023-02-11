@@ -1,8 +1,8 @@
-// import { all, put, call, takeLatest } from "redux-saga/effects";
-// import { USER_ACTIONS, URLS } from "../constants";
+import { all, put, call, takeLatest } from "redux-saga/effects";
+import { USER_ACTIONS, URLS } from "../constants";
 // import { store } from "react-notifications-component";
-// import { getUserByIdError, getUserByIdSuccess } from "../action/userAction";
-// import apiJunction from "../utils/api";
+import { loginError, loginSuccess } from "../action/userAction";
+import apiJunction from "../utils/api";
 
 // function* addUser(action) {
 //   try {
@@ -28,19 +28,19 @@
 //   }
 // }
 
-// function* getUserById(action) {
-//   try {
-//     const result = yield call(apiJunction.makeRequest, {
-//       method: "get",
-//       // body: action.payload,
-//       url: `/api/user/get?id=${action.payload.id}`,
-//     });
-//     yield put(getUserByIdSuccess(result.data));
-//   } catch (e) {
-//     yield put(getUserByIdError(e.response));
-//   }
-// }
+function* login(action) {
+  try {
+    const result = yield call(apiJunction.makeRequest, {
+      method: "post",
+      body: action.payload,
+      url: URLS.LOGIN_URL,
+    });
+    yield put(loginSuccess(result.data));
+  } catch (e) {
+    yield put(loginError(e.response.data));
+  }
+}
 
-// export default function* userSaga() {
-//   yield all([takeLatest(USER_ACTIONS.GET_USER_BY_ID, getUserById)]);
-// }
+export default function* userSaga() {
+  yield all([takeLatest(USER_ACTIONS.LOGIN, login)]);
+}
