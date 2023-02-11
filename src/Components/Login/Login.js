@@ -35,14 +35,15 @@ class Login extends Component {
   render() {
     console.log(this.props);
     return (
-      <div className="LoginPage">
-        <div className="CreateAccount">
+      <div className='LoginPage'>
+        <div className='CreateAccount'>
           <Button
+            primary
             onClick={() => (window.location.href = "/create-account")}
             text={"Create Account"}
           />
         </div>
-        <div className="broder">
+        <div className='broder'>
           <TextBox
             title={"UserName"}
             value={this.state.userName}
@@ -54,7 +55,7 @@ class Login extends Component {
             onChange={(e) => this.setState({ passWord: e.target.value })}
           />
           <div
-            class="style"
+            class='forgotPassword'
             onClick={() => (window.location.href = "/forgot-passsword")}
           >
             Forgot Password

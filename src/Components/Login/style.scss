@@ -7,7 +7,7 @@
   position: relative;
   .CreateAccount {
     position: absolute;
-    top: 0px;
+    top: -100px;
     right: 0px;
   }
   .textBox {
@@ -35,7 +35,8 @@
   @media (max-width: 480px) {
     height: 100%;
   }
-  .style {
+  .forgotPassword {
+    cursor: pointer;
     color: var(--primary-color) solid;
   }
 }
