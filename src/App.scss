@@ -20,5 +20,15 @@
     @media (max-width: 480px) {
       padding: 10px;
     }
+    .title {
+      color: var(--white);
+      font-size: 70px;
+      margin-bottom: 20px;
+    }
+    .subtitle {
+      color: var(--white);
+      font-size: 26px;
+      margin-bottom: 20px;
+    }
   }
 }

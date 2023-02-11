@@ -2,7 +2,7 @@ import React from "react";
 import "./style.scss";
 import avatar from "../../Assests/images/a.png";
 
-const Avataricon = (props) => {
+const AvatarIcon = (props) => {
   return (
     <div className='AvatarIcon' onClick={props.onClick}>
       <div className='img-area'>
@@ -13,4 +13,4 @@ const Avataricon = (props) => {
   );
 };
 
-export default Avataricon;
+export default AvatarIcon;

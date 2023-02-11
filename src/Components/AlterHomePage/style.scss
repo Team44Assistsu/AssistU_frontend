@@ -3,7 +3,7 @@
   align-items: flex-start;
   justify-content: center;
   flex-direction: column;
-  color: var(--white);
+
   .button_alignment {
     display: flex;
     flex-direction: row;
@@ -13,10 +13,5 @@
       margin-right: 40px;
       width: 250px;
     }
-  }
-  h1 {
-    font-size: 70px;
-
-    margin: 0px;
   }
 }
