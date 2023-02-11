@@ -6,6 +6,7 @@ class TextBox extends Component {
   render() {
     return (
       <TextField
+        type={this.props.type}
         required={this.props.required}
         error={this.props.error}
         helperText={this.props.helperText}

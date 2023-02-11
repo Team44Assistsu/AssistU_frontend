@@ -16,6 +16,8 @@
     color: var(--primary-color);
     padding: 60px;
     max-width: 1440px;
+    max-height: 80%;
+    overflow: auto;
 
     .title {
       color: var(--white);
