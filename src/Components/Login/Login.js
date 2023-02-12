@@ -11,6 +11,9 @@ class Login extends Component {
     userName: "",
     passWord: "",
   };
+  componentDidMount() {
+    localStorage.clear();
+  }
   componentDidUpdate(prevProps) {
     const prev = prevProps?.UserReducer;
     const cur = this.props?.UserReducer;

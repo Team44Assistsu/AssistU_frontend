@@ -73,9 +73,9 @@ class Chatroom extends Component {
               <ChatAvatar
                 key={index}
                 image={
-                  message?.fromAlter?.alterId % 3 == 0
+                  message?.fromAlter?.alterId % 3 === 0
                     ? avatar1
-                    : message?.fromAlter?.alterId % 3 == 1
+                    : message?.fromAlter?.alterId % 3 === 1
                     ? avatar2
                     : avatar3
                 }

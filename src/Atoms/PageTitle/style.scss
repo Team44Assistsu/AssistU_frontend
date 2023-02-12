@@ -2,7 +2,18 @@
   font-size: 60px;
   color: var(--white);
   position: absolute;
-  text-align: center;
-  width: 100%;
+  margin: auto;
   display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+
+  .pageName {
+    text-align: center;
+    width: calc(100% - 120px);
+  }
+  button {
+    width: 120px;
+    margin-right: 20px;
+  }
 }
