@@ -15,7 +15,9 @@
     .MuiOutlinedInput-notchedOutline {
     border-color: var(--primary-color);
   }
-
+  textarea {
+    color: var(--white);
+  }
   @media (max-width: 1024px) {
     width: 40%;
   }

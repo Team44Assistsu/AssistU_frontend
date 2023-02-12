@@ -6,7 +6,8 @@ class TextBox extends Component {
   render() {
     return (
       <TextField
-        maxRows={this.props.maxRows}
+        multiline={this.props.multiline}
+        rows={this.props.rows}
         type={this.props.type}
         required={this.props.required}
         error={this.props.error}
