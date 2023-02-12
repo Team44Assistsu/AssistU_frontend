@@ -6,6 +6,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 const Alterhomepage = () => {
   const navigate = useNavigate();
+
   return (
     <div className='AlterPage'>
       <div className='title'>WELCOME TO ASSISTSU</div>

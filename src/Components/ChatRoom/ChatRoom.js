@@ -14,6 +14,8 @@ class Chatroom extends Component {
     openModal: false,
   };
   render() {
+    console.log(this.props);
+
     return (
       <div className='ChatRoom'>
         <div className='button_create'>

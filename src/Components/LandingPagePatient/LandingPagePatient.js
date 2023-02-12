@@ -40,9 +40,10 @@ const Landingpagepatient = (props) => {
             image={
               index % 3 === 0 ? avatar0 : index % 3 === 1 ? avatar1 : avatar2
             }
-            onClick={() =>
-              navigate("/home", { state: { avatar }, replace: true })
-            }
+            onClick={() => {
+              localStorage.setItem("alterId", avatar?.alterId);
+              navigate("/home", { state: { avatar }, replace: true });
+            }}
             name={avatar?.alterName}
           />
         ))}
