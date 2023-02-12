@@ -1,6 +1,7 @@
 import React from "react";
 import Modal from "@mui/material/Modal";
 import "./style.scss";
+import CloseIcon from "@mui/icons-material/Close";
 
 const ModalComp = (props) => {
   return (
@@ -11,6 +12,11 @@ const ModalComp = (props) => {
       aria-describedby='modal-modal-description'
     >
       <div style={props.style} className='model-content'>
+        {props.close && (
+          <div className='closeIcon' onClick={props.handleClose}>
+            <CloseIcon />
+          </div>
+        )}
         {props.content || props.children}
       </div>
     </Modal>

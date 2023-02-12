@@ -11,11 +11,18 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .rnc__base {
+    position: absolute;
+    // z-index: 10;
+    // color: var(--white);
+  }
   .main-content {
     width: 100%;
     color: var(--primary-color);
     padding: 60px;
     max-width: 1440px;
+    max-height: 80%;
+    overflow: auto;
 
     .title {
       color: var(--white);

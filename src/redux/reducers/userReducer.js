@@ -3,6 +3,8 @@ import { USER_ACTIONS } from "../constants";
 const initialState = {
   login: null,
   isLoggedIn: false,
+  createPatient: null,
+  isCreatePatient: false,
 };
 
 export function UserReducer(state = initialState, action) {
@@ -22,8 +24,26 @@ export function UserReducer(state = initialState, action) {
     case USER_ACTIONS.LOGIN_ERROR:
       return {
         ...state,
+        login: null,
         isLoggedIn: false,
-        login: action.payload,
+      };
+    case USER_ACTIONS.CREATE_PATIENT:
+      return {
+        ...state,
+        isCreatePatient: false,
+        createPatient: null,
+      };
+    case USER_ACTIONS.CREATE_PATIENT_SUCCESS:
+      return {
+        ...state,
+        isCreatePatient: true,
+        createPatient: action.payload,
+      };
+    case USER_ACTIONS.CREATE_PATIENT_ERROR:
+      return {
+        ...state,
+        isCreatePatient: false,
+        createPatient: null,
       };
 
     default:

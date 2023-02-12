@@ -5,6 +5,7 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userAction from "../../redux/action/userAction";
+// import { Store } from "react-notifications-component";
 
 class Login extends Component {
   state = {
@@ -17,9 +18,20 @@ class Login extends Component {
     console.log(prev?.login, cur?.login);
 
     if (prev.login !== cur.login && cur?.login?.valid) {
+      localStorage.setItem("patientId", cur?.login?.patientId);
       window.location.href = "/landing-page";
-    }
-    if (prev.login !== cur.login && !cur?.login?.valid) {
+    } else if (prev.login !== cur.login && cur.login && !cur.login.valid) {
+      // Store.addNotification({
+      //   title: "Error!!",
+      //   message: cur?.login?.loginStatus || "Something went wrong",
+      //   type: "danger",
+      //   container: "top-right",
+      //   animationIn: ["animate__animated", "animate__fadeIn"],
+      //   animationOut: ["animate__animated", "animate__fadeOut"],
+      //   dismiss: {
+      //     duration: 5000,
+      //   },
+      // });
       alert(cur?.login?.loginStatus || "Something went wrong");
     }
   }
@@ -36,19 +48,28 @@ class Login extends Component {
     console.log(this.props);
     return (
       <div className='LoginPage'>
+        <div className='CreateAccount'>
+          <Button
+            primary
+            onClick={() => (window.location.href = "/create-account")}
+            text={"Create Account"}
+          />
+        </div>
         <div className='broder'>
           <TextBox
+            required
             title={"UserName"}
             value={this.state.userName}
             onChange={(e) => this.setState({ userName: e.target.value })}
           />
           <TextBox
+            required
             title={"password"}
             value={this.state.passWord}
             onChange={(e) => this.setState({ passWord: e.target.value })}
           />
           <div
-            class='style'
+            class='forgotPassword'
             onClick={() => (window.location.href = "/forgot-passsword")}
           >
             Forgot Password
