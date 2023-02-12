@@ -6,4 +6,12 @@
   top: 10%;
   left: 10%;
   position: absolute;
+  padding: 20px;
+  background-color: var(--secondary-color);
+  .closeIcon {
+    position: absolute;
+    top: 0;
+    color: var(--primary-color);
+    right: 0;
+  }
 }

@@ -12,6 +12,7 @@ import Speech from "../../Atoms/TextToSpeech/TextToSpeech";
 class Chatroom extends Component {
   state = {
     openModal: false,
+    message: "Hey! how are you?",
   };
   render() {
     console.log(this.props);
@@ -45,6 +46,7 @@ class Chatroom extends Component {
           <Modal
             open={this.state.openModal}
             handleClose={() => this.setState({ openModal: false })}
+            close
           >
             <div className='modal3Dmessage'>
               <Canvas
@@ -56,8 +58,9 @@ class Chatroom extends Component {
               </Canvas>
               {/* <Interface /> */}
               <div className='ChatSec'>
-                <div>Message Section</div>
-                <Speech value='Hey there' />
+                <div className='message-title'>Message Section</div>
+                <div className='message-text'>{this.state.message}</div>
+                <Speech value={this.state.message} className='speech-button' />
               </div>
             </div>
           </Modal>
