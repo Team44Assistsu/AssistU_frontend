@@ -24,28 +24,40 @@
   .canva {
     width: 50% !important;
   }
-  .ChatSec {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .message-sec {
     width: 50%;
-    height: 50%;
-    border: 2px var(--primary-color) solid;
-    margin: 10px;
-    padding: 10px;
-    .message-title {
-      color: var(--primary-color);
-      text-align: center;
-      margin-bottom: 10px;
+    .ChatSec {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      height: 50%;
+      border: 2px var(--primary-color) solid;
+      margin: 10px;
+      padding: 10px;
+      .message-title {
+        color: var(--primary-color);
+        text-align: center;
+        margin-bottom: 10px;
+      }
+      .speech-button {
+        color: var(--primary-color);
+        cursor: pointer;
+      }
+      .message-text {
+        color: var(--white);
+        height: 75%;
+        overflow: auto;
+      }
     }
-    .speech-button {
-      color: var(--primary-color);
-      cursor: pointer;
-    }
-    .message-text {
-      color: var(--white);
-      height: 75%;
-      overflow: auto;
+    .message-send {
+      height: 35%;
+      border: 2px var(--primary-color) solid;
+      margin: 10px;
+      padding: 10px;
+      .textBox {
+        width: 100%;
+      }
     }
   }
 }

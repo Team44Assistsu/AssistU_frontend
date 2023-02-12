@@ -37,12 +37,13 @@ const Landingpagepatient = (props) => {
       <div className='alter_icon'>
         {avatarsList?.map((avatar, index) => (
           <Avataricon
+            key={index}
             image={
               index % 3 === 0 ? avatar0 : index % 3 === 1 ? avatar1 : avatar2
             }
             onClick={() => {
               localStorage.setItem("alterId", avatar?.alterId);
-              navigate("/home", { state: { avatar }, replace: true });
+              navigate("/home", { replace: true });
             }}
             name={avatar?.alterName}
           />
