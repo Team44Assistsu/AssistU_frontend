@@ -52,6 +52,7 @@ class Login extends Component {
           />
           <TextBox
             required
+            type='password'
             title={"password"}
             value={this.state.passWord}
             onChange={(e) => this.setState({ passWord: e.target.value })}
