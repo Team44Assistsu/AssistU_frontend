@@ -17,7 +17,7 @@ class CreateAlter extends Component {
   componentDidUpdate(prevProps) {
     const prev = prevProps?.AvatarReducer;
     const cur = this.props?.AvatarReducer;
-    if (prev?.createAvatar !== cur.createAvatar && cur.createAvatar) {
+    if (prev?.createAvatar !== cur?.createAvatar && cur?.createAvatar) {
       window.location.href = "/landing-page";
     }
   }
@@ -47,6 +47,7 @@ class CreateAlter extends Component {
           onChange={(e) => this.setState({ alterName: e.target.value })}
         />
         <TextBox
+          type='number'
           title={"Alter Age"}
           value={this.state.alterAge}
           onChange={(e) => this.setState({ alterAge: e.target.value })}
