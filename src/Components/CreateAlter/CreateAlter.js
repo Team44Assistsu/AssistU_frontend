@@ -18,8 +18,6 @@ class CreateAlter extends Component {
     const prev = prevProps?.AvatarReducer;
     const cur = this.props?.AvatarReducer;
     if (prev?.createAvatar !== cur?.createAvatar && cur?.createAvatar) {
-      console.log(cur.createAvatar);
-
       window.location.href = "/landing-page";
     }
   }
