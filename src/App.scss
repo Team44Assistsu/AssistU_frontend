@@ -11,6 +11,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  .rnc__base {
+    position: absolute;
+    // z-index: 10;
+    // color: var(--white);
+  }
   .main-content {
     width: 100%;
     color: var(--primary-color);

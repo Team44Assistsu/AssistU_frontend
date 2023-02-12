@@ -1,6 +1,6 @@
 import { all, put, call, takeLatest } from "redux-saga/effects";
 import { USER_ACTIONS, URLS } from "../constants";
-// import { store } from "react-notifications-component";
+// import { Store } from "react-notifications-component";
 import {
   loginError,
   loginSuccess,
@@ -18,15 +18,17 @@ function* login(action) {
     });
     yield put(loginSuccess(result.data));
   } catch (e) {
-    // store.addNotification({
+    // Store.addNotification({
     //   title: "Error!!",
-    //   message: e.response && e.response.data && e.response.data.loginStatus,
+    //   message: e?.response?.data?.loginStatus || "Something went wrong",
     //   type: "danger",
+    //   insert: "top",
     //   container: "top-right",
-    //   animationIn: ["animated", "fadeIn"],
-    //   animationOut: ["animated", "fadeOut"],
+    //   animationIn: ["animate__animated", "animate__fadeIn"],
+    //   animationOut: ["animate__animated", "animate__fadeOut"],
     //   dismiss: {
-    //     duration: 10000,
+    //     duration: 5000,
+    //     onScreen: true,
     //   },
     // });
     yield put(loginError(e.response.data));
