@@ -47,6 +47,7 @@ class CreateAlter extends Component {
           onChange={(e) => this.setState({ alterName: e.target.value })}
         />
         <TextBox
+          type='number'
           title={"Alter Age"}
           value={this.state.alterAge}
           onChange={(e) => this.setState({ alterAge: e.target.value })}
