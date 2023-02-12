@@ -7,7 +7,6 @@ const App = (props) => {
   return (
     <React.Fragment>
       <Pagetitle />
-
       <div className='App'>
         <RouterClass />
       </div>

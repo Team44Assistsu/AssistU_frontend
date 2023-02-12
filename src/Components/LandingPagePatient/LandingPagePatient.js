@@ -37,6 +37,7 @@ const Landingpagepatient = (props) => {
       <div className='alter_icon'>
         {avatarsList?.map((avatar, index) => (
           <Avataricon
+            key={index}
             image={
               index % 3 === 0 ? avatar0 : index % 3 === 1 ? avatar1 : avatar2
             }

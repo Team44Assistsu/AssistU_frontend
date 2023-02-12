@@ -5,7 +5,6 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userAction from "../../redux/action/userAction";
-// import { Store } from "react-notifications-component";
 
 class Login extends Component {
   state = {
@@ -21,17 +20,6 @@ class Login extends Component {
       localStorage.setItem("patientId", cur?.login?.patientId);
       window.location.href = "/landing-page";
     } else if (prev.login !== cur.login && cur.login && !cur.login.valid) {
-      // Store.addNotification({
-      //   title: "Error!!",
-      //   message: cur?.login?.loginStatus || "Something went wrong",
-      //   type: "danger",
-      //   container: "top-right",
-      //   animationIn: ["animate__animated", "animate__fadeIn"],
-      //   animationOut: ["animate__animated", "animate__fadeOut"],
-      //   dismiss: {
-      //     duration: 5000,
-      //   },
-      // });
       alert(cur?.login?.loginStatus || "Something went wrong");
     }
   }
