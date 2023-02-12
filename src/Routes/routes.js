@@ -21,13 +21,14 @@ const CreateAccount = lazy(() =>
 const AlterHomePage = lazy(() =>
   import("../Components/AlterHomePage/AlterHomePage.js")
 );
+const Loader = lazy(() => import("../Components/Loader/Loader"));
 class RouterClass extends Component {
   render() {
     const history = createBrowserHistory();
 
     return (
       <div className="main-content">
-        <Suspense fallback={<div>Loading....</div>}>
+        <Suspense fallback={<Loader history={history} />}>
           <Routes>
             <Route
               exact
