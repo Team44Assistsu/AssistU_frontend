@@ -21,8 +21,6 @@ const Landingpagepatient = (props) => {
   }, []);
 
   useEffect(() => {
-    console.log(result?.getAvatar);
-
     setAvatarList(result?.getAvatar);
   }, [result?.getAvatar]);
   return (
@@ -31,7 +29,7 @@ const Landingpagepatient = (props) => {
         <Button
           text={"Create Avatar"}
           primary
-          onClick={() => alert("On progress")}
+          onClick={() => navigate("/create-alter", { replace: true })}
         />
       </div>
       <div className='alter_icon'>

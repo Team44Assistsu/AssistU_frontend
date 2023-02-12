@@ -13,6 +13,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as messageAction from "../../redux/action/messageActions";
 import TextBox from "../../Atoms/TextBox/TextBox";
+import SendIcon from "@mui/icons-material/Send";
 
 class Chatroom extends Component {
   state = {
@@ -22,7 +23,6 @@ class Chatroom extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     const alterId = localStorage.getItem("alterId");
     this.props.messageActions.getMessage({ receiverId: alterId });
   }
@@ -30,14 +30,30 @@ class Chatroom extends Component {
   componentDidUpdate(prevProps) {
     const cur = this.props?.MessageReducer;
     const prev = prevProps?.MessageReducer;
-    if (prev?.getMessage !== cur?.getMessage && cur?.getMessage) {
-      console.log(cur.getMessage);
+
+    if (
+      prev?.sendMessage !== cur?.sendMessage &&
+      cur?.isSendMessage &&
+      cur?.sendMessage
+    ) {
+      this.setState({ message: null, repy: null, openModal: false });
+      alert("Message Sent Successfully");
     }
   }
 
-  render() {
-    console.log(this.props);
+  sendMessage = () => {
+    const { message, reply } = this.state;
+    const from = localStorage.getItem("alterId");
+    if (reply) {
+      this.props?.messageActions?.sendMessage({
+        from: from,
+        text: reply,
+        recevierIds: [message?.fromAlter?.alterId],
+      });
+    }
+  };
 
+  render() {
     return (
       <div className='ChatRoom'>
         <div className='button_create'>
@@ -100,8 +116,15 @@ class Chatroom extends Component {
                   <TextBox
                     title='Reply'
                     value={this.state.reply}
-                    maxRows={10}
+                    rows={5}
+                    multiline
                     onChange={(e) => this.setState({ reply: e.target.value })}
+                  />
+                  <Button
+                    text='Send'
+                    primary
+                    endIcon={<SendIcon />}
+                    onClick={this.sendMessage}
                   />
                 </div>
               </div>
