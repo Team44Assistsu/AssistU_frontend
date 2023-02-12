@@ -42,7 +42,7 @@ const Landingpagepatient = (props) => {
             }
             onClick={() => {
               localStorage.setItem("alterId", avatar?.alterId);
-              navigate("/home", { state: { avatar }, replace: true });
+              navigate("/home", { replace: true });
             }}
             name={avatar?.alterName}
           />

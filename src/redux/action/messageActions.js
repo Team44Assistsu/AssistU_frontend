@@ -41,3 +41,24 @@ export function getMessageError(error) {
     payload: error,
   };
 }
+
+export function viewMessage(data) {
+  return {
+    type: MESSAGE_ACTIONS.VIEW_MESSAGE,
+    payload: data,
+  };
+}
+
+export function viewMessageSuccess(data) {
+  return {
+    type: MESSAGE_ACTIONS.VIEW_MESSAGE_SUCCESS,
+    payload: data,
+  };
+}
+
+export function viewMessageError(error) {
+  return {
+    type: MESSAGE_ACTIONS.VIEW_MESSAGE_ERROR,
+    payload: error,
+  };
+}

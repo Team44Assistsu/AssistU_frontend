@@ -5,6 +5,8 @@ const initialState = {
   isGetMessage: false,
   sendMessage: null,
   isSendMessage: false,
+  viewMessage: null,
+  isViewMessage: false,
 };
 
 export function MessageReducer(state = initialState, action) {
@@ -44,6 +46,24 @@ export function MessageReducer(state = initialState, action) {
         ...state,
         isSendMessage: false,
         sendMessage: null,
+      };
+    case MESSAGE_ACTIONS.VIEW_MESSAGE:
+      return {
+        ...state,
+        isViewMessage: false,
+        viewMessage: null,
+      };
+    case MESSAGE_ACTIONS.VIEW_MESSAGE_SUCCESS:
+      return {
+        ...state,
+        isViewMessage: true,
+        viewMessage: action.payload,
+      };
+    case MESSAGE_ACTIONS.VIEW_MESSAGE_ERROR:
+      return {
+        ...state,
+        isViewMessage: false,
+        viewMessage: null,
       };
 
     default:
