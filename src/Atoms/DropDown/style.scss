@@ -1,0 +1,35 @@
+.dropdown {
+  width: 300px;
+  svg {
+    color: var(--primary-color);
+  }
+  [class$="MuiFormLabel-root-MuiInputLabel-root"] {
+    color: var(--white);
+  }
+  #dropdown-main {
+    color: var(--white);
+    font-family: "Croissant One", cursive;
+  }
+  [class$="MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select"] {
+    color: var(--white);
+  }
+
+  [class$="MuiFormLabel-root-MuiInputLabel-root"].Mui-focused {
+    color: var(--primary-color) !important;
+  }
+  .MuiOutlinedInput-notchedOutline,
+  [class$="MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"].Mui-focused
+    .MuiOutlinedInput-notchedOutline {
+    border: var(--primary-color) 1px solid;
+  }
+  [class$="MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"]:hover
+    .MuiOutlinedInput-notchedOutline {
+    border-color: var(--white);
+  }
+  @media (max-width: 1024px) {
+    width: 40%;
+  }
+  @media (max-width: 480px) {
+    width: 100%;
+  }
+}

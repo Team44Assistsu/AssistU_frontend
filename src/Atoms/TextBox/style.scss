@@ -15,8 +15,15 @@
     .MuiOutlinedInput-notchedOutline {
     border-color: var(--primary-color);
   }
+  [class$="MuiInputBase-root-MuiOutlinedInput-root"]:hover
+    .MuiOutlinedInput-notchedOutline {
+    border-color: var(--white);
+  }
   textarea {
     color: var(--white);
+  }
+  svg {
+    color: var(--primary-color);
   }
   @media (max-width: 1024px) {
     width: 40%;

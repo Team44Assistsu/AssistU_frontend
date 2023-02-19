@@ -5,6 +5,7 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userAction from "../../redux/action/userAction";
+import DropDown from "../../Atoms/DropDown/DropDown";
 
 class CreateAccount extends Component {
   state = {
@@ -13,8 +14,18 @@ class CreateAccount extends Component {
     gender: "",
     userName: "",
     password: "",
+    repassword: "",
     emailID: "",
+    options: [
+      { value: "Female", option: "Female" },
+      { value: "Male", option: "Male" },
+    ],
   };
+
+  componentDidMount() {
+    console.log(this.props);
+  }
+
   componentDidUpdate(prevProps) {
     const prev = prevProps?.UserReducer;
     const cur = this.props?.UserReducer;
@@ -23,14 +34,15 @@ class CreateAccount extends Component {
       cur?.createPatient &&
       cur?.createPatient?.patientId
     ) {
+      this.props?.history?.push("/");
       window.location.href = "/";
     }
   }
+
   createPatient = () => {
     const { patientName, userName, password, emailID, age, gender } =
       this.state;
     if (patientName && userName && password && emailID) {
-      console.log(this.props);
       this.props?.userActions?.createPatient({
         patientName: patientName,
         patientAge: age,
@@ -43,6 +55,7 @@ class CreateAccount extends Component {
       });
     }
   };
+
   render() {
     return (
       <div className='CreateDetails'>
@@ -58,10 +71,11 @@ class CreateAccount extends Component {
           value={this.state.age}
           onChange={(e) => this.setState({ age: e.target.value })}
         />
-        <TextBox
-          title={"Gender"}
-          value={this.state.gender}
+        <DropDown
           onChange={(e) => this.setState({ gender: e.target.value })}
+          label='Gender'
+          value={this.state.gender}
+          options={this.state.options}
         />
         <TextBox
           title={"User Name"}
@@ -74,6 +88,12 @@ class CreateAccount extends Component {
           required
           value={this.state.password}
           onChange={(e) => this.setState({ password: e.target.value })}
+        />
+        <TextBox
+          title={"Re-enter Password"}
+          required
+          value={this.state.repassword}
+          onChange={(e) => this.setState({ repassword: e.target.value })}
         />
         <TextBox
           title={"EmailId"}

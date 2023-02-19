@@ -1,15 +1,15 @@
 .LandingPage {
-  position: relative;
   .button_create {
     display: flex;
     justify-content: flex-end;
-    position: absolute;
     width: 100%;
+    margin-bottom: 20px;
   }
 
   .alter_icon {
     justify-content: center;
     display: flex;
+    flex-wrap: wrap;
     .AvatarIcon {
       margin: 20px;
     }

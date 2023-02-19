@@ -19,6 +19,7 @@ const Landingpagepatient = (props) => {
     const patientId = localStorage.getItem("patientId");
     dispatch(avatarActions.getAvatar({ patientId }));
   }, []);
+  console.log(props.history.location);
 
   useEffect(() => {
     setAvatarList(result?.getAvatar);
@@ -29,7 +30,7 @@ const Landingpagepatient = (props) => {
         <Button
           text={"Create Avatar"}
           primary
-          onClick={() => navigate("/create-alter", { replace: true })}
+          onClick={() => navigate("/create-alter")}
         />
       </div>
       <div className='alter_icon'>
@@ -41,7 +42,7 @@ const Landingpagepatient = (props) => {
             }
             onClick={() => {
               localStorage.setItem("alterId", avatar?.alterId);
-              navigate("/home", { replace: true });
+              navigate("/home");
             }}
             name={avatar?.alterName}
           />

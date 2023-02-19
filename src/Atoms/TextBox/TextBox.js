@@ -17,6 +17,7 @@ class TextBox extends Component {
         label={this.props.title}
         value={this.props.value}
         className={`textBox ${this.props.classes}`}
+        InputProps={this.props.InputProps}
       />
     );
   }
