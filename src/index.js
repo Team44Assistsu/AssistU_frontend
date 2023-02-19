@@ -6,19 +6,22 @@ import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import { createBrowserHistory } from "history";
-import { BrowserRouter as Router } from "react-router-dom";
+// import { BrowserRouter as Router } from "react-router-dom";
 import { CharacterAnimationsProvider } from "./contexts/CharacterAnimations";
+import CustomRouter from "./contexts/CustomRouter";
 
 const history = createBrowserHistory({ forceRefresh: true });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Provider store={store}>
-    <Router history={history}>
+    <CustomRouter history={history}>
+      {/* <Router> */}
       <CharacterAnimationsProvider>
         <App />
       </CharacterAnimationsProvider>
-    </Router>
+      {/* </Router> */}
+    </CustomRouter>
   </Provider>
 );
 

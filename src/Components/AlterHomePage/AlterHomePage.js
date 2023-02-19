@@ -16,7 +16,7 @@ const Alterhomepage = () => {
       </div>
       <div className='button_alignment'>
         <Button
-          onClick={() => navigate("/chat-room", { replace: true })}
+          onClick={() => navigate("/chat-room")}
           text={"Chat Room"}
           endIcon={<ArrowForwardIosIcon />}
         ></Button>

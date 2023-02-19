@@ -7,7 +7,6 @@ const Interface = () => {
   return (
     <Affix position={{ bottom: 50, right: 20 }}>
       <Stack>
-        {console.log(animations)}
         {animations.map((animation, index) => (
           <Button
             key={animation}

@@ -9,10 +9,10 @@ class ApiJunction {
     axios.defaults.headers.common["Content-Type"] = `application/json`;
     axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
     if (params?.headers) {
-      console.log(params);
       const headers = Object.entries(params?.headers);
       headers.map(([key, val]) => {
         axios.defaults.headers.common[key] = val;
+        return null;
       });
     }
     // return axios[params.method](params.url, params.body)
