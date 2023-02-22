@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Button from "../../Atoms/Button/Button";
+import { Button } from "../../Atoms";
 import "./style.scss";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 

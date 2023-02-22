@@ -6,7 +6,9 @@ const Texttospeech = (props) => {
   return (
     <div
       className={props.className}
-      onClick={() => speak({ text: props.value, voice: voices[10] })}
+      onClick={() =>
+        speak({ text: props.value, voice: voices[props?.voice || 0] })
+      }
     >
       Speak
     </div>

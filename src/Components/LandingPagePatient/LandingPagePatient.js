@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
-import Avataricon from "../../Atoms/AvatarIcon/AvatarIcon";
+import { AvatarIcon, Button } from "../../Atoms";
 import avatar0 from "../../Assests/images/af1.png";
 import avatar1 from "../../Assests/images/af13.png";
 import avatar2 from "../../Assests/images/am2.png";
-import Button from "../../Atoms/Button/Button";
 import { useDispatch, useSelector } from "react-redux";
 import * as avatarActions from "../../redux/action/avatarActions";
 
@@ -35,7 +34,7 @@ const Landingpagepatient = (props) => {
       </div>
       <div className='alter_icon'>
         {avatarsList?.map((avatar, index) => (
-          <Avataricon
+          <AvatarIcon
             key={index}
             image={
               index % 3 === 0 ? avatar0 : index % 3 === 1 ? avatar1 : avatar2

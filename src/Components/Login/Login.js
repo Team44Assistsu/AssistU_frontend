@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import TextBox from "../../Atoms/TextBox/TextBox";
-import Button from "../../Atoms/Button/Button";
+import { Button, TextBox } from "../../Atoms";
 import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
