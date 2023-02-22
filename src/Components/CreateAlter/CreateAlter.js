@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import TextBox from "../../Atoms/TextBox/TextBox";
-import Button from "../../Atoms/Button/Button";
 import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import DropDown from "../../Atoms/DropDown/DropDown";
+import { DropDown, TextBox, Button } from "../../Atoms";
 import * as avatarAction from "../../redux/action/avatarActions";
 
 class CreateAlter extends Component {

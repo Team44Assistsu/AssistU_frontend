@@ -1,11 +1,9 @@
 import React, { Component } from "react";
-import TextBox from "../../Atoms/TextBox/TextBox";
-import Button from "../../Atoms/Button/Button";
 import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userAction from "../../redux/action/userAction";
-import DropDown from "../../Atoms/DropDown/DropDown";
+import { DropDown, Button, TextBox } from "../../Atoms";
 
 class CreateAccount extends Component {
   state = {
