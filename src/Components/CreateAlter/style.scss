@@ -26,6 +26,7 @@
   .dropdown {
     margin: 0 20px 20px;
   }
+
   .avataorIcon {
     margin-bottom: 20px;
     width: 150px;
@@ -33,10 +34,17 @@
     border: 1px solid var(--primary-color);
     border-radius: 5px;
     cursor: pointer;
+    position: relative;
     text-align: center;
     img#defaultAvatar {
       width: 150px;
       height: 100px;
+    }
+    .addIcon {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      font-size: 60px;
     }
   }
 }
@@ -68,7 +76,7 @@
   .iconList {
     width: 100px;
     height: 100px;
-    border: 1px solid var(--white);
+    border: 2px solid var(--white);
     border-radius: 5px;
     margin: 10px;
     img {
@@ -77,7 +85,7 @@
     }
     &.selected,
     &:hover {
-      border: 1px solid var(--primary-color);
+      border: 2px solid var(--primary-color);
     }
   }
 }

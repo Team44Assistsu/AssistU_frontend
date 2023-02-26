@@ -4,15 +4,42 @@
     display: flex;
     justify-content: flex-end;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .alter_icon {
     justify-content: center;
     display: flex;
     flex-wrap: wrap;
+    max-height: 70vh;
+    overflow: auto;
+    padding: 10px 0;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
     .AvatarIcon {
       margin: 20px;
+    }
+  }
+}
+.pinModal {
+  width: 600px !important;
+  height: 200px !important;
+  top: calc(100% - 50% - 100px) !important;
+  left: calc(100% - 50% - 300px) !important;
+  .Pin {
+    font-size: 20px;
+    text-align: center;
+    color: var(--white);
+    display: flex;
+    height: 100%;
+    justify-content: space-between;
+    flex-direction: column;
+    .textBox {
+      align-self: center;
     }
   }
 }

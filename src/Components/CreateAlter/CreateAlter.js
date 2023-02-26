@@ -12,6 +12,7 @@ import {
 } from "../../Atoms";
 import * as avatarAction from "../../redux/action/avatarActions";
 import defaultAvatar from "../../Assests/images/a.png";
+import AddIcon from "@mui/icons-material/Add";
 
 class CreateAlter extends Component {
   state = {
@@ -104,21 +105,27 @@ class CreateAlter extends Component {
         <Notification notify={this.state.notify} />
         <PageTitle />
         <div className='CreateAlter'>
-          {this.state.avatarIcon ? (
-            <div className='avataorIcon'>Icon</div>
-          ) : (
-            <div
-              className='avataorIcon'
+          <div
+            className='avataorIcon'
+            // onClick={() => this.setState({ alterModel: true })}
+          >
+            <AddIcon
+              className='addIcon'
               onClick={() => this.setState({ alterModel: true })}
-            >
-              <img
-                id='defaultAvatar'
-                src={defaultAvatar}
-                alt='Default avatar'
-              />
-              <div>Change Profile</div>
-            </div>
-          )}
+            />
+            {this.state.avatarIcon ? (
+              <div className='avataorIcon'>Icon</div>
+            ) : (
+              <>
+                <img
+                  id='defaultAvatar'
+                  src={defaultAvatar}
+                  alt='Default avatar'
+                />
+                <div>Change Profile</div>
+              </>
+            )}
+          </div>
           <div className='formArea'>
             <TextBox
               required

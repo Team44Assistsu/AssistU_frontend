@@ -27,45 +27,46 @@ const CreateRoom = lazy(() => import("../Components/MyRoom/MyRoom.js"));
 const SettingsPage = lazy(() =>
   import("../Components/SettingsPage/SettingsPage.js")
 );
+const Support = lazy(() => import("../Components/Support/Support.js"));
 
 class RouterClass extends Component {
   render() {
     const history = createBrowserHistory();
 
     return (
-      <div className="main-content">
+      <div className='main-content'>
         <Suspense fallback={<Loader />}>
           <Routes>
             <Route
               exact
-              path="/home"
+              path='/home'
               element={<AlterHomePage history={history} />}
             />
             <Route
-              path="/landing-page"
+              path='/landing-page'
               element={<LandingPagePatient history={history} />}
             />
             <Route
-              path="/forgot-password"
+              path='/forgot-password'
               element={<ForgotPassword history={history} />}
             />
             <Route
-              path="/create-account"
+              path='/create-account'
               element={<CreateAccount history={history} />}
             />
             <Route
-              path="/create-alter"
+              path='/create-alter'
               element={<CreateAlter history={history} />}
             />
-            <Route path="/my-room" element={<CreateRoom history={history} />} />
+            <Route path='/my-room' element={<CreateRoom history={history} />} />
             <Route
               exact
-              path="/settings"
+              path='/settings'
               element={<SettingsPage history={history} />}
             />
-            <Route path="/chat-room" element={<ChatRoom history={history} />} />
-            <Route exact path="/" element={<Login history={history} />} />
-            {/* <Route exact path='/' element={<Loader />} /> */}
+            <Route path='/chat-room' element={<ChatRoom history={history} />} />
+            <Route path='/support' element={<Support history={history} />} />
+            <Route exact path='/' element={<Login history={history} />} />
           </Routes>
         </Suspense>
       </div>

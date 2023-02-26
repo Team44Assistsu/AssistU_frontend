@@ -11,7 +11,7 @@ const ModalComp = (props) => {
       aria-labelledby='modal-modal-title'
       aria-describedby='modal-modal-description'
     >
-      <div style={props.style} className='model-content'>
+      <div style={props.style} className={`model-content ${props.className}`}>
         {props.close && (
           <div className='closeIcon' onClick={props.handleClose}>
             <CloseIcon />
