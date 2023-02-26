@@ -25,6 +25,9 @@
   svg {
     color: var(--primary-color);
   }
+  .MuiFormHelperText-root {
+    color: var(--white);
+  }
   @media (max-width: 1024px) {
     width: 40%;
   }

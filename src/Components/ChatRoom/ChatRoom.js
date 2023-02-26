@@ -17,6 +17,7 @@ import {
   Button,
   TextToSpeech,
   Modal,
+  NavigationBar,
 } from "../../Atoms";
 
 class Chatroom extends Component {
@@ -109,73 +110,121 @@ class Chatroom extends Component {
 
   render() {
     return (
-      <div className='ChatRoom'>
-        <div className='button_create'>
-          <Button
-            text={"Send Message"}
-            primary
-            onClick={() => this.setState({ sendMessageModal: true })}
-          />
-        </div>
-        <div className='title'>Chat Room</div>
-        <div className='subtitle'>
-          Welcome, buddy! Today is going to be great for you are here!
-        </div>
-        <div className='chat-space'>
-          {this.props?.MessageReducer?.getMessage?.map((message, index) => {
-            return (
-              <ChatAvatar
-                key={index}
-                image={
-                  message?.fromAlter?.alterId % 3 === 0
-                    ? avatar1
-                    : message?.fromAlter?.alterId % 3 === 1
-                    ? avatar2
-                    : avatar3
-                }
-                name={message?.fromAlter?.alterName}
-                onClick={() => this.setState({ openModal: true, message })}
-              />
-            );
-          })}
-        </div>
-        {this.state.openModal && (
-          <Modal
-            open={this.state.openModal}
-            handleClose={() =>
-              this.setState({ openModal: false, message: null, reply: "" })
-            }
-            close
-          >
-            <div className='modal3Dmessage'>
-              <Canvas
-                className='canva'
-                camera={{ position: [1, 1.5, 2.5], fov: 50 }}
-                shadows
-              >
-                <Experience />
-              </Canvas>
-              <div className='message-sec'>
-                <div className='ChatSec'>
-                  <div className='message-title'>Message Section</div>
-                  <div className='message-text'>
-                    {this.state.message?.msgText}
+      <>
+        <NavigationBar isChat />
+        <div className='ChatRoom'>
+          <div className='button_create'>
+            <Button
+              text={"Send Message"}
+              primary
+              onClick={() => this.setState({ sendMessageModal: true })}
+            />
+          </div>
+          <div className='title'>Chat Room</div>
+          <div className='subtitle'>
+            Welcome, buddy! Today is going to be great for you are here!
+          </div>
+          <div className='chat-space'>
+            {this.props?.MessageReducer?.getMessage?.map((message, index) => {
+              return (
+                <ChatAvatar
+                  key={index}
+                  image={
+                    message?.fromAlter?.alterId % 3 === 0
+                      ? avatar1
+                      : message?.fromAlter?.alterId % 3 === 1
+                      ? avatar2
+                      : avatar3
+                  }
+                  name={message?.fromAlter?.alterName}
+                  onClick={() => this.setState({ openModal: true, message })}
+                />
+              );
+            })}
+          </div>
+          {this.state.openModal && (
+            <Modal
+              open={this.state.openModal}
+              handleClose={() =>
+                this.setState({ openModal: false, message: null, reply: "" })
+              }
+              close
+            >
+              <div className='modal3Dmessage'>
+                <Canvas
+                  className='canva'
+                  camera={{ position: [1, 1.5, 2.5], fov: 50 }}
+                  shadows
+                >
+                  <Experience />
+                </Canvas>
+                <div className='message-sec'>
+                  <div className='ChatSec'>
+                    <div className='message-title'>Message Section</div>
+                    <div className='message-text'>
+                      {this.state.message?.msgText}
+                    </div>
+                    <TextToSpeech
+                      value={this.state.message?.msgText}
+                      className='speech-button'
+                      voice={parseInt(Math.random() * 10)}
+                    />
+                    {console.log(
+                      this.state.message,
+                      parseInt(Math.random() * 10)
+                    )}
                   </div>
-                  <TextToSpeech
-                    value={this.state.message?.msgText}
-                    className='speech-button'
-                    voice={parseInt(Math.random() * 10)}
-                  />
-                  {console.log(
-                    this.state.message,
-                    parseInt(Math.random() * 10)
-                  )}
+                  <div className='message-send'>
+                    <TextBox
+                      title='Reply'
+                      value={this.state.reply}
+                      rows={5}
+                      multiline
+                      onChange={(e) => this.setState({ reply: e.target.value })}
+                    />
+                    <Button
+                      text='Send'
+                      primary
+                      endIcon={<SendIcon />}
+                      onClick={this.replyMessage}
+                    />
+                  </div>
                 </div>
-                <div className='message-send'>
+              </div>
+            </Modal>
+          )}
+          {this.state.sendMessageModal && (
+            <Modal
+              open={this.state.sendMessageModal}
+              handleClose={() =>
+                this.setState({
+                  sendMessageModal: false,
+                  reply: "",
+                  sendMessageTo: null,
+                })
+              }
+              close
+            >
+              <div className='semdMessageModal'>
+                <Canvas
+                  className='canva'
+                  camera={{ position: [1, 1.5, 2.5], fov: 50 }}
+                  shadows
+                >
+                  <Experience />
+                </Canvas>
+                <div className='message-sec'>
+                  <DropDown
+                    label='Select Avatar'
+                    options={this.state.options}
+                    onChange={(e) =>
+                      this.setState({ sendMessageTo: e.target.value })
+                    }
+                  />
                   <TextBox
-                    title='Reply'
+                    title='Message'
                     value={this.state.reply}
-                    rows={5}
+                    rows={10}
                     multiline
                     onChange={(e) => this.setState({ reply: e.target.value })}
                   />
@@ -183,59 +232,14 @@ class Chatroom extends Component {
                     text='Send'
                     primary
                     endIcon={<SendIcon />}
-                    onClick={this.replyMessage}
+                    onClick={this.sendMessage}
                   />
                 </div>
               </div>
-            </div>
-          </Modal>
-        )}
-        {this.state.sendMessageModal && (
-          <Modal
-            open={this.state.sendMessageModal}
-            handleClose={() =>
-              this.setState({
-                sendMessageModal: false,
-                reply: "",
-                sendMessageTo: null,
-              })
-            }
-            close
-          >
-            <div className='semdMessageModal'>
-              <Canvas
-                className='canva'
-                camera={{ position: [1, 1.5, 2.5], fov: 50 }}
-                shadows
-              >
-                <Experience />
-              </Canvas>
-              <div className='message-sec'>
-                <DropDown
-                  label='Select Avatar'
-                  options={this.state.options}
-                  onChange={(e) =>
-                    this.setState({ sendMessageTo: e.target.value })
-                  }
-                />
-                <TextBox
-                  title='Message'
-                  value={this.state.reply}
-                  rows={10}
-                  multiline
-                  onChange={(e) => this.setState({ reply: e.target.value })}
-                />
-                <Button
-                  text='Send'
-                  primary
-                  endIcon={<SendIcon />}
-                  onClick={this.sendMessage}
-                />
-              </div>
-            </div>
-          </Modal>
-        )}
-      </div>
+            </Modal>
+          )}
+        </div>
+      </>
     );
   }
 }

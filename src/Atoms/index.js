@@ -7,6 +7,8 @@ import PageTitle from "./PageTitle/PageTitle";
 import AvatarIcon from "./AvatarIcon/AvatarIcon";
 import Modal from "./Modal/Modal";
 import ChatAvatar from "./ChatAvatar/ChatAvatar";
+import NavigationBar from "./Navigation/NavigationBar";
+import Notification from "./Notifications/Notifications";
 
 export {
   DropDown,
@@ -18,4 +20,6 @@ export {
   AvatarIcon,
   ChatAvatar,
   Modal,
+  NavigationBar,
+  Notification,
 };

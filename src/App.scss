@@ -9,16 +9,14 @@
   width: 100vw;
   height: 100vh;
   overflow: auto;
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
 
   .main-content {
-    width: 100%;
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+    width: calc(100% - 40px);
     color: var(--primary-color);
-    padding: 60px 0;
-    // max-width: 1440px;
-    // max-height: 80%;
+    padding: 60px 20px;
+    position: relative;
 
     .title {
       color: var(--white);
@@ -30,8 +28,11 @@
       font-size: 26px;
       margin-bottom: 20px;
     }
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
     @media (max-width: 1280px) {
-      padding: 40px 0;
+      padding: 60px 20px 40px;
     }
     @media (max-width: 480px) {
       padding: 10px 0;

@@ -2,6 +2,7 @@
   --primary-color: #12e1b9;
   --white: #ffffff;
   --secondary-color: #070c29;
+  --disabled-color: #99999950;
 }
 body {
   margin: 0;
