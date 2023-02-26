@@ -13,11 +13,11 @@ import SendIcon from "@mui/icons-material/Send";
 import {
   DropDown,
   TextBox,
-  ChatAvatar,
   Button,
   TextToSpeech,
   Modal,
   NavigationBar,
+  ChatAvatar,
 } from "../../Atoms";
 
 class Chatroom extends Component {

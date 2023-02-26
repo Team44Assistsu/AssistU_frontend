@@ -23,7 +23,7 @@ const AlterHomePage = lazy(() =>
   import("../Components/AlterHomePage/AlterHomePage.js")
 );
 const Loader = lazy(() => import("../Atoms/Loader/Loader"));
-const CreateRoom = lazy(() => import("../Components/CreateRoom/CreateRoom.js"));
+const CreateRoom = lazy(() => import("../Components/MyRoom/MyRoom.js"));
 const SettingsPage = lazy(() =>
   import("../Components/SettingsPage/SettingsPage.js")
 );
@@ -57,13 +57,10 @@ class RouterClass extends Component {
               path="/create-alter"
               element={<CreateAlter history={history} />}
             />
-            <Route
-              path="/create-room"
-              element={<CreateRoom history={history} />}
-            />
+            <Route path="/my-room" element={<CreateRoom history={history} />} />
             <Route
               exact
-              path="/settings_page"
+              path="/settings"
               element={<SettingsPage history={history} />}
             />
             <Route path="/chat-room" element={<ChatRoom history={history} />} />

@@ -23,14 +23,14 @@ const Alterhomepage = () => {
             endIcon={<ArrowForwardIosIcon />}
           ></Button>
           <Button
-            onClick={() => alert("On progress")}
+            onClick={() => navigate("/my-room")}
             text={"My Room"}
             endIcon={<ArrowForwardIosIcon />}
           ></Button>
         </div>
         <div className="button_alignment">
           <Button
-            onClick={() => alert("On progress")}
+            onClick={() => navigate("/settings")}
             text={"Settings"}
             endIcon={<ArrowForwardIosIcon />}
           ></Button>

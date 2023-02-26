@@ -54,58 +54,62 @@ class Login extends Component {
   render() {
     return (
       <>
-      <PageTitle />
-      <div className="LoginPage">
-        <div className="CreateAccount">
-          <Button
-            primary
-            onClick={() => (window.location.href = "/create-account")}
-            text={"Create Account"}
-          />
-        </div>
-        <div className="broder">
-          <TextBox
-            required
-            title={"UserName"}
-            value={this.state.userName}
-            onChange={(e) => this.setState({ userName: e.target.value })}
-            error={this.state.errors?.userName}
-            helperText={this.state.errors?.userName}
-          />
-          <TextBox
-            required
-            type={this.state.showPassword ? "text" : "password"}
-            title={"password"}
-            value={this.state.passWord}
-            onChange={(e) => this.setState({ passWord: e.target.value })}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    aria-label="toggle password visibility"
-                    onClick={() =>
-                      this.setState({ showPassword: !this.state.showPassword })
-                    }
-                    style={{ marginTop: "0px" }}
-                    edge="start"
-                  >
-                    {this.state.showPassword ? (
-                      <VisibilityOff />
-                    ) : (
-                      <Visibility />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-            error={this.state.errors?.passWord}
-            helperText={this.state.errors?.passWord}
-          />
-          <div
-            class="forgotPassword"
-            onClick={() => (window.location.href = "/forgot-passsword")}
-          >
-            Forgot Password
+        <PageTitle />
+        <div className="LoginPage">
+          <div className="CreateAccount">
+            <Button
+              primary
+              onClick={() => (window.location.href = "/create-account")}
+              text={"Create Account"}
+            />
+          </div>
+          <div className="broder">
+            <TextBox
+              required
+              title={"UserName"}
+              value={this.state.userName}
+              onChange={(e) => this.setState({ userName: e.target.value })}
+              error={this.state.errors?.userName}
+              helperText={this.state.errors?.userName}
+            />
+            <TextBox
+              required
+              type={this.state.showPassword ? "text" : "password"}
+              title={"password"}
+              value={this.state.passWord}
+              onChange={(e) => this.setState({ passWord: e.target.value })}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() =>
+                        this.setState({
+                          showPassword: !this.state.showPassword,
+                        })
+                      }
+                      style={{ marginTop: "0px" }}
+                      edge="start"
+                    >
+                      {this.state.showPassword ? (
+                        <VisibilityOff />
+                      ) : (
+                        <Visibility />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              error={this.state.errors?.passWord}
+              helperText={this.state.errors?.passWord}
+            />
+            <div
+              class="forgotPassword"
+              onClick={() => (window.location.href = "/forgot-passsword")}
+            >
+              Forgot Password
+            </div>
+            <Button onClick={this.login} text={"Login"} />
           </div>
         </div>
       </>
