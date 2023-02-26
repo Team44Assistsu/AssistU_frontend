@@ -3,6 +3,7 @@
     text-align: center;
     text-transform: capitalize;
   }
+
   .MuiButton-endIcon {
     svg {
       font-size: 18px;
@@ -24,5 +25,8 @@
   .MuiButton-root.MuiButton-outlined[class$="MuiButtonBase-root-MuiButton-root"]:hover {
     background-color: var(--primary-color);
     color: var(--white);
+  }
+  [class$="MuiButtonBase-root-MuiButton-root"].Mui-disabled {
+    background-color: var(--disabled-color);
   }
 }

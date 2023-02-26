@@ -1,122 +1,230 @@
 import React, { Component } from "react";
 import "./style.scss";
-import ChatAvatar from "../ChatAvatar/ChatAvatar.js";
 import avatar3 from "../../Assests/images/af1.png";
 import avatar2 from "../../Assests/images/af13.png";
 import avatar1 from "../../Assests/images/am2.png";
-import Modal from "../../Atoms/Modal/Modal";
 import { Canvas } from "@react-three/fiber";
 import Experience from "../../Atoms/ThreeD/Experience";
-import Button from "../../Atoms/Button/Button";
-import Speech from "../../Atoms/TextToSpeech/TextToSpeech";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as messageAction from "../../redux/action/messageActions";
-import TextBox from "../../Atoms/TextBox/TextBox";
+import * as avatarAction from "../../redux/action/avatarActions";
 import SendIcon from "@mui/icons-material/Send";
+import {
+  DropDown,
+  TextBox,
+  ChatAvatar,
+  Button,
+  TextToSpeech,
+  Modal,
+  NavigationBar,
+} from "../../Atoms";
 
 class Chatroom extends Component {
   state = {
     openModal: false,
     message: null,
     reply: null,
+    sendMessageModal: false,
+    options: [],
+    sendMessageTo: null,
+    alterId: null,
   };
 
   componentDidMount() {
     const alterId = localStorage.getItem("alterId");
+    const patientId = localStorage.getItem("patientId");
     this.props.messageActions.getMessage({ receiverId: alterId });
+    this.props.avatarActions.getAvatar({ patientId });
+    this.setState({ alterId });
   }
 
   componentDidUpdate(prevProps) {
     const cur = this.props?.MessageReducer;
     const prev = prevProps?.MessageReducer;
+    const curAva = this.props?.AvatarReducer;
+    const prevAva = prevProps?.AvatarReducer;
 
     if (
       prev?.sendMessage !== cur?.sendMessage &&
       cur?.isSendMessage &&
       cur?.sendMessage
     ) {
-      this.setState({ message: null, repy: null, openModal: false });
+      this.state.openModal &&
+        this.setState({ message: null, repy: null, openModal: false });
+      this.state.sendMessageModal &&
+        this.setState({
+          sendMessageTo: null,
+          repy: null,
+          sendMessageModal: false,
+        });
       alert("Message Sent Successfully");
+    }
+
+    if (
+      prevAva?.getAvatar !== curAva?.getAvatar &&
+      curAva?.getAvatar &&
+      curAva?.isGetAvatar
+    ) {
+      const { alterId } = this.state;
+      const idList = [];
+      const options = [];
+      curAva?.getAvatar?.map((avatar) => {
+        const id = avatar?.alterId;
+        if (id != alterId) {
+          idList.push(id);
+          options.push({
+            value: [id],
+            option: avatar?.alterName,
+          });
+        }
+        return null;
+      });
+      curAva?.getAvatar?.length > 2 &&
+        options.push({ value: idList, option: "All Avatars" });
+      this.setState({ options });
     }
   }
 
-  sendMessage = () => {
-    const { message, reply } = this.state;
-    const from = localStorage.getItem("alterId");
+  replyMessage = () => {
+    const { message, reply, alterId } = this.state;
     if (reply) {
       this.props?.messageActions?.sendMessage({
-        from: from,
+        from: alterId,
         text: reply,
         recevierIds: [message?.fromAlter?.alterId],
       });
     }
   };
 
+  sendMessage = () => {
+    const { sendMessageTo, reply, alterId } = this.state;
+    if (reply) {
+      this.props?.messageActions?.sendMessage({
+        from: alterId,
+        text: reply,
+        recevierIds: sendMessageTo,
+      });
+    }
+  };
+
   render() {
     return (
-      <div className="ChatRoom">
-        <div className="button_create">
-          <Button
-            text={"Send Message"}
-            primary
-            onClick={() => alert("On progress")}
-          />
-        </div>
-        <div className="title">Chat Room</div>
-        <div className="subtitle">
-          Welcome, buddy! Today is going to be great for you are here!
-        </div>
-        <div className="chat-space">
-          {this.props?.MessageReducer?.getMessage?.map((message, index) => {
-            return (
-              <ChatAvatar
-                key={index}
-                image={
-                  message?.fromAlter?.alterId % 3 === 0
-                    ? avatar1
-                    : message?.fromAlter?.alterId % 3 === 1
-                    ? avatar2
-                    : avatar3
-                }
-                name={message?.fromAlter?.alterName}
-                onClick={() => this.setState({ openModal: true, message })}
-              />
-            );
-          })}
-        </div>
-        {this.state.openModal && (
-          <Modal
-            open={this.state.openModal}
-            handleClose={() =>
-              this.setState({ openModal: false, message: null })
-            }
-            close
-          >
-            <div className="modal3Dmessage">
-              <Canvas
-                className="canva"
-                camera={{ position: [1, 1.5, 2.5], fov: 50 }}
-                shadows
-              >
-                <Experience />
-              </Canvas>
-              <div className="message-sec">
-                <div className="ChatSec">
-                  <div className="message-title">Message Section</div>
-                  <div className="message-text">
-                    {this.state.message?.msgText}
+      <>
+        <NavigationBar isChat />
+        <div className="ChatRoom">
+          <div className="button_create">
+            <Button
+              text={"Send Message"}
+              primary
+              onClick={() => this.setState({ sendMessageModal: true })}
+            />
+          </div>
+          <div className="title">Chat Room</div>
+          <div className="subtitle">
+            Welcome, buddy! Today is going to be great for you are here!
+          </div>
+          <div className="chat-space">
+            {this.props?.MessageReducer?.getMessage?.map((message, index) => {
+              return (
+                <ChatAvatar
+                  key={index}
+                  image={
+                    message?.fromAlter?.alterId % 3 === 0
+                      ? avatar1
+                      : message?.fromAlter?.alterId % 3 === 1
+                      ? avatar2
+                      : avatar3
+                  }
+                  name={message?.fromAlter?.alterName}
+                  onClick={() => this.setState({ openModal: true, message })}
+                />
+              );
+            })}
+          </div>
+          {this.state.openModal && (
+            <Modal
+              open={this.state.openModal}
+              handleClose={() =>
+                this.setState({ openModal: false, message: null, reply: "" })
+              }
+              close
+            >
+              <div className="modal3Dmessage">
+                <Canvas
+                  className="canva"
+                  camera={{ position: [1, 1.5, 2.5], fov: 50 }}
+                  shadows
+                >
+                  <Experience />
+                </Canvas>
+                <div className="message-sec">
+                  <div className="ChatSec">
+                    <div className="message-title">Message Section</div>
+                    <div className="message-text">
+                      {this.state.message?.msgText}
+                    </div>
+                    <TextToSpeech
+                      value={this.state.message?.msgText}
+                      className="speech-button"
+                      voice={parseInt(Math.random() * 10)}
+                    />
+                    {console.log(
+                      this.state.message,
+                      parseInt(Math.random() * 10)
+                    )}
                   </div>
-                  <Speech
-                    value={this.state.message?.msgText}
-                    className="speech-button"
-                  />
+                  <div className="message-send">
+                    <TextBox
+                      title="Reply"
+                      value={this.state.reply}
+                      rows={5}
+                      multiline
+                      onChange={(e) => this.setState({ reply: e.target.value })}
+                    />
+                    <Button
+                      text="Send"
+                      primary
+                      endIcon={<SendIcon />}
+                      onClick={this.replyMessage}
+                    />
+                  </div>
                 </div>
-                <div className="message-send">
+              </div>
+            </Modal>
+          )}
+          {this.state.sendMessageModal && (
+            <Modal
+              open={this.state.sendMessageModal}
+              handleClose={() =>
+                this.setState({
+                  sendMessageModal: false,
+                  reply: "",
+                  sendMessageTo: null,
+                })
+              }
+              close
+            >
+              <div className="semdMessageModal">
+                <Canvas
+                  className="canva"
+                  camera={{ position: [1, 1.5, 2.5], fov: 50 }}
+                  shadows
+                >
+                  <Experience />
+                </Canvas>
+                <div className="message-sec">
+                  <DropDown
+                    label="Select Avatar"
+                    options={this.state.options}
+                    onChange={(e) =>
+                      this.setState({ sendMessageTo: e.target.value })
+                    }
+                  />
                   <TextBox
-                    title="Reply"
+                    title="Message"
                     value={this.state.reply}
-                    rows={5}
+                    rows={10}
                     multiline
                     onChange={(e) => this.setState({ reply: e.target.value })}
                   />
@@ -128,21 +236,23 @@ class Chatroom extends Component {
                   />
                 </div>
               </div>
-            </div>
-          </Modal>
-        )}
-      </div>
+            </Modal>
+          )}
+        </div>
+      </>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   MessageReducer: state.MessageReducer,
+  AvatarReducer: state.AvatarReducer,
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     messageActions: bindActionCreators(messageAction, dispatch),
+    avatarActions: bindActionCreators(avatarAction, dispatch),
   };
 }
 

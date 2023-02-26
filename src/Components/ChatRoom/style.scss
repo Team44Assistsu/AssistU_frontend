@@ -14,6 +14,7 @@
   .button_create {
     display: flex;
     justify-content: flex-end;
+    margin-top: 20px;
   }
 }
 .modal3Dmessage {
@@ -63,6 +64,25 @@
         display: flex;
         justify-content: flex-end;
       }
+    }
+  }
+}
+.semdMessageModal {
+  width: 100%;
+  height: 100%;
+  display: flex;
+
+  .canva {
+    width: 50% !important;
+  }
+  .message-sec {
+    border: 2px var(--primary-color) solid;
+    width: 50%;
+    padding: 20px;
+    .dropdown,
+    .textBox {
+      margin-bottom: 20px;
+      width: 100%;
     }
   }
 }
