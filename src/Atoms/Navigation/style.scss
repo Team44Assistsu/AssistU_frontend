@@ -1,0 +1,26 @@
+.NavigationBar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 60px;
+  border-bottom: 2px solid var(--primary-color);
+  width: calc(100% - 40px);
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  color: var(--white);
+  justify-content: space-between;
+  .Title {
+    font-size: 30px;
+  }
+  .Navs {
+    display: flex;
+    div {
+      margin: 0 20px;
+      cursor: pointer;
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+}

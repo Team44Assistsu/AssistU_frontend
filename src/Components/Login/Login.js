@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, TextBox } from "../../Atoms";
+import { Button, TextBox, PageTitle } from "../../Atoms";
 import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -14,6 +14,7 @@ class Login extends Component {
     userName: "",
     passWord: "",
     showPassword: false,
+    errors: {},
   };
   componentDidMount() {
     localStorage.clear();
@@ -32,65 +33,86 @@ class Login extends Component {
   }
   login = () => {
     const { userName, passWord } = this.state;
+    let err = {};
     if (userName && passWord) {
+      this.setState({ errors: {} });
       this.props.userActions.login({ username: userName, password: passWord });
-    } else {
-      alert("UserName or password missing");
+    } else if (this.state.userName === "" && this.state.passWord === "") {
+      //alert("UserName or password missing");
+      console.log("username and password is empty");
+      err.userName = "UserName is Missing";
+      err.passWord = "password is Missing";
+      this.setState({ errors: err });
+    } else if (this.state.userName === "") {
+      err.userName = "UserName is Missing";
+      this.setState({ errors: err });
+    } else if (this.state.passWord === "") {
+      err.passWord = "password is Missing";
+      this.setState({ errors: err });
     }
   };
   render() {
     return (
-      <div className='LoginPage'>
-        <div className='CreateAccount'>
-          <Button
-            primary
-            onClick={() => (window.location.href = "/create-account")}
-            text={"Create Account"}
-          />
-        </div>
-        <div className='broder'>
-          <TextBox
-            required
-            title={"UserName"}
-            value={this.state.userName}
-            onChange={(e) => this.setState({ userName: e.target.value })}
-          />
-          <TextBox
-            required
-            type={this.state.showPassword ? "text" : "password"}
-            title={"password"}
-            value={this.state.passWord}
-            onChange={(e) => this.setState({ passWord: e.target.value })}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position='end'>
-                  <IconButton
-                    aria-label='toggle password visibility'
-                    onClick={() =>
-                      this.setState({ showPassword: !this.state.showPassword })
-                    }
-                    style={{ marginTop: "0px" }}
-                    edge='start'
-                  >
-                    {this.state.showPassword ? (
-                      <VisibilityOff />
-                    ) : (
-                      <Visibility />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <div
-            class='forgotPassword'
-            onClick={() => (window.location.href = "/forgot-passsword")}
-          >
-            Forgot Password
+      <>
+        <PageTitle />
+        <div className="LoginPage">
+          <div className="CreateAccount">
+            <Button
+              primary
+              onClick={() => (window.location.href = "/create-account")}
+              text={"Create Account"}
+            />
           </div>
-          <Button onClick={this.login} text={"Login"} />
+          <div className="broder">
+            <TextBox
+              required
+              title={"UserName"}
+              value={this.state.userName}
+              onChange={(e) => this.setState({ userName: e.target.value })}
+              error={this.state.errors?.userName}
+              helperText={this.state.errors?.userName}
+            />
+            <TextBox
+              required
+              type={this.state.showPassword ? "text" : "password"}
+              title={"password"}
+              value={this.state.passWord}
+              onChange={(e) => this.setState({ passWord: e.target.value })}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={() =>
+                        this.setState({
+                          showPassword: !this.state.showPassword,
+                        })
+                      }
+                      style={{ marginTop: "0px" }}
+                      edge="start"
+                    >
+                      {this.state.showPassword ? (
+                        <VisibilityOff />
+                      ) : (
+                        <Visibility />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+              error={this.state.errors?.passWord}
+              helperText={this.state.errors?.passWord}
+            />
+            <div
+              class="forgotPassword"
+              onClick={() => (window.location.href = "/forgot-passsword")}
+            >
+              Forgot Password
+            </div>
+            <Button onClick={this.login} text={"Login"} />
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

@@ -2,24 +2,28 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  height: 30;
   padding: 40px 20px;
   align-items: center;
   margin: auto;
   border: 3px var(--primary-color) solid;
   border-radius: 20px;
   width: 60%;
+  margin-top: 20px;
+  max-height: calc(100vh - 30vh);
+  overflow: auto;
   .textBox,
   .dropdown {
-    margin-bottom: 20px;
+    margin: 0 20px 20px;
   }
-  @media (max-width: 1280px) {
-    height: 30%;
+  &::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
   }
-  @media (max-width: 1024px) {
-    height: 40%;
-  }
-  @media (max-width: 480px) {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
+  .formArea {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     height: 100%;
   }
 }

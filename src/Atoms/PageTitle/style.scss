@@ -1,19 +1,25 @@
 .PageTitle {
-  font-size: 60px;
+  font-size: 30px;
   color: var(--white);
-  // position: absolute;
+  position: absolute;
+  top: 0;
+  left: 0;
   margin: auto;
   display: flex;
+  height: 60px;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 40px);
+  border-bottom: 2px solid var(--primary-color);
+  padding: 0 20px;
 
   .pageName {
     text-align: center;
-    width: calc(100% - 120px);
+    width: 100%;
   }
-  button {
-    width: 120px;
-    margin-right: 20px;
+  .btn-main {
+    position: absolute;
+    right: 20px;
+    top: 5px;
   }
 }

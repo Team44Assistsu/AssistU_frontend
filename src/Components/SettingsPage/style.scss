@@ -1,0 +1,16 @@
+.settingClass {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60%;
+  .button_settings {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    button {
+      width: 400px;
+      margin-bottom: 20px;
+    }
+  }
+}

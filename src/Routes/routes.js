@@ -2,6 +2,7 @@ import React, { Component, lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
 
 import { createBrowserHistory } from "history";
+//import { Settings } from "@mui/icons-material";
 
 const ForgotPassword = lazy(() =>
   import("../Components/ForgotPassword/ForgotPassword.js")
@@ -22,6 +23,12 @@ const AlterHomePage = lazy(() =>
   import("../Components/AlterHomePage/AlterHomePage.js")
 );
 const Loader = lazy(() => import("../Atoms/Loader/Loader"));
+const CreateRoom = lazy(() => import("../Components/MyRoom/MyRoom.js"));
+const SettingsPage = lazy(() =>
+  import("../Components/SettingsPage/SettingsPage.js")
+);
+const Support = lazy(() => import("../Components/Support/Support.js"));
+
 class RouterClass extends Component {
   render() {
     const history = createBrowserHistory();
@@ -51,9 +58,15 @@ class RouterClass extends Component {
               path='/create-alter'
               element={<CreateAlter history={history} />}
             />
+            <Route path='/my-room' element={<CreateRoom history={history} />} />
+            <Route
+              exact
+              path='/settings'
+              element={<SettingsPage history={history} />}
+            />
             <Route path='/chat-room' element={<ChatRoom history={history} />} />
+            <Route path='/support' element={<Support history={history} />} />
             <Route exact path='/' element={<Login history={history} />} />
-            {/* <Route exact path='/' element={<Loader />} /> */}
           </Routes>
         </Suspense>
       </div>
