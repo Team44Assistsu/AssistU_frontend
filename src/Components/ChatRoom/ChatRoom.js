@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style.scss";
-import ChatAvatar from "../../Atoms/ChatAvatar/ChatAvatar";
+import ChatAvatar from "../ChatAvatar/ChatAvatar.js";
 import avatar3 from "../../Assests/images/af1.png";
 import avatar2 from "../../Assests/images/af13.png";
 import avatar1 from "../../Assests/images/am2.png";
@@ -55,19 +55,19 @@ class Chatroom extends Component {
 
   render() {
     return (
-      <div className='ChatRoom'>
-        <div className='button_create'>
+      <div className="ChatRoom">
+        <div className="button_create">
           <Button
             text={"Send Message"}
             primary
             onClick={() => alert("On progress")}
           />
         </div>
-        <div className='title'>Chat Room</div>
-        <div className='subtitle'>
+        <div className="title">Chat Room</div>
+        <div className="subtitle">
           Welcome, buddy! Today is going to be great for you are here!
         </div>
-        <div className='chat-space'>
+        <div className="chat-space">
           {this.props?.MessageReducer?.getMessage?.map((message, index) => {
             return (
               <ChatAvatar
@@ -93,35 +93,35 @@ class Chatroom extends Component {
             }
             close
           >
-            <div className='modal3Dmessage'>
+            <div className="modal3Dmessage">
               <Canvas
-                className='canva'
+                className="canva"
                 camera={{ position: [1, 1.5, 2.5], fov: 50 }}
                 shadows
               >
                 <Experience />
               </Canvas>
-              <div className='message-sec'>
-                <div className='ChatSec'>
-                  <div className='message-title'>Message Section</div>
-                  <div className='message-text'>
+              <div className="message-sec">
+                <div className="ChatSec">
+                  <div className="message-title">Message Section</div>
+                  <div className="message-text">
                     {this.state.message?.msgText}
                   </div>
                   <Speech
                     value={this.state.message?.msgText}
-                    className='speech-button'
+                    className="speech-button"
                   />
                 </div>
-                <div className='message-send'>
+                <div className="message-send">
                   <TextBox
-                    title='Reply'
+                    title="Reply"
                     value={this.state.reply}
                     rows={5}
                     multiline
                     onChange={(e) => this.setState({ reply: e.target.value })}
                   />
                   <Button
-                    text='Send'
+                    text="Send"
                     primary
                     endIcon={<SendIcon />}
                     onClick={this.sendMessage}
