@@ -5,7 +5,15 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import avatar from "../../Assests/images/a.png";
 
 class SettingsPage extends Component {
+  state = {
+    alterModel: false,
+  };
   render() {
+    const avatars = [
+      { id: 1, image: defaultAvatar },
+      { id: 2, image: defaultAvatar },
+      { id: 3, image: defaultAvatar },
+    ];
     return (
       <>
         <NavigationBar isSetting />
@@ -13,11 +21,14 @@ class SettingsPage extends Component {
         <div className="settingClass">
           <div className="button_settings">
             <img src={avatar} alt="avatar_icon" />
-            <Button text={"Avatar"} />
+            <Button
+              text={"Avatar"}
+              onClick={() => this.setState({ alterModel: true })}
+            />
             <Button
               onClick={() => {
-                this.props.history.push("/landing-page");
-                window.location.href = "/landing-page";
+                this.props.history.push("");
+                window.location.href = "";
               }}
               text={"Avatar Account"}
               endIcon={<ArrowForwardIosIcon />}
