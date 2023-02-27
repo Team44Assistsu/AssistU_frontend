@@ -13,4 +13,18 @@
       margin-bottom: 20px;
     }
   }
+  .avataorIcon {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 150px;
+    max-height: 150px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    img#defaultAvatar {
+      width: 150px;
+      height: 100px;
+    }
+  }
 }
