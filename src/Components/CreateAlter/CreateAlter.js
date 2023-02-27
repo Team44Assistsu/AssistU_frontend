@@ -96,12 +96,6 @@ class CreateAlter extends Component {
   };
 
   render() {
-    const avatars = [
-      { id: 1, image: defaultAvatar },
-      { id: 2, image: defaultAvatar },
-      { id: 3, image: defaultAvatar },
-    ];
-    console.log(AvatarList);
     return (
       <>
         <Notification notify={this.state.notify} />
