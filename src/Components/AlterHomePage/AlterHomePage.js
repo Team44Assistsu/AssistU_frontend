@@ -10,13 +10,13 @@ const Alterhomepage = () => {
   return (
     <>
       <PageTitle />
-      <div className="AlterPage">
-        <div className="title">WELCOME</div>
-        <div className="subtitle">
+      <div className='AlterPage'>
+        <div className='title'>WELCOME</div>
+        <div className='subtitle'>
           We Created This Virtual Space To Provide A Safe And Secure Environment
           For Alters To communicate
         </div>
-        <div className="button_alignment">
+        <div className='button_alignment'>
           <Button
             onClick={() => navigate("/chat-room")}
             text={"Chat Room"}
@@ -28,14 +28,14 @@ const Alterhomepage = () => {
             endIcon={<ArrowForwardIosIcon />}
           ></Button>
         </div>
-        <div className="button_alignment">
+        <div className='button_alignment'>
           <Button
             onClick={() => navigate("/settings")}
             text={"Settings"}
             endIcon={<ArrowForwardIosIcon />}
           ></Button>
           <Button
-            onClick={() => alert("On progress")}
+            onClick={() => navigate("/support")}
             text={"Support"}
             endIcon={<ArrowForwardIosIcon />}
           ></Button>
