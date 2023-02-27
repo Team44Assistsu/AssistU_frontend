@@ -1,21 +1,30 @@
 .settingClass {
   display: flex;
   justify-content: center;
-
   align-items: center;
-  margin-left: 172px;
   height: 60%;
-
-  margin-block: 100px;
   .button_settings {
     display: flex;
     flex-direction: column;
     position: relative;
     justify-content: center;
     button {
-      width: 250px;
+      width: 400px;
       margin-bottom: 20px;
-      margin-left: 20px;
+    }
+  }
+  .avataorIcon {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 150px;
+    max-height: 150px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    img#defaultAvatar {
+      width: 150px;
+      height: 100px;
     }
   }
 }
