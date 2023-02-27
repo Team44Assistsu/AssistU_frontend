@@ -101,10 +101,7 @@ class CreateAlter extends Component {
         <Notification notify={this.state.notify} />
         <PageTitle />
         <div className='CreateAlter'>
-          <div
-            className='avataorIcon'
-            // onClick={() => this.setState({ alterModel: true })}
-          >
+          <div className='avataorIcon'>
             <AddIcon
               className='addIcon'
               onClick={() => this.setState({ alterModel: true })}
