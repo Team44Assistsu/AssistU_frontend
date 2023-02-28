@@ -178,9 +178,21 @@ class Chatroom extends Component {
                     <TextBox
                       title='Reply'
                       value={this.state.reply}
-                      rows={5}
+                      rows={4}
                       multiline
+                      focused={this.state.listenSpeech || this.state.reply}
                       onChange={(e) => this.setState({ reply: e.target.value })}
+                    />
+                    <SpeechToText
+                      change={(transcript) =>
+                        this.setState({
+                          reply: transcript,
+                        })
+                      }
+                      listen={(listen) =>
+                        this.setState({ listenSpeech: listen })
+                      }
+                      transcript={this.state.reply}
                     />
                     <Button
                       text='Send'
