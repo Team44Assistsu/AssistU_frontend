@@ -3,10 +3,17 @@ import "./style.scss";
 import { Button, NavigationBar, Modal } from "../../Atoms";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import defaultAvatar from "../../Assests/images/a.png";
+import AddIcon from "@mui/icons-material/Add";
+import AvatarAccount from "./AvatarAccount";
+import ChangePassword from "./ChangePassword";
+import TherapistPermission from "./TherapistPermission";
 
 class SettingsPage extends Component {
   state = {
     alterModel: false,
+    avatarAccount: false,
+    changepassword: false,
+    therapistAccess: false,
   };
   render() {
     const avatars = [
@@ -18,33 +25,30 @@ class SettingsPage extends Component {
       <>
         <NavigationBar isSetting />
         <div className="settingClass">
-          <div className="button_settings">
-            {this.state.avatarIcon ? (
-              <div className="avataorIcon">Icon</div>
-            ) : (
-              <div
-                className="avataorIcon"
+          {this.state.avatarIcon ? (
+            <div className="avataorIcon">Icon</div>
+          ) : (
+            <div className="avataorIcon">
+              <AddIcon
+                className="addIcon"
                 onClick={() => this.setState({ alterModel: true })}
-              >
-                <img
-                  id="defaultAvatar"
-                  src={defaultAvatar}
-                  alt="Default avatar"
-                />
-                <div>Change Profile</div>
-              </div>
-            )}
+              />
+              <img
+                id="defaultAvatar"
+                src={defaultAvatar}
+                alt="Default avatar"
+              />
+            </div>
+          )}
+          <div className="button_settings">
             <Button
-              onClick={() => {
-                this.props.history.push("");
-                window.location.href = "";
-              }}
+              onClick={() => this.setState({ avatarAccount: true })}
               text={"Avatar Account"}
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
             <Button
-              onClick={() => ""}
-              text={"Change Avatar Account"}
+              onClick={() => this.setState({ changepassword: true })}
+              text={"Change Avatar Password"}
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
             <Button
@@ -53,12 +57,29 @@ class SettingsPage extends Component {
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
             <Button
-              onClick={() => ""}
+              onClick={() => this.setState({ therapistAccess: true })}
               text={"Therapists Permissions"}
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
           </div>
-
+          {this.state.avatarAccount && (
+            <AvatarAccount
+              close={() => this.setState({ avatarAccount: false })}
+              open={this.state.avatarAccount}
+            />
+          )}
+          {this.state.changepassword && (
+            <ChangePassword
+              close={() => this.setState({ changepassword: false })}
+              open={this.state.changepassword}
+            />
+          )}
+          {this.state.therapistAccess && (
+            <TherapistPermission
+              close={() => this.setState({ therapistAccess: false })}
+              open={this.state.therapistAccess}
+            />
+          )}
           {this.state.alterModel && (
             <Modal
               open={this.state.alterModel}

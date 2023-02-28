@@ -9,6 +9,7 @@ import Modal from "./Modal/Modal";
 import ChatAvatar from "./ChatAvatar/ChatAvatar";
 import NavigationBar from "./Navigation/NavigationBar";
 import Notification from "./Notifications/Notifications";
+import CheckBox from "./CheckBox/CheckBox";
 
 export {
   DropDown,
@@ -22,4 +23,5 @@ export {
   Modal,
   NavigationBar,
   Notification,
+  CheckBox,
 };

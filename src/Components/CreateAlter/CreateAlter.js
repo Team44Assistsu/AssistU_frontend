@@ -104,29 +104,29 @@ class CreateAlter extends Component {
       <>
         <Notification notify={this.state.notify} />
         <PageTitle />
-        <div className='CreateAlter'>
+        <div className="CreateAlter">
           <div
-            className='avataorIcon'
+            className="avataorIcon"
             // onClick={() => this.setState({ alterModel: true })}
           >
             <AddIcon
-              className='addIcon'
+              className="addIcon"
               onClick={() => this.setState({ alterModel: true })}
             />
             {this.state.avatarIcon ? (
-              <div className='avataorIcon'>Icon</div>
+              <div className="avataorIcon">Icon</div>
             ) : (
               <>
                 <img
-                  id='defaultAvatar'
+                  id="defaultAvatar"
                   src={defaultAvatar}
-                  alt='Default avatar'
+                  alt="Default avatar"
                 />
                 <div>Change Profile</div>
               </>
             )}
           </div>
-          <div className='formArea'>
+          <div className="formArea">
             <TextBox
               required
               title={"Alter Name"}
@@ -136,7 +136,7 @@ class CreateAlter extends Component {
               helperText={this.state.error?.name}
             />
             <TextBox
-              type='number'
+              type="number"
               title={"Alter Age"}
               value={this.state.alterAge}
               error={this.state.error?.age}
@@ -145,7 +145,7 @@ class CreateAlter extends Component {
             />
             <DropDown
               onChange={(e) => this.setState({ alterGender: e.target.value })}
-              label='Gender'
+              label="Gender"
               value={this.state.alterGender}
               options={this.state.options}
             />
@@ -183,9 +183,9 @@ class CreateAlter extends Component {
             }
             close
           >
-            <div className='avatarList'>
-              <div className='title'>Choose Avatar</div>
-              <div className='avatarsDisplay'>
+            <div className="avatarList">
+              <div className="title">Choose Avatar</div>
+              <div className="avatarsDisplay">
                 {avatars?.map((icon, index) => {
                   return (
                     <div

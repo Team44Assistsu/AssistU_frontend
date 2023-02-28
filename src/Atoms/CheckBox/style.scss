@@ -1,0 +1,10 @@
+.checkbox-main {
+  [class$="MuiButtonBase-root-MuiCheckbox-root"].Mui-checked,
+  [class$="MuiButtonBase-root-MuiCheckbox-root"].MuiCheckbox-indeterminate,
+  [class$="MuiButtonBase-root-MuiCheckbox-root"] {
+    color: var(--primary-color);
+  }
+  .MuiFormControlLabel-root {
+    color: var(--white);
+  }
+}
