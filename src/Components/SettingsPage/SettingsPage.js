@@ -7,6 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import AvatarAccount from "./AvatarAccount";
 import ChangePassword from "./ChangePassword";
 import TherapistPermission from "./TherapistPermission";
+import AvatarList from "../../avataricon";
 
 class SettingsPage extends Component {
   state = {
@@ -16,31 +17,30 @@ class SettingsPage extends Component {
     therapistAccess: false,
   };
   render() {
-    const avatars = [
-      { id: 1, image: defaultAvatar },
-      { id: 2, image: defaultAvatar },
-      { id: 3, image: defaultAvatar },
-    ];
     return (
       <>
         <NavigationBar isSetting />
-        <div className="settingClass">
-          {this.state.avatarIcon ? (
-            <div className="avataorIcon">Icon</div>
-          ) : (
-            <div className="avataorIcon">
-              <AddIcon
-                className="addIcon"
-                onClick={() => this.setState({ alterModel: true })}
-              />
+        <div className='settingClass'>
+          <div className='avataorIcon'>
+            <AddIcon
+              className='addIcon'
+              onClick={() => this.setState({ alterModel: true })}
+            />
+            {this.state.selectedIcon ? (
               <img
-                id="defaultAvatar"
-                src={defaultAvatar}
-                alt="Default avatar"
+                id='defaultAvatar'
+                src={AvatarList[this.state.selectedIcon]}
+                alt='selected avatar'
               />
-            </div>
-          )}
-          <div className="button_settings">
+            ) : (
+              <img
+                id='defaultAvatar'
+                src={defaultAvatar}
+                alt='Default avatar'
+              />
+            )}
+          </div>
+          <div className='button_settings'>
             <Button
               onClick={() => this.setState({ avatarAccount: true })}
               text={"Avatar Account"}
@@ -90,23 +90,21 @@ class SettingsPage extends Component {
               }
               close
             >
-              <div className="avatarList">
-                <div className="title">Choose Avatar</div>
-                <div className="avatarsDisplay">
-                  {avatars?.map((icon, index) => {
+              <div className='avatarList'>
+                <div className='title'>Choose Avatar</div>
+                <div className='avatarsDisplay'>
+                  {Object.entries(AvatarList)?.map(([key, val]) => {
                     return (
                       <div
                         className={`iconList ${
-                          this.state.selectedIcon == icon.id && "selected"
+                          this.state.selectedIcon == key && "selected"
                         }`}
                       >
                         <img
-                          key={icon.id}
-                          src={icon.image}
-                          alt={`icon${index}`}
-                          onClick={() =>
-                            this.setState({ selectedIcon: icon.id })
-                          }
+                          key={key}
+                          src={val}
+                          alt={`icon${key}`}
+                          onClick={() => this.setState({ selectedIcon: key })}
                         />
                       </div>
                     );
