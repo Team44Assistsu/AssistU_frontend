@@ -13,6 +13,7 @@ import {
 import * as avatarAction from "../../redux/action/avatarActions";
 import defaultAvatar from "../../Assests/images/a.png";
 import AddIcon from "@mui/icons-material/Add";
+import AvatarList from "../../avataricon";
 
 class CreateAlter extends Component {
   state = {
@@ -35,7 +36,6 @@ class CreateAlter extends Component {
   componentDidUpdate(prevProps) {
     const prev = prevProps?.AvatarReducer;
     const cur = this.props?.AvatarReducer;
-    console.log(cur);
 
     if (prev?.createAvatar !== cur?.createAvatar && cur?.createAvatar) {
       this.setState({
@@ -47,7 +47,7 @@ class CreateAlter extends Component {
   }
 
   createAvatar = () => {
-    const { alterAge, alterGender, alterName, description, pin, error } =
+    const { alterAge, alterGender, alterName, description, pin, selectedIcon } =
       this.state;
     const patientId = localStorage.getItem("patientId");
     if (this.isValidate() && patientId) {
@@ -57,6 +57,8 @@ class CreateAlter extends Component {
         alterGender: alterGender,
         patientId: patientId,
         description: description,
+        profImgKey: selectedIcon ? selectedIcon : 0,
+        pin: pin,
       });
     } else {
       this.setState({
@@ -95,35 +97,28 @@ class CreateAlter extends Component {
   };
 
   render() {
-    const avatars = [
-      { id: 1, image: defaultAvatar },
-      { id: 2, image: defaultAvatar },
-      { id: 3, image: defaultAvatar },
-    ];
     return (
       <>
         <Notification notify={this.state.notify} />
         <PageTitle />
         <div className='CreateAlter'>
-          <div
-            className='avataorIcon'
-            // onClick={() => this.setState({ alterModel: true })}
-          >
+          <div className='avataorIcon'>
             <AddIcon
               className='addIcon'
               onClick={() => this.setState({ alterModel: true })}
             />
-            {this.state.avatarIcon ? (
-              <div className='avataorIcon'>Icon</div>
+            {this.state.selectedIcon ? (
+              <img
+                id='defaultAvatar'
+                src={AvatarList[this.state.selectedIcon]}
+                alt='selected avatar'
+              />
             ) : (
-              <>
-                <img
-                  id='defaultAvatar'
-                  src={defaultAvatar}
-                  alt='Default avatar'
-                />
-                <div>Change Profile</div>
-              </>
+              <img
+                id='defaultAvatar'
+                src={defaultAvatar}
+                alt='Default avatar'
+              />
             )}
           </div>
           <div className='formArea'>
@@ -186,20 +181,22 @@ class CreateAlter extends Component {
             <div className='avatarList'>
               <div className='title'>Choose Avatar</div>
               <div className='avatarsDisplay'>
-                {avatars?.map((icon, index) => {
+                {Object.entries(AvatarList)?.map(([key, val]) => {
                   return (
-                    <div
-                      className={`iconList ${
-                        this.state.selectedIcon == icon.id && "selected"
-                      }`}
-                    >
-                      <img
-                        key={icon.id}
-                        src={icon.image}
-                        alt={`icon${index}`}
-                        onClick={() => this.setState({ selectedIcon: icon.id })}
-                      />
-                    </div>
+                    <>
+                      <div
+                        className={`iconList ${
+                          this.state.selectedIcon == key && "selected"
+                        }`}
+                      >
+                        <img
+                          key={key}
+                          src={val}
+                          alt={`icon${key}`}
+                          onClick={() => this.setState({ selectedIcon: key })}
+                        />
+                      </div>
+                    </>
                   );
                 })}
               </div>

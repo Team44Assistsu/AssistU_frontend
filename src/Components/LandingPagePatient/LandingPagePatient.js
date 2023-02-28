@@ -2,11 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
 import { AvatarIcon, Button, PageTitle, Modal, TextBox } from "../../Atoms";
-import avatar0 from "../../Assests/images/af1.png";
-import avatar1 from "../../Assests/images/af13.png";
-import avatar2 from "../../Assests/images/am2.png";
 import { useDispatch, useSelector } from "react-redux";
 import * as avatarActions from "../../redux/action/avatarActions";
+import AvatarList from "../../avataricon";
 
 const Landingpagepatient = (props) => {
   const navigate = useNavigate();
@@ -22,7 +20,6 @@ const Landingpagepatient = (props) => {
     const patientId = localStorage.getItem("patientId");
     dispatch(avatarActions.getAvatar({ patientId }));
   }, []);
-  console.log(props.history.location);
 
   useEffect(() => {
     setAvatarList(result?.getAvatar);
@@ -30,12 +27,24 @@ const Landingpagepatient = (props) => {
 
   const login = () => {
     if (validate()) {
+      dispatch(avatarActions.checkPin({ alterId: alter?.alterId, pin: pin }));
+    }
+  };
+
+  useEffect(() => {
+    localStorage.removeItem("alterId");
+    if (
+      result?.isPin &&
+      result?.checkPin?.valid &&
+      !localStorage.getItem("alterId")
+    ) {
       setPinModal(false);
+      result["isPin"] = false;
       localStorage.setItem("alterId", alter?.alterId);
       localStorage.setItem("alterName", alter?.alterName);
       navigate("/home");
     }
-  };
+  }, [result?.checkPin]);
 
   const validate = () => {
     if (pin !== null && !pin.match(/^\d{4}$/)) {
@@ -63,9 +72,7 @@ const Landingpagepatient = (props) => {
           {avatarsList?.map((avatar, index) => (
             <AvatarIcon
               key={index}
-              image={
-                index % 3 === 0 ? avatar0 : index % 3 === 1 ? avatar1 : avatar2
-              }
+              image={AvatarList[avatar?.profImgKey ? avatar?.profImgKey : 0]}
               onClick={() => {
                 setPinModal(true);
                 setAlter(avatar);

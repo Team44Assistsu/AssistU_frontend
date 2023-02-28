@@ -1,0 +1,11 @@
+.SpeechToText {
+  display: flex;
+  align-items: center;
+  .btn-main {
+    margin: 0px 20px 20px 0;
+  }
+  .listen {
+    color: var(--white);
+    font-size: 12px;
+  }
+}
