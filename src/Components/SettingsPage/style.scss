@@ -1,8 +1,9 @@
 .settingClass {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 60%;
+  margin-top: 50px;
   .button_settings {
     display: flex;
     flex-direction: column;
@@ -14,17 +15,150 @@
     }
   }
   .avataorIcon {
-    margin-top: 20px;
     margin-bottom: 20px;
     width: 150px;
     max-height: 150px;
     border: 1px solid var(--primary-color);
     border-radius: 5px;
     cursor: pointer;
+    position: relative;
     text-align: center;
     img#defaultAvatar {
       width: 150px;
       height: 100px;
     }
+    .addIcon {
+      position: absolute;
+      top: -30px;
+      right: -30px;
+      font-size: 60px;
+    }
+  }
+}
+.avatarList {
+  height: 100%;
+  .title {
+    font-size: 20px;
+    text-align: center;
+    color: var(--white);
+    height: 10%;
+  }
+  .avatarsDisplay {
+    display: flex;
+    flex-wrap: wrap;
+    overflow: auto;
+    height: 80%;
+    max-height: 90%;
+    &::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  .iconList {
+    width: 100px;
+    height: 100px;
+    border: 2px solid var(--white);
+    border-radius: 5px;
+    margin: 10px;
+    img {
+      width: 100px;
+      height: 100px;
+    }
+    &.selected,
+    &:hover {
+      border: 2px solid var(--primary-color);
+    }
+  }
+  .btn-main {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}
+.ModelAvatar {
+  width: 600px !important;
+  height: 300px !important;
+  top: calc(100% - 50% - 150px) !important;
+  left: calc(100% - 50% - 300px) !important;
+  .AvatarAccount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .avatarAccountChange {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      width: 100%;
+      .avatarText {
+        .textBox {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          margin-bottom: 20px;
+        }
+      }
+
+      img {
+        width: 250px;
+        height: 250px;
+      }
+    }
+    .btn-main {
+      justify-content: center;
+    }
+  }
+}
+.ModelChangePassword {
+  width: 600px !important;
+  height: 400px !important;
+  top: calc(100% - 50% - 200px) !important;
+  left: calc(100% - 50% - 300px) !important;
+  .Changepassword {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .PasswordText {
+      display: flex;
+      flex-direction: column;
+
+      .textBox {
+        margin-bottom: 30px;
+      }
+    }
+  }
+  .title {
+    color: var(--white);
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+.ModelTherapist {
+  width: 600px !important;
+  height: 400px !important;
+  top: calc(100% - 60% - 250px) !important;
+  left: calc(100% - 50% - 300px) !important;
+  .TherapistPermission {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .TextStyle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--white);
+      width: 50%;
+      margin-bottom: 20px;
+    }
+  }
+  .title {
+    color: var(--white);
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
   }
 }
