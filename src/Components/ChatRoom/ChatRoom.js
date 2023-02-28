@@ -18,7 +18,9 @@ import {
   Modal,
   NavigationBar,
   ChatAvatar,
+  SpeechToText,
 } from "../../Atoms";
+import AvatarList from "../../avataricon";
 
 class Chatroom extends Component {
   state = {
@@ -29,6 +31,7 @@ class Chatroom extends Component {
     options: [],
     sendMessageTo: null,
     alterId: null,
+    listenSpeech: false,
   };
 
   componentDidMount() {
@@ -50,14 +53,14 @@ class Chatroom extends Component {
       cur?.isSendMessage &&
       cur?.sendMessage
     ) {
-      this.state.openModal &&
-        this.setState({ message: null, repy: null, openModal: false });
-      this.state.sendMessageModal &&
-        this.setState({
-          sendMessageTo: null,
-          repy: null,
-          sendMessageModal: false,
-        });
+      this.setState({
+        message: null,
+        reply: null,
+        openModal: false,
+        sendMessageTo: null,
+        sendMessageModal: false,
+      });
+
       alert("Message Sent Successfully");
     }
 
@@ -112,30 +115,25 @@ class Chatroom extends Component {
     return (
       <>
         <NavigationBar isChat />
-        <div className="ChatRoom">
-          <div className="button_create">
+        <div className='ChatRoom'>
+          <div className='button_create'>
             <Button
               text={"Send Message"}
               primary
               onClick={() => this.setState({ sendMessageModal: true })}
             />
           </div>
-          <div className="title">Chat Room</div>
-          <div className="subtitle">
+          <div className='title'>Chat Room</div>
+          <div className='subtitle'>
             Welcome, buddy! Today is going to be great for you are here!
           </div>
-          <div className="chat-space">
+
+          <div className='chat-space'>
             {this.props?.MessageReducer?.getMessage?.map((message, index) => {
               return (
                 <ChatAvatar
                   key={index}
-                  image={
-                    message?.fromAlter?.alterId % 3 === 0
-                      ? avatar1
-                      : message?.fromAlter?.alterId % 3 === 1
-                      ? avatar2
-                      : avatar3
-                  }
+                  image={AvatarList[message?.fromAlter?.profImgKey]}
                   name={message?.fromAlter?.alterName}
                   onClick={() => this.setState({ openModal: true, message })}
                 />
@@ -150,40 +148,42 @@ class Chatroom extends Component {
               }
               close
             >
-              <div className="modal3Dmessage">
+              <div className='modal3Dmessage'>
                 <Canvas
-                  className="canva"
+                  className='canva'
                   camera={{ position: [1, 1.5, 2.5], fov: 50 }}
                   shadows
                 >
                   <Experience />
                 </Canvas>
-                <div className="message-sec">
-                  <div className="ChatSec">
-                    <div className="message-title">Message Section</div>
-                    <div className="message-text">
+                <div className='message-sec'>
+                  <div className='ChatSec'>
+                    <div className='message-title'>Message Section</div>
+                    <div className='message-text'>
                       {this.state.message?.msgText}
                     </div>
+                    {console.log(this.state.message)}
                     <TextToSpeech
                       value={this.state.message?.msgText}
-                      className="speech-button"
-                      voice={parseInt(Math.random() * 10)}
+                      className='speech-button'
+                      voice={
+                        this.state.message?.fromAlter?.alterGender === "Female"
+                          ? 12
+                          : 0
+                      }
+                      //  parseInt(Math.random() * 10)
                     />
-                    {console.log(
-                      this.state.message,
-                      parseInt(Math.random() * 10)
-                    )}
                   </div>
-                  <div className="message-send">
+                  <div className='message-send'>
                     <TextBox
-                      title="Reply"
+                      title='Reply'
                       value={this.state.reply}
                       rows={5}
                       multiline
                       onChange={(e) => this.setState({ reply: e.target.value })}
                     />
                     <Button
-                      text="Send"
+                      text='Send'
                       primary
                       endIcon={<SendIcon />}
                       onClick={this.replyMessage}
@@ -205,31 +205,41 @@ class Chatroom extends Component {
               }
               close
             >
-              <div className="semdMessageModal">
+              <div className='semdMessageModal'>
                 <Canvas
-                  className="canva"
+                  className='canva'
                   camera={{ position: [1, 1.5, 2.5], fov: 50 }}
                   shadows
                 >
                   <Experience />
                 </Canvas>
-                <div className="message-sec">
+                <div className='message-sec'>
                   <DropDown
-                    label="Select Avatar"
+                    label='Select Avatar'
                     options={this.state.options}
                     onChange={(e) =>
                       this.setState({ sendMessageTo: e.target.value })
                     }
                   />
                   <TextBox
-                    title="Message"
+                    title='Message'
                     value={this.state.reply}
                     rows={10}
                     multiline
+                    focused={this.state.listenSpeech || this.state.reply}
                     onChange={(e) => this.setState({ reply: e.target.value })}
                   />
+                  <SpeechToText
+                    change={(transcript) =>
+                      this.setState({
+                        reply: transcript,
+                      })
+                    }
+                    listen={(listen) => this.setState({ listenSpeech: listen })}
+                    transcript={this.state.reply}
+                  />
                   <Button
-                    text="Send"
+                    text='Send'
                     primary
                     endIcon={<SendIcon />}
                     onClick={this.sendMessage}

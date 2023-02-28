@@ -11,15 +11,15 @@ import a9 from "./Assests/images/n9.png";
 import a10 from "./Assests/images/n10.png";
 
 export default {
-  1: a,
-  2: a1,
-  3: a2,
-  4: a3,
-  5: a4,
-  6: a5,
-  7: a6,
-  8: a7,
-  9: a8,
-  10: a9,
-  11: a10,
+  0: a,
+  1: a1,
+  2: a2,
+  3: a3,
+  4: a4,
+  5: a5,
+  6: a6,
+  7: a7,
+  8: a8,
+  9: a9,
+  10: a10,
 };

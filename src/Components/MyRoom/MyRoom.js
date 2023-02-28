@@ -7,7 +7,16 @@ class CreateRoom extends Component {
       <>
         <NavigationBar isRoom />
         <div>
-          <h2>My Room Space</h2>
+          <div className='title'>My Room Space</div>
+          <video
+            src={
+              "https://uwindsor.yuja.com/V/Video?v=822503&node=4038033&a=137783075&autoplay=1"
+            }
+            width='600'
+            height='300'
+            controls='controls'
+            // autoplay='true'
+          />
         </div>
       </>
     );

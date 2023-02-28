@@ -41,3 +41,24 @@ export function getAvatarError(error) {
     payload: error,
   };
 }
+
+export function checkPin(data) {
+  return {
+    type: AVATAR_ACTIONS.CHECK_PIN,
+    payload: data,
+  };
+}
+
+export function checkPinSuccess(data) {
+  return {
+    type: AVATAR_ACTIONS.CHECK_PIN_SUCCESS,
+    payload: data,
+  };
+}
+
+export function checkPinError(error) {
+  return {
+    type: AVATAR_ACTIONS.CHECK_PIN_ERROR,
+    payload: error,
+  };
+}

@@ -5,6 +5,8 @@ const initialState = {
   isGetAvatar: false,
   createAvatar: null,
   isCreateAvatar: false,
+  checkPin: null,
+  isPin: false,
 };
 
 export function AvatarReducer(state = initialState, action) {
@@ -44,6 +46,24 @@ export function AvatarReducer(state = initialState, action) {
         ...state,
         isCreateAvatar: false,
         createAvatar: null,
+      };
+    case AVATAR_ACTIONS.CHECK_PIN:
+      return {
+        ...state,
+        isPin: false,
+        checkPin: null,
+      };
+    case AVATAR_ACTIONS.CHECK_PIN_SUCCESS:
+      return {
+        ...state,
+        isPin: true,
+        checkPin: action.payload,
+      };
+    case AVATAR_ACTIONS.CHECK_PIN_ERROR:
+      return {
+        ...state,
+        isPin: false,
+        checkPin: null,
       };
 
     default:

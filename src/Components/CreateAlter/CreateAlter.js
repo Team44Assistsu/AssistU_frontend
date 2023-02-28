@@ -36,7 +36,6 @@ class CreateAlter extends Component {
   componentDidUpdate(prevProps) {
     const prev = prevProps?.AvatarReducer;
     const cur = this.props?.AvatarReducer;
-    console.log(cur);
 
     if (prev?.createAvatar !== cur?.createAvatar && cur?.createAvatar) {
       this.setState({
@@ -48,7 +47,7 @@ class CreateAlter extends Component {
   }
 
   createAvatar = () => {
-    const { alterAge, alterGender, alterName, description, pin, error } =
+    const { alterAge, alterGender, alterName, description, pin, selectedIcon } =
       this.state;
     const patientId = localStorage.getItem("patientId");
     if (this.isValidate() && patientId) {
@@ -58,6 +57,8 @@ class CreateAlter extends Component {
         alterGender: alterGender,
         patientId: patientId,
         description: description,
+        profImgKey: selectedIcon ? selectedIcon : 0,
+        pin: pin,
       });
     } else {
       this.setState({
@@ -106,17 +107,18 @@ class CreateAlter extends Component {
               className='addIcon'
               onClick={() => this.setState({ alterModel: true })}
             />
-            {this.state.avatarIcon ? (
-              <div className='avataorIcon'>Icon</div>
+            {this.state.selectedIcon ? (
+              <img
+                id='defaultAvatar'
+                src={AvatarList[this.state.selectedIcon]}
+                alt='selected avatar'
+              />
             ) : (
-              <>
-                <img
-                  id='defaultAvatar'
-                  src={defaultAvatar}
-                  alt='Default avatar'
-                />
-                <div>Change Profile</div>
-              </>
+              <img
+                id='defaultAvatar'
+                src={defaultAvatar}
+                alt='Default avatar'
+              />
             )}
           </div>
           <div className='formArea'>

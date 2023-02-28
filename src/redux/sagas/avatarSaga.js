@@ -5,6 +5,8 @@ import {
   getAvatarSuccess,
   createAvatarError,
   createAvatarSuccess,
+  checkPinError,
+  checkPinSuccess,
 } from "../action/avatarActions";
 import apiJunction from "../utils/api";
 
@@ -34,9 +36,23 @@ function* createAvatar(action) {
   }
 }
 
+function* checkPin(action) {
+  try {
+    const result = yield call(apiJunction.makeRequest, {
+      method: "post",
+      body: action.payload,
+      url: URLS.CHECK_PIN_URL,
+    });
+    yield put(checkPinSuccess(result.data));
+  } catch (e) {
+    yield put(checkPinError(e.response.data));
+  }
+}
+
 export default function* avatarSaga() {
   yield all([
     takeLatest(AVATAR_ACTIONS.CREATE_AVATAR, createAvatar),
     takeLatest(AVATAR_ACTIONS.GET_AVATAR, getAvatar),
+    takeLatest(AVATAR_ACTIONS.CHECK_PIN, checkPin),
   ]);
 }
