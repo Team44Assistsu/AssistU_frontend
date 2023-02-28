@@ -13,6 +13,7 @@ import {
 import * as avatarAction from "../../redux/action/avatarActions";
 import defaultAvatar from "../../Assests/images/a.png";
 import AddIcon from "@mui/icons-material/Add";
+import AvatarList from "../../avataricon";
 
 class CreateAlter extends Component {
   state = {
@@ -95,20 +96,12 @@ class CreateAlter extends Component {
   };
 
   render() {
-    const avatars = [
-      { id: 1, image: defaultAvatar },
-      { id: 2, image: defaultAvatar },
-      { id: 3, image: defaultAvatar },
-    ];
     return (
       <>
         <Notification notify={this.state.notify} />
         <PageTitle />
         <div className="CreateAlter">
-          <div
-            className="avataorIcon"
-            // onClick={() => this.setState({ alterModel: true })}
-          >
+          <div className="avataorIcon">
             <AddIcon
               className="addIcon"
               onClick={() => this.setState({ alterModel: true })}
@@ -186,20 +179,22 @@ class CreateAlter extends Component {
             <div className="avatarList">
               <div className="title">Choose Avatar</div>
               <div className="avatarsDisplay">
-                {avatars?.map((icon, index) => {
+                {Object.entries(AvatarList)?.map(([key, val]) => {
                   return (
-                    <div
-                      className={`iconList ${
-                        this.state.selectedIcon == icon.id && "selected"
-                      }`}
-                    >
-                      <img
-                        key={icon.id}
-                        src={icon.image}
-                        alt={`icon${index}`}
-                        onClick={() => this.setState({ selectedIcon: icon.id })}
-                      />
-                    </div>
+                    <>
+                      <div
+                        className={`iconList ${
+                          this.state.selectedIcon == key && "selected"
+                        }`}
+                      >
+                        <img
+                          key={key}
+                          src={val}
+                          alt={`icon${key}`}
+                          onClick={() => this.setState({ selectedIcon: key })}
+                        />
+                      </div>
+                    </>
                   );
                 })}
               </div>
