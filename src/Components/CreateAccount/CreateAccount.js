@@ -74,7 +74,7 @@ class CreateAccount extends Component {
   validateEmail = () => {
     console.log("enter into validation funtion");
     let err = {};
-    let regex = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
+    let regex = /^[a-zA-Z0-9!#$%^&*()\-__+.]+@+[a-zA-Z]+.+[a-z]/;
     console.log(regex.test(this.state.emailID));
     if (!regex.test(this.state.emailID)) {
       err.emailID = "Please enter valid emailId";
@@ -82,7 +82,8 @@ class CreateAccount extends Component {
     let regexpassword =
       /^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/;
     if (!regexpassword.test(this.state.password)) {
-      err.password = "Is Not Strong Password";
+      err.password =
+        "Password should contain atleast one special character,one captial,small alphabets and numeric";
     } else if (this.state.password !== this.state.repassword) {
       err.repassword = "Please enter same password as above";
     }
@@ -92,7 +93,8 @@ class CreateAccount extends Component {
     }
     let regMobileNo = /^(\+[0-9]{11})$/;
     if (!regMobileNo.test(this.state.mobileNumber)) {
-      err.mobileNumber = "Mobile Number should be 10 digits";
+      err.mobileNumber =
+        "Please enter Mobile Number with country code and should be 10 digits";
     }
     if (this.state.age <= 0) {
       err.patientAge = "Age should be greater than 0";
