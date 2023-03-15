@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { NavigationBar } from "../../Atoms";
+import { NavigationBar, UnityWebGl } from "../../Atoms";
 
 class CreateRoom extends Component {
   render() {
@@ -18,6 +18,7 @@ class CreateRoom extends Component {
           {/* <Video width='320' height='240' controls>
             <source src={"../../Assests/videos/demo.mp4"} />
           </Video> */}
+          <UnityWebGl />
         </div>
       </>
     );

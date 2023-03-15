@@ -11,6 +11,7 @@ import NavigationBar from "./Navigation/NavigationBar";
 import Notification from "./Notifications/Notifications";
 import SpeechToText from "./SpeechToText/SpeechToText";
 import CheckBox from "./CheckBox/CheckBox";
+import UnityWebGl from "./UnityWebGl/UnityWebGl";
 
 export {
   DropDown,
@@ -26,4 +27,5 @@ export {
   Notification,
   SpeechToText,
   CheckBox,
+  UnityWebGl,
 };
