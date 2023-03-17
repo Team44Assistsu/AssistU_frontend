@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./style.scss";
 import { PageTitle, Switch } from "../../Atoms";
 import Patient from "./CreatePatientAccount";
-import Therapist from "./CraeteTherapistAccount";
+import Therapist from "./CreateTherapistAccount";
 class CreateAccount extends Component {
   state = {
     isPatient: true,

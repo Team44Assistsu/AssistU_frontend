@@ -1,8 +1,5 @@
 import React, { Component } from "react";
 import "./style.scss";
-import avatar3 from "../../Assests/images/af1.png";
-import avatar2 from "../../Assests/images/af13.png";
-import avatar1 from "../../Assests/images/am2.png";
 import { Canvas } from "@react-three/fiber";
 import Experience from "../../Atoms/ThreeD/Experience";
 import { connect } from "react-redux";
