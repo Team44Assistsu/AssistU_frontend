@@ -162,7 +162,6 @@ class Chatroom extends Component {
                     <div className='message-text'>
                       {this.state.message?.msgText}
                     </div>
-                    {console.log(this.state.message)}
                     <TextToSpeech
                       value={this.state.message?.msgText}
                       className='speech-button'

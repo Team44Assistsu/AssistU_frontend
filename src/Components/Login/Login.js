@@ -17,8 +17,8 @@ class Login extends Component {
     errors: {},
   };
   componentDidMount() {
+    console.log("login");
     localStorage.clear();
-    console.log(this.props?.history?.location);
   }
   componentDidUpdate(prevProps) {
     const prev = prevProps?.UserReducer;
@@ -38,8 +38,6 @@ class Login extends Component {
       this.setState({ errors: {} });
       this.props.userActions.login({ username: userName, password: passWord });
     } else if (this.state.userName === "" && this.state.passWord === "") {
-      //alert("UserName or password missing");
-      console.log("username and password is empty");
       err.userName = "UserName is Missing";
       err.passWord = "password is Missing";
       this.setState({ errors: err });
@@ -55,15 +53,15 @@ class Login extends Component {
     return (
       <>
         <PageTitle />
-        <div className="LoginPage">
-          <div className="CreateAccount">
+        <div className='LoginPage'>
+          <div className='CreateAccount'>
             <Button
               primary
               onClick={() => (window.location.href = "/create-account")}
               text={"Create Account"}
             />
           </div>
-          <div className="broder">
+          <div className='broder'>
             <TextBox
               required
               title={"UserName"}
@@ -80,16 +78,16 @@ class Login extends Component {
               onChange={(e) => this.setState({ passWord: e.target.value })}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end">
+                  <InputAdornment position='end'>
                     <IconButton
-                      aria-label="toggle password visibility"
+                      aria-label='toggle password visibility'
                       onClick={() =>
                         this.setState({
                           showPassword: !this.state.showPassword,
                         })
                       }
                       style={{ marginTop: "0px" }}
-                      edge="start"
+                      edge='start'
                     >
                       {this.state.showPassword ? (
                         <VisibilityOff />
@@ -104,7 +102,7 @@ class Login extends Component {
               helperText={this.state.errors?.passWord}
             />
             <div
-              class="forgotPassword"
+              class='forgotPassword'
               onClick={() => (window.location.href = "/forgot-passsword")}
             >
               Forgot Password

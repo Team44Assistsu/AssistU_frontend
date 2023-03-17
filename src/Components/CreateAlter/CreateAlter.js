@@ -31,25 +31,50 @@ class CreateAlter extends Component {
     selectedIcon: null,
     pin: null,
     reenterPin: null,
+    isPatient: false,
   };
-
+  componentDidMount() {
+    console.log(this.props.isPatient);
+    const { data, isPatient } = this.props;
+    if (isPatient && data) {
+      this.setState({
+        alterName: data?.name,
+        alterAge: data?.age,
+        alterGender: data?.gender,
+        isPatient: isPatient,
+      });
+    }
+  }
   componentDidUpdate(prevProps) {
     const prev = prevProps?.AvatarReducer;
     const cur = this.props?.AvatarReducer;
 
     if (prev?.createAvatar !== cur?.createAvatar && cur?.createAvatar) {
-      this.setState({
-        notify: { message: "Avatar created successfully", type: "success" },
-      });
-      this.props.history.push("landing-page");
-      window.location.href = "/landing-page";
+      if (this.state.isPatient) {
+        this.props?.navigateToLogin();
+      } else {
+        this.setState({
+          notify: { message: "Avatar created successfully", type: "success" },
+        });
+        this.props.history.push("/landing-page");
+        window.location.href = "/landing-page";
+      }
     }
   }
 
   createAvatar = () => {
-    const { alterAge, alterGender, alterName, description, pin, selectedIcon } =
-      this.state;
-    const patientId = localStorage.getItem("patientId");
+    const {
+      alterAge,
+      alterGender,
+      alterName,
+      description,
+      pin,
+      selectedIcon,
+      isPatient,
+    } = this.state;
+    const patientId = isPatient
+      ? this.props?.data?.patientId
+      : localStorage.getItem("patientId");
     if (this.isValidate() && patientId) {
       this.props?.avatarActions?.createAvatar({
         alterName: alterName,
@@ -57,6 +82,7 @@ class CreateAlter extends Component {
         alterGender: alterGender,
         patientId: patientId,
         description: description,
+        host: isPatient,
         profImgKey: selectedIcon ? selectedIcon : 0,
         pin: pin,
       });
@@ -97,6 +123,7 @@ class CreateAlter extends Component {
   };
 
   render() {
+    console.log(this.state.description);
     return (
       <>
         <Notification notify={this.state.notify} />
