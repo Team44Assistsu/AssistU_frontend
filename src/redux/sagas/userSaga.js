@@ -1,6 +1,5 @@
 import { all, put, call, takeLatest } from "redux-saga/effects";
 import { USER_ACTIONS, URLS } from "../constants";
-// import { Store } from "react-notifications-component";
 import {
   loginError,
   loginSuccess,
@@ -8,6 +7,8 @@ import {
   createPatientSuccess,
   createTherapistError,
   createTherapistSuccess,
+  getPatientsError,
+  getPatientsSuccess,
 } from "../action/userAction";
 import apiJunction from "../utils/api";
 
@@ -50,10 +51,24 @@ function* createTherapist(action) {
   }
 }
 
+function* getPatients(action) {
+  try {
+    const result = yield call(apiJunction.makeRequest, {
+      method: "post",
+      body: action.payload,
+      url: URLS.CREATE_THERAPIST_URL,
+    });
+    yield put(getPatientsSuccess(result.data));
+  } catch (e) {
+    yield put(getPatientsError(e.response.data));
+  }
+}
+
 export default function* userSaga() {
   yield all([
     takeLatest(USER_ACTIONS.LOGIN, login),
     takeLatest(USER_ACTIONS.CREATE_PATIENT, createPatient),
     takeLatest(USER_ACTIONS.CREATE_THERAPIST, createTherapist),
+    takeLatest(USER_ACTIONS.GET_PATIENTS, getPatients),
   ]);
 }

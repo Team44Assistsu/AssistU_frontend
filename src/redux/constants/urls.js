@@ -8,4 +8,5 @@ export const URLS = {
   VIEW_MESSAGE_URL: "/viewMessage",
   CHECK_PIN_URL: "/validateAlter",
   CREATE_THERAPIST_URL: "/saveTherapist",
+  GET_PATIENTS_URL: "/getPatients",
 };
