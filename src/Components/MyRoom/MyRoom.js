@@ -9,21 +9,18 @@ import * as avatarAction from "../../redux/action/avatarActions";
 
 class CreateRoom extends Component {
   state = {
-    openModal: false,
-    message: null,
-    reply: null,
-    sendMessageModal: false,
-    options: [],
-    sendMessageTo: null,
-    alterId: null,
-    listenSpeech: false,
+    // openModal: false,
+    // message: null,
+    // reply: null,
+    // sendMessageModal: false,
+    // options: [],
+    // sendMessageTo: null,
+    // alterId: null,
+    // listenSpeech: false,
   };
   componentDidMount() {
     const alterId = localStorage.getItem("alterId");
-    const patientId = localStorage.getItem("patientId");
     this.props.messageActions.getMessage({ receiverId: alterId });
-    // this.props.avatarActions.getAvatar({ patientId });
-    // this.setState({ alterId });
   }
   render() {
     return (
@@ -34,9 +31,11 @@ class CreateRoom extends Component {
           <div className='RoomChatSpace'>
             <UnityWebGl />
             <div className='ChatSapce'>
+              <div className='message-title'>Messages</div>
               {this.props?.MessageReducer?.getMessage?.map((message, index) => {
                 return (
                   <ChatAvatar
+                    customMessage={message?.msgText}
                     key={index}
                     image={AvatarList[message?.fromAlter?.profImgKey]}
                     name={message?.fromAlter?.alterName}
