@@ -22,7 +22,7 @@ class Login extends Component {
   componentDidUpdate(prevProps) {
     const prev = prevProps?.UserReducer;
     const cur = this.props?.UserReducer;
-    if (prev.login !== cur.login && cur?.login?.valid) {
+    if (prev.login !== cur.login && cur?.login?.valid && cur?.isLoggedIn) {
       localStorage.setItem("patientId", cur?.login?.patientId);
       this.props.history.push("/landing-page");
       window.location.href = "/landing-page";

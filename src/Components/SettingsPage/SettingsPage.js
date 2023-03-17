@@ -8,6 +8,7 @@ import AvatarAccount from "./AvatarAccount";
 import ChangePassword from "./ChangePassword";
 import TherapistPermission from "./TherapistPermission";
 import AvatarList from "../../avataricon";
+import HostAndCohost from "./HostAndCohost";
 
 class SettingsPage extends Component {
   state = {
@@ -15,32 +16,33 @@ class SettingsPage extends Component {
     avatarAccount: false,
     changepassword: false,
     therapistAccess: false,
+    hostandcohost: false,
   };
   render() {
     return (
       <>
         <NavigationBar isSetting />
-        <div className='settingClass'>
-          <div className='avataorIcon'>
+        <div className="settingClass">
+          <div className="avataorIcon">
             <AddIcon
-              className='addIcon'
+              className="addIcon"
               onClick={() => this.setState({ alterModel: true })}
             />
             {this.state.selectedIcon ? (
               <img
-                id='defaultAvatar'
+                id="defaultAvatar"
                 src={AvatarList[this.state.selectedIcon]}
-                alt='selected avatar'
+                alt="selected avatar"
               />
             ) : (
               <img
-                id='defaultAvatar'
+                id="defaultAvatar"
                 src={defaultAvatar}
-                alt='Default avatar'
+                alt="Default avatar"
               />
             )}
           </div>
-          <div className='button_settings'>
+          <div className="button_settings">
             <Button
               onClick={() => this.setState({ avatarAccount: true })}
               text={"Avatar Account"}
@@ -52,7 +54,7 @@ class SettingsPage extends Component {
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
             <Button
-              onClick={() => ""}
+              onClick={() => this.setState({ hostandcohost: true })}
               text={"Host and coHost Settings"}
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
@@ -80,6 +82,12 @@ class SettingsPage extends Component {
               open={this.state.therapistAccess}
             />
           )}
+          {this.state.hostandcohost && (
+            <HostAndCohost
+              close={() => this.setState({ hostandcohost: false })}
+              open={this.state.hostandcohost}
+            />
+          )}
           {this.state.alterModel && (
             <Modal
               open={this.state.alterModel}
@@ -90,9 +98,9 @@ class SettingsPage extends Component {
               }
               close
             >
-              <div className='avatarList'>
-                <div className='title'>Choose Avatar</div>
-                <div className='avatarsDisplay'>
+              <div className="avatarList">
+                <div className="title">Choose Avatar</div>
+                <div className="avatarsDisplay">
                   {Object.entries(AvatarList)?.map(([key, val]) => {
                     return (
                       <div

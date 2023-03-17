@@ -28,4 +28,25 @@
   }
 }
 .CreateTherapistAccount {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 20px;
+  align-items: center;
+  margin: auto;
+  border: 3px var(--primary-color) solid;
+  border-radius: 20px;
+  width: 60%;
+  margin-top: 20px;
+  max-height: calc(100vh - 30vh);
+  overflow: auto;
+  .textBox {
+    margin: 0 20px 20px;
+  }
+  .formArea {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    height: 100%;
+  }
 }
