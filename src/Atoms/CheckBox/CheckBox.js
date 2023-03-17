@@ -3,11 +3,10 @@ import "./style.scss";
 import CheckBox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 const checkBoxcomp = (props) => {
-  console.log("inside checkbox atom");
   return (
-    <div className="checkbox-main">
+    <div className='checkbox-main'>
       <FormControlLabel
-        labelPlacement="start"
+        labelPlacement='start'
         label={props.label}
         control={
           <CheckBox
