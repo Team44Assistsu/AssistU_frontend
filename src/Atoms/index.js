@@ -13,7 +13,7 @@ import SpeechToText from "./SpeechToText/SpeechToText";
 import CheckBox from "./CheckBox/CheckBox";
 import UnityWebGl from "./UnityWebGl/UnityWebGl";
 import Switch from "./Switch/Switch";
-
+import Card from "./Card/Card";
 export {
   DropDown,
   TextBox,
@@ -30,4 +30,5 @@ export {
   CheckBox,
   UnityWebGl,
   Switch,
+  Card,
 };

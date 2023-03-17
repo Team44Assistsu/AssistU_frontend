@@ -50,8 +50,8 @@ class CreateTherapistAccount extends Component {
     if (!reguserName.test(this.state.userName)) {
       err.userName = "user Name should contain alphanumeric characters";
     }
-    let regMobileNo = /^(\+[0-9]{10})$/;
-    if (!regMobileNo.test(this.state.mobileNumber)) {
+    let regMobileNo = /^(\+[0-9]{11})$/;
+    if (!regMobileNo.test(this.state.phoneNumber)) {
       err.mobileNumber = "Mobile Number should be 10 digits";
     }
     let regName = /^([A-za-z]{1,})$/;
