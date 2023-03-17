@@ -1,0 +1,12 @@
+.SwitchComp {
+  .MuiButtonBase-root.MuiSwitch-switchBase.Mui-checked {
+    color: var(--primary-color);
+  }
+  .MuiSwitch-track {
+    background-color: var(--white);
+  }
+  [class$="MuiButtonBase-root-MuiSwitch-switchBase"].Mui-checked
+    + .MuiSwitch-track {
+    background-color: var(--primary-color);
+  }
+}
