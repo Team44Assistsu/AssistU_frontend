@@ -41,3 +41,45 @@ export function createPatientError(error) {
     payload: error,
   };
 }
+
+export function createTherapist(data) {
+  return {
+    type: USER_ACTIONS.CREATE_THERAPIST,
+    payload: data,
+  };
+}
+
+export function createTherapistSuccess(data) {
+  return {
+    type: USER_ACTIONS.CREATE_THERAPIST_SUCCESS,
+    payload: data,
+  };
+}
+
+export function createTherapistError(error) {
+  return {
+    type: USER_ACTIONS.CREATE_THERAPIST_ERROR,
+    payload: error,
+  };
+}
+
+export function getPatients(data) {
+  return {
+    type: USER_ACTIONS.GET_PATIENTS,
+    payload: data,
+  };
+}
+
+export function getPatientsSuccess(data) {
+  return {
+    type: USER_ACTIONS.GET_PATIENTS_SUCCESS,
+    payload: data,
+  };
+}
+
+export function getPatientsError(error) {
+  return {
+    type: USER_ACTIONS.GET_PATIENTS_ERROR,
+    payload: error,
+  };
+}
