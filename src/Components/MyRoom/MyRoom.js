@@ -1,28 +1,65 @@
 import React, { Component } from "react";
-import { NavigationBar, UnityWebGl } from "../../Atoms";
+import { NavigationBar, UnityWebGl, ChatAvatar } from "../../Atoms";
+import "./style.scss";
+import AvatarList from "../../avataricon";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as messageAction from "../../redux/action/messageActions";
+import * as avatarAction from "../../redux/action/avatarActions";
 
 class CreateRoom extends Component {
+  state = {
+    openModal: false,
+    message: null,
+    reply: null,
+    sendMessageModal: false,
+    options: [],
+    sendMessageTo: null,
+    alterId: null,
+    listenSpeech: false,
+  };
+  componentDidMount() {
+    const alterId = localStorage.getItem("alterId");
+    const patientId = localStorage.getItem("patientId");
+    this.props.messageActions.getMessage({ receiverId: alterId });
+    // this.props.avatarActions.getAvatar({ patientId });
+    // this.setState({ alterId });
+  }
   render() {
     return (
       <>
         <NavigationBar isRoom />
         <div>
           <div className='title'>My Room Space</div>
-          {/* <video
-            src={"../../Assests/videos/demo.mp4"}
-            width='600'
-            height='300'
-            controls='controls'
-            autoplay='true'
-          /> */}
-          {/* <Video width='320' height='240' controls>
-            <source src={"../../Assests/videos/demo.mp4"} />
-          </Video> */}
-          <UnityWebGl />
+          <div className='RoomChatSpace'>
+            <UnityWebGl />
+            <div className='ChatSapce'>
+              {this.props?.MessageReducer?.getMessage?.map((message, index) => {
+                return (
+                  <ChatAvatar
+                    key={index}
+                    image={AvatarList[message?.fromAlter?.profImgKey]}
+                    name={message?.fromAlter?.alterName}
+                    onClick={() => this.setState({ openModal: true, message })}
+                  />
+                );
+              })}
+            </div>
+          </div>
         </div>
       </>
     );
   }
 }
+const mapStateToProps = (state) => ({
+  MessageReducer: state.MessageReducer,
+  AvatarReducer: state.AvatarReducer,
+});
 
-export default CreateRoom;
+function mapDispatchToProps(dispatch) {
+  return {
+    messageActions: bindActionCreators(messageAction, dispatch),
+    avatarActions: bindActionCreators(avatarAction, dispatch),
+  };
+}
+export default connect(mapStateToProps, mapDispatchToProps)(CreateRoom);

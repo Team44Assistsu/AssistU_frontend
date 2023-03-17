@@ -17,7 +17,6 @@ class Login extends Component {
     errors: {},
   };
   componentDidMount() {
-    console.log("login");
     localStorage.clear();
   }
   componentDidUpdate(prevProps) {
