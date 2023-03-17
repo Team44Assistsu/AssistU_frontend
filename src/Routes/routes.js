@@ -62,7 +62,10 @@ class RouterClass extends Component {
               element={<CreateAlter history={history} />}
             />
             <Route path="/my-room" element={<CreateRoom history={history} />} />
-            <Route path="/therapist-homepage" element="" />
+            <Route
+              path="/therapist-homepage"
+              element={<TherapistHomePage history={history} />}
+            />
             <Route
               exact
               path="/settings"
