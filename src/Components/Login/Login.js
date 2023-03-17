@@ -23,9 +23,16 @@ class Login extends Component {
     const prev = prevProps?.UserReducer;
     const cur = this.props?.UserReducer;
     if (prev.login !== cur.login && cur?.login?.valid && cur?.isLoggedIn) {
-      localStorage.setItem("patientId", cur?.login?.patientId);
-      this.props.history.push("/landing-page");
-      window.location.href = "/landing-page";
+      console.log(cur?.login);
+      if (cur?.login?.therapistId) {
+        localStorage.setItem("therapistId", cur?.login?.therapistId);
+        this.props.history.push("/therapist-homepage");
+        window.location.href = "/therapist-homepage";
+      } else if (cur?.login?.patientId) {
+        localStorage.setItem("patientId", cur?.login?.patientId);
+        this.props.history.push("/landing-page");
+        window.location.href = "/landing-page";
+      }
     } else if (prev.login !== cur.login && cur.login && !cur.login.valid) {
       alert(cur?.login?.loginStatus || "Something went wrong");
     }

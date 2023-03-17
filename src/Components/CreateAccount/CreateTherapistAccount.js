@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./style.scss";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as userAction from "../../redux/action/userAction";
 import { Switch, TextBox, Button } from "../../Atoms";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
@@ -18,17 +21,29 @@ class CreateTherapistAccount extends Component {
     showPassword: false,
     therapistId: null,
   };
+
+  componentDidUpdate(prevProps) {
+    const prev = prevProps?.UserReducer;
+    const cur = this.props?.UserReducer;
+    if (
+      prev?.createTherapist !== cur?.createTherapist &&
+      cur?.createTherapist
+    ) {
+      this.props?.history?.push("/");
+      window.location.href = "/";
+    }
+  }
   createTherapist = () => {
     const { Name, userName, password, emailID, mobileNumber } = this.state;
 
     if (!this.validateTherapist()) {
       this.setState({ errors: {} });
       this.props?.userActions?.createTherapist({
-        Name: Name,
+        therapistName: Name,
+        mobileNumber: mobileNumber,
+        email: emailID,
         userName: userName,
         password: password,
-        email: emailID,
-        mobileNumber: mobileNumber,
       });
     }
   };
@@ -50,10 +65,10 @@ class CreateTherapistAccount extends Component {
     if (!reguserName.test(this.state.userName)) {
       err.userName = "user Name should contain alphanumeric characters";
     }
-    let regMobileNo = /^(\+[0-9]{10})$/;
-    if (!regMobileNo.test(this.state.mobileNumber)) {
-      err.mobileNumber = "Mobile Number should be 10 digits";
-    }
+    // let regMobileNo = /^(\+[0-9]{11})$/;
+    // if (!regMobileNo.test(this.state.mobileNumber)) {
+    //   err.mobileNumber = "Mobile Number should be 10 digits";
+    // }
     let regName = /^([A-za-z]{1,})$/;
     if (!regName.test(this.state.Name)) {
       err.Name = "user Name should contain alpha characters";
@@ -72,8 +87,8 @@ class CreateTherapistAccount extends Component {
           checked={this.props?.checked}
           handleChange={() => this.props?.onChangeSwitch()}
         />
-        <div className="CreateTherapistAccount">
-          <div className="formArea">
+        <div className='CreateTherapistAccount'>
+          <div className='formArea'>
             <TextBox
               title={"Name"}
               required
@@ -106,16 +121,16 @@ class CreateTherapistAccount extends Component {
               onChange={(e) => this.setState({ password: e.target.value })}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end">
+                  <InputAdornment position='end'>
                     <IconButton
-                      aria-label="toggle password visibility"
+                      aria-label='toggle password visibility'
                       onClick={() =>
                         this.setState({
                           showPassword: !this.state.showPassword,
                         })
                       }
                       style={{ marginTop: "0px" }}
-                      edge="start"
+                      edge='start'
                     >
                       {this.state.showPassword ? (
                         <VisibilityOff />
@@ -136,16 +151,16 @@ class CreateTherapistAccount extends Component {
               onChange={(e) => this.setState({ repassword: e.target.value })}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end">
+                  <InputAdornment position='end'>
                     <IconButton
-                      aria-label="toggle password visibility"
+                      aria-label='toggle password visibility'
                       onClick={() =>
                         this.setState({
                           showPassword: !this.state.showPassword,
                         })
                       }
                       style={{ marginTop: "0px" }}
-                      edge="start"
+                      edge='start'
                     >
                       {this.state.showPassword ? (
                         <VisibilityOff />
@@ -175,4 +190,17 @@ class CreateTherapistAccount extends Component {
   }
 }
 
-export default CreateTherapistAccount;
+const mapStateToProps = (state) => ({
+  UserReducer: state.UserReducer,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    userActions: bindActionCreators(userAction, dispatch),
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateTherapistAccount);

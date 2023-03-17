@@ -5,6 +5,8 @@ const initialState = {
   isLoggedIn: false,
   createPatient: null,
   isCreatePatient: false,
+  createTherapist: null,
+  isCreateTherapist: false,
 };
 
 export function UserReducer(state = initialState, action) {
@@ -44,6 +46,24 @@ export function UserReducer(state = initialState, action) {
         ...state,
         isCreatePatient: false,
         createPatient: null,
+      };
+    case USER_ACTIONS.CREATE_THERAPIST:
+      return {
+        ...state,
+        isCreateTherapist: false,
+        createTherapist: null,
+      };
+    case USER_ACTIONS.CREATE_THERAPIST_SUCCESS:
+      return {
+        ...state,
+        isCreateTherapist: true,
+        createTherapist: action.payload,
+      };
+    case USER_ACTIONS.CREATE_THERAPIST_ERROR:
+      return {
+        ...state,
+        isCreateTherapist: false,
+        createTherapist: null,
       };
 
     default:
