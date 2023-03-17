@@ -162,3 +162,29 @@
     text-align: center;
   }
 }
+.ModelHostAndCohost {
+  width: 600px !important;
+  height: 600px !important;
+  top: calc(100% - 60% - 250px) !important;
+  left: calc(100% - 50% - 300px) !important;
+  .title {
+    color: var(--white);
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .Co-HostStyle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .TextStyle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: var(--white);
+      width: 50%;
+      margin-bottom: 20px;
+    }
+  }
+}

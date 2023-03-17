@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 const NavigationBar = (props) => {
   const navigate = useNavigate();
   return (
-    <div className='NavigationBar'>
-      <div className='Title'>Assists-U</div>
-      <div className='Navs'>
+    <div className="NavigationBar">
+      <div className="Title">Assists-U</div>
+      <div className="Navs">
         <div onClick={() => navigate("/home")}>Home</div>
         {!props.isChat && (
           <div onClick={() => navigate("/chat-room")}>Chat Room</div>
@@ -21,6 +21,9 @@ const NavigationBar = (props) => {
         )}
         {!props.isSupport && (
           <div onClick={() => navigate("/support")}>Support</div>
+        )}
+        {!props.isTherapistHomePage && (
+          <div onClick={() => navigate("/therapist-homepage")}>Support</div>
         )}
       </div>
       {localStorage.getItem("patientId") && (

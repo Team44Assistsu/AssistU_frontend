@@ -45,6 +45,14 @@ class CreateAccount extends Component {
   }
 
   createPatient = () => {
+    const mustContainData = [
+      ["An uppercase letter (a-z)"],
+      ["A lowercase letter (A-Z)"],
+      ["A number (0-9)"],
+      ["A special character (!@#$)"],
+      ["At least 8 characters"],
+      ["Passwords match"],
+    ];
     const {
       patientName,
       userName,
@@ -67,6 +75,7 @@ class CreateAccount extends Component {
         password: password,
         email: emailID,
         mobileNumber: mobileNumber,
+        mustContainData: mustContainData,
       });
     }
   };
@@ -177,6 +186,7 @@ class CreateAccount extends Component {
               error={this.state.errors?.password}
               helperText={this.state.errors?.password}
             />
+
             <TextBox
               title={"Re-enter Password"}
               required
