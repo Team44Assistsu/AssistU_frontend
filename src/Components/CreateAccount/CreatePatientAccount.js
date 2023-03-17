@@ -7,7 +7,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
-import { DropDown, Button, TextBox } from "../../Atoms";
+import { DropDown, Button, TextBox, Switch } from "../../Atoms";
 import Alter from "../CreateAlter/CreateAlter";
 
 class CreatePatientAccount extends Component {
@@ -127,121 +127,132 @@ class CreatePatientAccount extends Component {
             navigateToLogin={this.navigateToLogin}
           />
         ) : (
-          <div className='CreateDetailsPatient'>
-            <div className='formArea'>
-              <TextBox
-                title={"Patient Name"}
-                required
-                value={this.state.patientName}
-                onChange={(e) => this.setState({ patientName: e.target.value })}
-                error={this.state.errors?.patientName}
-                helperText={this.state.errors?.patientName}
-              />
-              <TextBox
-                title={"Age"}
-                type={"number"}
-                value={this.state.age}
-                onChange={(e) => this.setState({ age: e.target.value })}
-                error={this.state.errors?.patientAge}
-                helperText={this.state.errors?.patientAge}
-              />
-              <DropDown
-                onChange={(e) => this.setState({ gender: e.target.value })}
-                label='Gender'
-                value={this.state.gender}
-                options={this.state.options}
-              />
-              <TextBox
-                title={"User Name"}
-                required
-                value={this.state.userName}
-                onChange={(e) => this.setState({ userName: e.target.value })}
-                error={this.state.errors?.userName}
-                helperText={this.state.errors?.userName}
-              />
-              <TextBox
-                title={"Password"}
-                required
-                type={this.state.showPassword ? "text" : "password"}
-                value={this.state.password}
-                onChange={(e) => this.setState({ password: e.target.value })}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <IconButton
-                        aria-label='toggle password visibility'
-                        onClick={() =>
-                          this.setState({
-                            showPassword: !this.state.showPassword,
-                          })
-                        }
-                        style={{ marginTop: "0px" }}
-                        edge='start'
-                      >
-                        {this.state.showPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-                error={this.state.errors?.password}
-                helperText={this.state.errors?.password}
-              />
-              <TextBox
-                title={"Re-enter Password"}
-                required
-                type={this.state.showPassword ? "text" : "password"}
-                value={this.state.repassword}
-                onChange={(e) => this.setState({ repassword: e.target.value })}
-                error={this.state.errors?.repassword}
-                helperText={this.state.errors?.repassword}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position='end'>
-                      <IconButton
-                        aria-label='toggle password visibility'
-                        onClick={() =>
-                          this.setState({
-                            showPassword: !this.state.showPassword,
-                          })
-                        }
-                        style={{ marginTop: "0px" }}
-                        edge='start'
-                      >
-                        {this.state.showPassword ? (
-                          <VisibilityOff />
-                        ) : (
-                          <Visibility />
-                        )}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-              <TextBox
-                title={"EmailId"}
-                required
-                value={this.state.emailID}
-                onChange={(e) => this.setState({ emailID: e.target.value })}
-                error={this.state.errors?.emailID}
-                helperText={this.state.errors?.emailID}
-              />
-              <TextBox
-                title={"Mobile Number"}
-                required
-                value={this.state.mobileNumber}
-                onChange={(e) =>
-                  this.setState({ mobileNumber: e.target.value })
-                }
-                error={this.state.errors?.mobileNumber}
-                helperText={this.state.errors?.mobileNumber}
-              />
+          <>
+            <Switch
+              label={"Patient"}
+              checked={this.props?.checked}
+              handleChange={() => this.props?.onChangeSwitch()}
+            />
+            <div className='CreateDetailsPatient'>
+              <div className='formArea'>
+                <TextBox
+                  title={"Patient Name"}
+                  required
+                  value={this.state.patientName}
+                  onChange={(e) =>
+                    this.setState({ patientName: e.target.value })
+                  }
+                  error={this.state.errors?.patientName}
+                  helperText={this.state.errors?.patientName}
+                />
+                <TextBox
+                  title={"Age"}
+                  type={"number"}
+                  value={this.state.age}
+                  onChange={(e) => this.setState({ age: e.target.value })}
+                  error={this.state.errors?.patientAge}
+                  helperText={this.state.errors?.patientAge}
+                />
+                <DropDown
+                  onChange={(e) => this.setState({ gender: e.target.value })}
+                  label='Gender'
+                  value={this.state.gender}
+                  options={this.state.options}
+                />
+                <TextBox
+                  title={"User Name"}
+                  required
+                  value={this.state.userName}
+                  onChange={(e) => this.setState({ userName: e.target.value })}
+                  error={this.state.errors?.userName}
+                  helperText={this.state.errors?.userName}
+                />
+                <TextBox
+                  title={"Password"}
+                  required
+                  type={this.state.showPassword ? "text" : "password"}
+                  value={this.state.password}
+                  onChange={(e) => this.setState({ password: e.target.value })}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='toggle password visibility'
+                          onClick={() =>
+                            this.setState({
+                              showPassword: !this.state.showPassword,
+                            })
+                          }
+                          style={{ marginTop: "0px" }}
+                          edge='start'
+                        >
+                          {this.state.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                  error={this.state.errors?.password}
+                  helperText={this.state.errors?.password}
+                />
+                <TextBox
+                  title={"Re-enter Password"}
+                  required
+                  type={this.state.showPassword ? "text" : "password"}
+                  value={this.state.repassword}
+                  onChange={(e) =>
+                    this.setState({ repassword: e.target.value })
+                  }
+                  error={this.state.errors?.repassword}
+                  helperText={this.state.errors?.repassword}
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position='end'>
+                        <IconButton
+                          aria-label='toggle password visibility'
+                          onClick={() =>
+                            this.setState({
+                              showPassword: !this.state.showPassword,
+                            })
+                          }
+                          style={{ marginTop: "0px" }}
+                          edge='start'
+                        >
+                          {this.state.showPassword ? (
+                            <VisibilityOff />
+                          ) : (
+                            <Visibility />
+                          )}
+                        </IconButton>
+                      </InputAdornment>
+                    ),
+                  }}
+                />
+                <TextBox
+                  title={"EmailId"}
+                  required
+                  value={this.state.emailID}
+                  onChange={(e) => this.setState({ emailID: e.target.value })}
+                  error={this.state.errors?.emailID}
+                  helperText={this.state.errors?.emailID}
+                />
+                <TextBox
+                  title={"Mobile Number"}
+                  required
+                  value={this.state.mobileNumber}
+                  onChange={(e) =>
+                    this.setState({ mobileNumber: e.target.value })
+                  }
+                  error={this.state.errors?.mobileNumber}
+                  helperText={this.state.errors?.mobileNumber}
+                />
+              </div>
+              <Button text={"Create"} onClick={this.createPatient} />
             </div>
-            <Button text={"Create"} onClick={this.createPatient} />
-          </div>
+          </>
         )}
       </>
     );
