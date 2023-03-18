@@ -1,11 +1,17 @@
-import { CardMedia } from "@mui/material";
 import React, { Component } from "react";
 import a from "../../Assests/images/a.png";
 import "./style.scss";
-
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as userAction from "../../redux/action/userAction";
 import { NavigationBar, Card } from "../../Atoms";
 
 class TherapistHomePage extends Component {
+  componentDidMount() {
+    console.log(this.props);
+    const therapistId = localStorage.getItem("therapistId");
+    this.props?.userActions.getPatients({ therapistId });
+  }
   render() {
     const selections = [
       { id: 1, name: "Avatar1", email: "abc@gmail.com" },
@@ -18,7 +24,7 @@ class TherapistHomePage extends Component {
     return (
       <>
         <NavigationBar isTherapistHomePage />
-        <div className="TherapistHomePage">
+        <div className='TherapistHomePage'>
           {selections.map((item) => (
             <Card
               image={a}
@@ -35,4 +41,14 @@ class TherapistHomePage extends Component {
   }
 }
 
-export default TherapistHomePage;
+const mapStateToProps = (state) => ({
+  UserReducer: state.UserReducer,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    userActions: bindActionCreators(userAction, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TherapistHomePage);

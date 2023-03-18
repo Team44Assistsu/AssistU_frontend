@@ -42,6 +42,7 @@ const Landingpagepatient = (props) => {
       result["isPin"] = false;
       localStorage.setItem("alterId", alter?.alterId);
       localStorage.setItem("alterName", alter?.alterName);
+      localStorage.setItem("host", alter?.host);
       navigate("/home");
     }
   }, [result?.checkPin]);
