@@ -9,6 +9,9 @@ import ChangePassword from "./ChangePassword";
 import TherapistPermission from "./TherapistPermission";
 import AvatarList from "../../avataricon";
 import HostAndCohost from "./HostAndCohost";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as settingActions from "../../redux/action/settingActions";
 
 class SettingsPage extends Component {
   state = {
@@ -66,6 +69,7 @@ class SettingsPage extends Component {
           </div>
           {this.state.avatarAccount && (
             <AvatarAccount
+              {...this.props}
               close={() => this.setState({ avatarAccount: false })}
               open={this.state.avatarAccount}
             />
@@ -133,4 +137,14 @@ class SettingsPage extends Component {
   }
 }
 
-export default SettingsPage;
+const mapStateToProps = (state) => ({
+  SettingsReducer: state.SettingsReducer,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    settingActions: bindActionCreators(settingActions, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage);
