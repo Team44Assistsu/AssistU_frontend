@@ -23,7 +23,6 @@ class Login extends Component {
     const prev = prevProps?.UserReducer;
     const cur = this.props?.UserReducer;
     if (prev.login !== cur.login && cur?.login?.valid && cur?.isLoggedIn) {
-      console.log(cur?.login);
       if (cur?.login?.therapistId) {
         localStorage.setItem("therapistId", cur?.login?.therapistId);
         this.props.history.push("/therapist-homepage");
