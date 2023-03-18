@@ -7,4 +7,5 @@ export const URLS = {
   GET_MESSAGE_URL: "/messages",
   VIEW_MESSAGE_URL: "/viewMessage",
   CHECK_PIN_URL: "/validateAlter",
+  AVATAR_DETAILS_URL: "/updateAlterDetails",
 };
