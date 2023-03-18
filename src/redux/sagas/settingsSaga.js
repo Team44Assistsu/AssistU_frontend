@@ -64,8 +64,8 @@ function* updateAlterProfImg(action) {
 export default function* settingsSaga() {
   yield all([
     takeLatest(SETTINGS_ACTIONS.SETTINGS_AVATAR, updateAvatar),
-    takeLatest(SETTINGS_ACTIONS.SETTINGS_AVATAR, updateCohost),
-    takeLatest(SETTINGS_ACTIONS.SETTINGS_AVATAR, updateAlterPassword),
-    takeLatest(SETTINGS_ACTIONS.SETTINGS_AVATAR, updateAlterProfImg),
+    takeLatest(SETTINGS_ACTIONS.SETTINGS_COHOST, updateCohost),
+    takeLatest(SETTINGS_ACTIONS.SETTINGS_PASSWORD, updateAlterPassword),
+    takeLatest(SETTINGS_ACTIONS.SETTINGS_AVATAR_PROFILE, updateAlterProfImg),
   ]);
 }

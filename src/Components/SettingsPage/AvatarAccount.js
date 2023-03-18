@@ -33,7 +33,7 @@ class AvatarAccount extends Component {
         alterName: alterName,
         description: description,
         alterId: alterId,
-        host: isHost,
+        host: isHost === "true" ? true : false,
       });
     } else if (this.state.alterName === "" && this.state.description === "") {
       err.alterName = "AlterName is Missing";
