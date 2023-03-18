@@ -21,6 +21,35 @@ class SettingsPage extends Component {
     therapistAccess: false,
     hostandcohost: false,
   };
+  componentDidMount() {
+    console.log(this.props);
+  }
+  componentDidUpdate(prevProps) {
+    const prev = prevProps?.SettingsReducer;
+    const cur = this.props?.SettingsReducer;
+    if (
+      prev.settingProfile !== cur.settingProfile &&
+      cur?.settingProfile &&
+      cur?.isSettingProfile
+    ) {
+      //this.props.close();
+      this.setState({ alterModel: false });
+    }
+  }
+  updateProfile = () => {
+    const { selectedIcon } = this.state;
+    let err = {};
+    if (selectedIcon) {
+      this.setState({ errors: {} });
+      const alterId = localStorage.getItem("alterId");
+      const isHost = localStorage.getItem("host");
+      this.props.settingActions.updateAlterProfImg({
+        profImgKey: selectedIcon ? selectedIcon : 0,
+        alterId: Number(alterId),
+        host: isHost === "true" ? true : false,
+      });
+    }
+  };
   render() {
     return (
       <>
@@ -89,12 +118,14 @@ class SettingsPage extends Component {
           )}
           {this.state.hostandcohost && (
             <HostAndCohost
+              {...this.props}
               close={() => this.setState({ hostandcohost: false })}
               open={this.state.hostandcohost}
             />
           )}
           {this.state.alterModel && (
             <Modal
+              {...this.props}
               open={this.state.alterModel}
               handleClose={() =>
                 this.setState({
@@ -126,7 +157,7 @@ class SettingsPage extends Component {
                 <Button
                   text={"Select"}
                   disabled={!this.state.selectedIcon}
-                  onClick={() => this.setState({ alterModel: false })}
+                  onClick={this.updateProfile}
                   primary
                 />
               </div>

@@ -3,7 +3,7 @@ import { Modal, Button, TextBox } from "../../Atoms";
 class ChangePassword extends Component {
   state = {
     oldPassword: "",
-    NewPassword: "",
+    newPassword: "",
     confirmPassword: "",
   };
   componentDidMount() {
@@ -21,20 +21,18 @@ class ChangePassword extends Component {
     }
   }
   updatePassword = () => {
-    const { oldPassword, NewPassword, confirmPassword } = this.state;
+    const { oldPassword, newPassword, confirmPassword } = this.state;
     let err = {};
-    if (oldPassword & NewPassword & confirmPassword) {
+    if (oldPassword & newPassword & confirmPassword) {
       this.setState({ errors: {} });
       const alterId = localStorage.getItem("alterId");
       const isHost = localStorage.getItem("host");
-      if (!isHost) {
-        this.props.settingActions.updateAvatar({
-          oldPassword: oldPassword,
-          newPassword: NewPassword,
-          alterId: alterId,
-          host: isHost,
-        });
-      }
+      this.props.settingActions.updateAlterPassword({
+        oldPin: Number(oldPassword),
+        newPin: Number(newPassword),
+        alterId: Number(alterId),
+        host: isHost === "true" ? true : false,
+      });
     } else if (
       this.state.oldPassword === "" &&
       this.state.NewPassword === "" &&
@@ -47,8 +45,8 @@ class ChangePassword extends Component {
     } else if (this.state.oldPassword === "") {
       err.oldPassword = "Old Password is Missing";
       this.setState({ errors: err });
-    } else if (this.state.NewPassword === "") {
-      err.NewPassword = "New Password is Missing";
+    } else if (this.state.newPassword === "") {
+      err.newPassword = "New Password is Missing";
       this.setState({ errors: err });
     } else if (this.state.confirmPassword === "") {
       err.confirmPassword = "confirm Password is Missing";
@@ -66,9 +64,32 @@ class ChangePassword extends Component {
         <div className="title"> Change Password</div>
         <div className="Changepassword">
           <div className="PasswordText">
-            <TextBox title={"Old Password"} />
-            <TextBox title={"New Password"} />
-            <TextBox title={"Confirm New Password"} />
+            <TextBox
+              title={"Old Password"}
+              required
+              value={this.state.oldPassword}
+              onChange={(e) => this.setState({ oldPassword: e.target.value })}
+              error={this.state.errors?.oldPassword}
+              helperText={this.state.errors?.oldPassword}
+            />
+            <TextBox
+              title={"New Password"}
+              required
+              value={this.state.newPassword}
+              onChange={(e) => this.setState({ newPassword: e.target.value })}
+              error={this.state.errors?.newPassword}
+              helperText={this.state.errors?.newPassword}
+            />
+            <TextBox
+              title={"Confirm New Password"}
+              required
+              value={this.state.confirmPassword}
+              onChange={(e) =>
+                this.setState({ confirmPassword: e.target.value })
+              }
+              error={this.state.errors?.confirmPassword}
+              helperText={this.state.errors?.confirmPassword}
+            />
           </div>
           <Button onClick={this.updatePassword} text={"Update"} />
         </div>

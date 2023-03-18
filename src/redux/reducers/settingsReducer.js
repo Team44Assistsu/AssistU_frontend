@@ -9,6 +9,8 @@ const initialState = {
   isPasswordUpdated: false,
   settingProfile: null,
   isSettingProfile: false,
+  settingsGetAvatar: null,
+  isGetAvatarDetails: false,
 };
 
 export function SettingsReducer(state = initialState, action) {
@@ -30,6 +32,24 @@ export function SettingsReducer(state = initialState, action) {
         ...state,
         isAvatarUpdated: false,
         settingAvatar: null,
+      };
+    case SETTINGS_ACTIONS.SETTINGS_GET_AVATAR_LIST:
+      return {
+        ...state,
+        isGetAvatarDetails: false,
+        settingsGetAvatar: null,
+      };
+    case SETTINGS_ACTIONS.SETTINGS_GET_AVATAR_LIST_SUCCESS:
+      return {
+        ...state,
+        isGetAvatarDetails: true,
+        settingsGetAvatar: action.payload,
+      };
+    case SETTINGS_ACTIONS.SETTINGS_GET_AVATAR_LIST_ERROR:
+      return {
+        ...state,
+        isGetAvatarDetails: false,
+        settingsGetAvatar: null,
       };
     case SETTINGS_ACTIONS.SETTINGS_COHOST:
       return {

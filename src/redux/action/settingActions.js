@@ -20,6 +20,26 @@ export function updateAvatarError(error) {
     payload: error,
   };
 }
+export function updateGetAlterList(data) {
+  return {
+    type: SETTINGS_ACTIONS.SETTINGS_GET_AVATAR_LIST,
+    payload: data,
+  };
+}
+
+export function updateGetAlterListSuccess(data) {
+  return {
+    type: SETTINGS_ACTIONS.SETTINGS_GET_AVATAR_LIST_SUCCESS,
+    payload: data,
+  };
+}
+
+export function updateGetAlterListError(error) {
+  return {
+    type: SETTINGS_ACTIONS.SETTINGS_GET_AVATAR_LIST_ERROR,
+    payload: error,
+  };
+}
 export function updateCohost(data) {
   return {
     type: SETTINGS_ACTIONS.SETTINGS_COHOST,

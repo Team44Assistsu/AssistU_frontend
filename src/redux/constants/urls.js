@@ -11,6 +11,7 @@ export const URLS = {
   CREATE_THERAPIST_URL: "/saveTherapist",
   GET_PATIENTS_URL: "/getPatients",
   COHOST_DETAILS_URL: "/updateAlterAccess",
+  COHOST_GETAVATAR_DETAILS: "/getAlterAccessDetails",
   ALTER_PASSWORD_UPDATE_URL: "/updateAlterPassword",
   AVATAR_PROFILE_URL: "/updateAlterProfImg",
 };

@@ -10,6 +10,8 @@ import {
   updateAlterPasswordError,
   updateAlterProfImgSuccess,
   updateAlterProfImgError,
+  updateGetAlterListSuccess,
+  updateGetAlterListError,
 } from "../action/settingActions";
 import apiJunction from "../utils/api";
 
@@ -23,6 +25,18 @@ function* updateAvatar(action) {
     yield put(updateAvatarSuccess(result.data));
   } catch (e) {
     yield put(updateAvatarError(e.response.data));
+  }
+}
+function* updateGetAlterList(action) {
+  try {
+    const result = yield call(apiJunction.makeRequest, {
+      method: "post",
+      body: action.payload,
+      url: URLS.COHOST_DETAILS_URL,
+    });
+    yield put(updateGetAlterListSuccess(result.data));
+  } catch (e) {
+    yield put(updateGetAlterListError(e.response.data));
   }
 }
 function* updateCohost(action) {
@@ -64,6 +78,7 @@ function* updateAlterProfImg(action) {
 export default function* settingsSaga() {
   yield all([
     takeLatest(SETTINGS_ACTIONS.SETTINGS_AVATAR, updateAvatar),
+    takeLatest(SETTINGS_ACTIONS.SETTINGS_GET_AVATAR_LIST, updateGetAlterList),
     takeLatest(SETTINGS_ACTIONS.SETTINGS_COHOST, updateCohost),
     takeLatest(SETTINGS_ACTIONS.SETTINGS_PASSWORD, updateAlterPassword),
     takeLatest(SETTINGS_ACTIONS.SETTINGS_AVATAR_PROFILE, updateAlterProfImg),
