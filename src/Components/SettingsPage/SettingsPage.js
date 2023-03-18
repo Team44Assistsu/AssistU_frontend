@@ -76,6 +76,7 @@ class SettingsPage extends Component {
           )}
           {this.state.changepassword && (
             <ChangePassword
+              {...this.props}
               close={() => this.setState({ changepassword: false })}
               open={this.state.changepassword}
             />
