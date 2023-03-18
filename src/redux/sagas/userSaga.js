@@ -54,9 +54,9 @@ function* createTherapist(action) {
 function* getPatients(action) {
   try {
     const result = yield call(apiJunction.makeRequest, {
-      method: "post",
-      body: action.payload,
-      url: URLS.CREATE_THERAPIST_URL,
+      method: "get",
+      headers: action.payload,
+      url: URLS.GET_PATIENTS_URL,
     });
     yield put(getPatientsSuccess(result.data));
   } catch (e) {
