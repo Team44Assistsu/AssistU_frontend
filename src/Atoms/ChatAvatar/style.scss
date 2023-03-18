@@ -1,11 +1,23 @@
 .ChatAvatar {
   display: flex;
+  align-items: center;
   img {
     width: 150px;
     height: 150px;
     padding: 10px 0;
   }
-
+  .CustomMessage {
+    .name {
+      text-transform: capitalize;
+      color: var(--white);
+      font-size: 20px;
+      margin-bottom: 5px;
+    }
+    .message {
+      color: var(--primary-color);
+      font-size: 14px;
+    }
+  }
   .message-area {
     border: 2px solid var(--primary-color);
     color: var(--white);
@@ -15,11 +27,4 @@
     border-radius: 5px;
     width: 300px;
   }
-  // &:hover {
-  //   transform: scale(1.2);
-  //   .name-area {
-  //     color: var(--white);
-  //     background-color: var(--primary-color);
-  //   }
-  // }
 }
