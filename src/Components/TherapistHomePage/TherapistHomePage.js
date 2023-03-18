@@ -1,32 +1,54 @@
-import { CardMedia } from "@mui/material";
 import React, { Component } from "react";
 import a from "../../Assests/images/a.png";
 import "./style.scss";
-
-import { NavigationBar, Card } from "../../Atoms";
-
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import * as userAction from "../../redux/action/userAction";
+import { PageTitle, Card } from "../../Atoms";
+import AvatarList from "../../avataricon";
 class TherapistHomePage extends Component {
+  state = {
+    patients: [],
+  };
+  componentDidMount() {
+    const therapistId = localStorage.getItem("therapistId");
+    this.props?.userActions.getPatients({ therapistId });
+  }
+  componentDidUpdate(prevProps) {
+    const prev = prevProps?.UserReducer;
+    const cur = this.props?.UserReducer;
+    if (
+      prev?.getPatients !== cur?.getPatients &&
+      cur?.getPatients &&
+      cur?.getPatients?.patients &&
+      cur?.isPatientList
+    ) {
+      this.setState({ patients: cur?.getPatients?.patients });
+    }
+  }
   render() {
-    const selections = [
-      { id: 1, name: "Avatar1", email: "abc@gmail.com" },
-      { id: 2, name: "Avatar2", email: "abc@gmail.com" },
-      { id: 3, name: "Avatar3", email: "abc@gmail.com" },
-      { id: 4, name: "Avatar4", email: "abc@gmail.com" },
-      { id: 5, name: "Avatar5", email: "abc@gmail.com" },
-      { id: 6, name: "Avatar6", email: "abc@gmail.com" },
-    ];
     return (
       <>
-        <NavigationBar isTherapistHomePage />
-        <div className="TherapistHomePage">
-          {selections.map((item) => (
+        <PageTitle />
+        <div className='TherapistHomePage'>
+          {this.state.patients?.map((item) => (
             <Card
-              image={a}
+              image={AvatarList[item.profImgKey ? item.profImgKey : 0]}
               onClick={() => console.log("therapist home page")}
-              key={item.id}
+              key={item.patientId}
             >
-              <div>{item.name}</div>
-              <div>{item.email}</div>
+              <div>
+                <span>Name: </span>
+                {item.patientName}
+              </div>
+              <div>
+                <span>Email: </span>
+                {item.email}
+              </div>
+              <div>
+                <span>Phone: </span>
+                {item.mobileNo}
+              </div>
             </Card>
           ))}
         </div>
@@ -35,4 +57,14 @@ class TherapistHomePage extends Component {
   }
 }
 
-export default TherapistHomePage;
+const mapStateToProps = (state) => ({
+  UserReducer: state.UserReducer,
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    userActions: bindActionCreators(userAction, dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TherapistHomePage);

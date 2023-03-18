@@ -34,7 +34,6 @@ class CreateAlter extends Component {
     isPatient: false,
   };
   componentDidMount() {
-    console.log(this.props.isPatient);
     const { data, isPatient } = this.props;
     if (isPatient && data) {
       this.setState({
@@ -123,7 +122,6 @@ class CreateAlter extends Component {
   };
 
   render() {
-    console.log(this.state.description);
     return (
       <>
         <Notification notify={this.state.notify} />
