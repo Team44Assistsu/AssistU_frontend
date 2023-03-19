@@ -13,6 +13,12 @@
   .Title {
     font-size: 30px;
   }
+  .button-collection {
+    display: flex;
+    button {
+      margin-right: 15px;
+    }
+  }
   .Navs {
     display: flex;
     div {
