@@ -51,7 +51,7 @@ class CreateTherapistAccount extends Component {
 
   validateTherapist = () => {
     let err = {};
-    let regex = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
+    let regex = /^[a-zA-Z0-9.]+@+[a-zA-Z0-9]+.+[A-z]/;
     if (!regex.test(this.state.emailID)) {
       err.emailID = "Please enter valid emailId";
     }
@@ -88,8 +88,8 @@ class CreateTherapistAccount extends Component {
           checked={this.props?.checked}
           handleChange={() => this.props?.onChangeSwitch()}
         />
-        <div className='CreateTherapistAccount'>
-          <div className='formArea'>
+        <div className="CreateTherapistAccount">
+          <div className="formArea">
             <TextBox
               title={"Name"}
               required
@@ -122,16 +122,16 @@ class CreateTherapistAccount extends Component {
               onChange={(e) => this.setState({ password: e.target.value })}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position='end'>
+                  <InputAdornment position="end">
                     <IconButton
-                      aria-label='toggle password visibility'
+                      aria-label="toggle password visibility"
                       onClick={() =>
                         this.setState({
                           showPassword: !this.state.showPassword,
                         })
                       }
                       style={{ marginTop: "0px" }}
-                      edge='start'
+                      edge="start"
                     >
                       {this.state.showPassword ? (
                         <VisibilityOff />
@@ -152,16 +152,16 @@ class CreateTherapistAccount extends Component {
               onChange={(e) => this.setState({ repassword: e.target.value })}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position='end'>
+                  <InputAdornment position="end">
                     <IconButton
-                      aria-label='toggle password visibility'
+                      aria-label="toggle password visibility"
                       onClick={() =>
                         this.setState({
                           showPassword: !this.state.showPassword,
                         })
                       }
                       style={{ marginTop: "0px" }}
-                      edge='start'
+                      edge="start"
                     >
                       {this.state.showPassword ? (
                         <VisibilityOff />
