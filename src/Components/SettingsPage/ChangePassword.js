@@ -65,7 +65,7 @@ class ChangePassword extends Component {
         <div className="Changepassword">
           <div className="PasswordText">
             <TextBox
-              title={"Old Password"}
+              title={"Old Pin"}
               required
               value={this.state.oldPassword}
               onChange={(e) => this.setState({ oldPassword: e.target.value })}
@@ -73,7 +73,7 @@ class ChangePassword extends Component {
               helperText={this.state.errors?.oldPassword}
             />
             <TextBox
-              title={"New Password"}
+              title={"New Pin"}
               required
               value={this.state.newPassword}
               onChange={(e) => this.setState({ newPassword: e.target.value })}
@@ -81,7 +81,7 @@ class ChangePassword extends Component {
               helperText={this.state.errors?.newPassword}
             />
             <TextBox
-              title={"Confirm New Password"}
+              title={"Confirm New Pin"}
               required
               value={this.state.confirmPassword}
               onChange={(e) =>
