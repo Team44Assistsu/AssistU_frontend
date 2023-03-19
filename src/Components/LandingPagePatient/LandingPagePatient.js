@@ -11,7 +11,7 @@ const Landingpagepatient = (props) => {
   const dispatch = useDispatch();
   const [avatarsList, setAvatarList] = useState([]);
   const [pinModal, setPinModal] = useState(false);
-  const [pin, setPin] = useState(null);
+  const [pin, setPin] = useState("");
   const [alter, setAlter] = useState({});
   const [error, setError] = useState("");
   const result = useSelector((state) => state.AvatarReducer);
@@ -61,15 +61,15 @@ const Landingpagepatient = (props) => {
   return (
     <>
       <PageTitle />
-      <div className='LandingPage'>
-        <div className='button_create'>
+      <div className="LandingPage">
+        <div className="button_create">
           <Button
             text={"Create Avatar"}
             primary
             onClick={() => navigate("/create-alter")}
           />
         </div>
-        <div className='alter_icon'>
+        <div className="alter_icon">
           {avatarsList?.map((avatar, index) => (
             <AvatarIcon
               key={index}
@@ -88,16 +88,16 @@ const Landingpagepatient = (props) => {
           open={pinModal}
           handleClose={() => setPinModal(false)}
           close
-          className='pinModal'
+          className="pinModal"
         >
-          <div className='Pin'>
-            <div className='title'>Enter Pin</div>
+          <div className="Pin">
+            <div className="title">Enter Pin</div>
             <TextBox
               required
               title={"Pin"}
               value={pin}
               onChange={(e) => setPin(e.target.value)}
-              error={error}
+              error={error ? true : false}
               helperText={error}
             />
             <Button text={"Send"} primary onClick={login} />

@@ -10,6 +10,11 @@ class AvatarAccount extends Component {
   };
   componentDidMount() {
     console.log(this.props);
+    const alterDetail = this.props.SettingsReducer?.settingGetAlter;
+    this.setState({
+      alterName: alterDetail?.alterName,
+      description: alterDetail?.description,
+    });
   }
   componentDidUpdate(prevProps) {
     const prev = prevProps?.SettingsReducer;
@@ -19,6 +24,9 @@ class AvatarAccount extends Component {
       cur?.settingAvatar &&
       cur?.isAvatarUpdated
     ) {
+      const alterId = localStorage.getItem("alterId");
+      const patientId = localStorage.getItem("patientId");
+      this.props.settingActions.getAlterById({ alterId, patientId });
       this.props.close();
     }
   }

@@ -8,17 +8,20 @@ class HostAndCohost extends Component {
 
   componentDidMount() {
     console.log(this.props);
+    const alterId = localStorage.getItem("alterId");
+    this.props.settingActions.getAlterList({ alterId });
   }
   componentDidUpdate(prevProps) {
     const prev = prevProps?.SettingsReducer;
+    const cur = this.props?.SettingsReducer;
     if (
       prev.settingsGetAvatar !== cur.settingsGetAvatar &&
       cur?.settingsGetAvatar &&
       cur?.isGetAvatarDetails
     ) {
+      const alterList = cur?.settingsGetAvatar;
+      this.setState({ alterList });
     }
-
-    const cur = this.props?.SettingsReducer;
     if (
       prev.settingCoHost !== cur.settingCoHost &&
       cur?.settingCoHost &&
@@ -29,23 +32,16 @@ class HostAndCohost extends Component {
   }
   updateCohost = () => {
     const { alterList } = this.state;
-    this.props.SettingsReducer.updateGetAlterList({
-      alterList: Response.result,
-    });
-    this.props.settingActions.updateCohost({
-      // oldPin: Number(oldPassword),
-      // newPin: Number(newPassword),
-      // alterId: Number(alterId),
-      // host: isHost === "true" ? true : false,
-    });
+    this.props.settingActions.updateCohost(alterList);
   };
   updateAlter = (value, id, index) => {
-    const alterList = this.state;
+    const { alterList } = this.state;
     const alterdetail = alterList[index];
     if (alterdetail.alterId === id) {
-      alterdetail.cohost = value;
+      alterdetail.cohost = value === "on" ? true : false;
       alterList[index] = alterdetail;
     }
+    console.log(alterList);
     this.setState({ alterList });
   };
   render() {
@@ -69,12 +65,13 @@ class HostAndCohost extends Component {
           <div>
             {this.state.alterList.map((alter, index) => (
               <div className="TextStyle" key={alter.alterId}>
-                {alter.alterId}
+                {alter.alterName}
+                {console.log(alter.cohost)}
                 <CheckBox
                   onClick={(e) =>
                     this.updateAlter(e.target.value, alter.alterId, index)
                   }
-                  value={alter.cohost}
+                  checked={alter.cohost}
                 />
               </div>
             ))}

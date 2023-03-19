@@ -23,7 +23,7 @@ class ChangePassword extends Component {
   updatePassword = () => {
     const { oldPassword, newPassword, confirmPassword } = this.state;
     let err = {};
-    if (oldPassword & newPassword & confirmPassword) {
+    if (oldPassword && newPassword && confirmPassword) {
       this.setState({ errors: {} });
       const alterId = localStorage.getItem("alterId");
       const isHost = localStorage.getItem("host");

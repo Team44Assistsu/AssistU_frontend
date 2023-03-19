@@ -14,4 +14,6 @@ export const URLS = {
   COHOST_GETAVATAR_DETAILS: "/getAlterAccessDetails",
   ALTER_PASSWORD_UPDATE_URL: "/updateAlterPassword",
   AVATAR_PROFILE_URL: "/updateAlterProfImg",
+  LOGIN_PASSWORD_UPDATE_URL: "/updatePassword",
+  GET_ALTER_DETAIL_BYID: "/getAlter",
 };
