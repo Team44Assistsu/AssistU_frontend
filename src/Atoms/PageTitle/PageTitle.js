@@ -8,16 +8,29 @@ const Pagetitle = () => {
   return (
     <div className='PageTitle'>
       <div className='pageName'>Assists-U</div>
-      {(localStorage.getItem("patientId") ||
-        localStorage.getItem("therapistId")) && (
-        <Button
-          text='LogOut'
-          onClick={() => {
-            localStorage.clear();
-            navigate("/", { replace: true });
-          }}
-        />
-      )}
+      <div className='button-collection'>
+        {(localStorage.getItem("patientId") ||
+          localStorage.getItem("therapistId")) && (
+          <Button
+            text='LogOut'
+            onClick={() => {
+              localStorage.clear();
+              navigate("/", { replace: true });
+            }}
+          />
+        )}
+        {localStorage.getItem("alterId") && (
+          <Button
+            text='Landing Page'
+            onClick={() => {
+              localStorage.removeItem("alterId");
+              localStorage.removeItem("alterName");
+              localStorage.removeItem("host");
+              navigate("/landing-page", { replace: true });
+            }}
+          />
+        )}
+      </div>
     </div>
   );
 };

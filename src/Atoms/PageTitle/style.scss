@@ -17,9 +17,13 @@
     text-align: center;
     width: 100%;
   }
-  .btn-main {
+  .button-collection {
     position: absolute;
     right: 20px;
     top: 5px;
+    display: flex;
+    .btn-main {
+      margin-right: 15px;
+    }
   }
 }
