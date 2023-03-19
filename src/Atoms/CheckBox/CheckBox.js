@@ -4,17 +4,11 @@ import CheckBox from "@mui/material/Checkbox";
 import FormControlLabel from "@mui/material/FormControlLabel";
 const checkBoxcomp = (props) => {
   return (
-    <div className='checkbox-main'>
+    <div className="checkbox-main">
       <FormControlLabel
-        labelPlacement='start'
+        labelPlacement="start"
         label={props.label}
-        control={
-          <CheckBox
-            checked={props.checked}
-            onClick={props.onClick}
-            value={props.value}
-          />
-        }
+        control={<CheckBox checked={props.checked} onChange={props.onClick} />}
       />
     </div>
   );

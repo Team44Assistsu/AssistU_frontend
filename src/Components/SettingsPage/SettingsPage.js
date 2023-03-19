@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import "./style.scss";
 import { Button, NavigationBar, Modal } from "../../Atoms";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import defaultAvatar from "../../Assests/images/a.png";
 import AddIcon from "@mui/icons-material/Add";
 import AvatarAccount from "./AvatarAccount";
 import ChangePassword from "./ChangePassword";
+import ChangeLoginPassword from "./ChangeLoginPassword";
 import TherapistPermission from "./TherapistPermission";
 import AvatarList from "../../avataricon";
 import HostAndCohost from "./HostAndCohost";
@@ -20,8 +20,49 @@ class SettingsPage extends Component {
     changepassword: false,
     therapistAccess: false,
     hostandcohost: false,
+    changeLoginpassword: false,
+    selectedIcon: 0,
+  };
+  componentDidMount() {
+    console.log(this.props);
+    const alterId = localStorage.getItem("alterId");
+    const patientId = localStorage.getItem("patientId");
+    this.props.settingActions.getAlterById({ alterId, patientId });
+  }
+  componentDidUpdate(prevProps) {
+    const prev = prevProps?.SettingsReducer;
+    const cur = this.props?.SettingsReducer;
+    if (
+      prev.settingGetAlter !== cur.settingGetAlter &&
+      cur?.settingGetAlter &&
+      cur?.isSettingGetAlter
+    ) {
+      this.setState({ selectedIcon: cur?.settingGetAlter?.profImgKey });
+    }
+    if (
+      prev.settingProfile !== cur.settingProfile &&
+      cur?.settingProfile &&
+      cur?.isSettingProfile
+    ) {
+      this.setState({ alterModel: false });
+    }
+  }
+  updateProfile = () => {
+    const { selectedIcon } = this.state;
+    let err = {};
+    if (selectedIcon) {
+      this.setState({ errors: {} });
+      const alterId = localStorage.getItem("alterId");
+      const isHost = localStorage.getItem("host");
+      this.props.settingActions.updateAlterProfImg({
+        profImgKey: selectedIcon ? selectedIcon : 0,
+        alterId: Number(alterId),
+        host: isHost === "true" ? true : false,
+      });
+    }
   };
   render() {
+    const host = localStorage.getItem("host");
     return (
       <>
         <NavigationBar isSetting />
@@ -31,19 +72,16 @@ class SettingsPage extends Component {
               className="addIcon"
               onClick={() => this.setState({ alterModel: true })}
             />
-            {this.state.selectedIcon ? (
-              <img
-                id="defaultAvatar"
-                src={AvatarList[this.state.selectedIcon]}
-                alt="selected avatar"
-              />
-            ) : (
-              <img
-                id="defaultAvatar"
-                src={defaultAvatar}
-                alt="Default avatar"
-              />
-            )}
+
+            <img
+              id="defaultAvatar"
+              src={
+                this.state.selectedIcon
+                  ? AvatarList[this.state.selectedIcon]
+                  : AvatarList[0]
+              }
+              alt="selected avatar"
+            />
           </div>
           <div className="button_settings">
             <Button
@@ -56,11 +94,20 @@ class SettingsPage extends Component {
               text={"Change Avatar Password"}
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
-            <Button
-              onClick={() => this.setState({ hostandcohost: true })}
-              text={"Host and coHost Settings"}
-              endIcon={<ArrowForwardIosIcon />}
-            ></Button>
+            {host === "true" && (
+              <Button
+                onClick={() => this.setState({ changeLoginpassword: true })}
+                text={"Change Login Password"}
+                endIcon={<ArrowForwardIosIcon />}
+              ></Button>
+            )}
+            {host === "true" && (
+              <Button
+                onClick={() => this.setState({ hostandcohost: true })}
+                text={"Host and coHost Settings"}
+                endIcon={<ArrowForwardIosIcon />}
+              ></Button>
+            )}
             <Button
               onClick={() => this.setState({ therapistAccess: true })}
               text={"Therapists Permissions"}
@@ -76,6 +123,7 @@ class SettingsPage extends Component {
           )}
           {this.state.changepassword && (
             <ChangePassword
+              {...this.props}
               close={() => this.setState({ changepassword: false })}
               open={this.state.changepassword}
             />
@@ -86,14 +134,23 @@ class SettingsPage extends Component {
               open={this.state.therapistAccess}
             />
           )}
+          {this.state.changeLoginpassword && (
+            <ChangeLoginPassword
+              {...this.props}
+              close={() => this.setState({ changeLoginpassword: false })}
+              open={this.state.changeLoginpassword}
+            />
+          )}
           {this.state.hostandcohost && (
             <HostAndCohost
+              {...this.props}
               close={() => this.setState({ hostandcohost: false })}
               open={this.state.hostandcohost}
             />
           )}
           {this.state.alterModel && (
             <Modal
+              {...this.props}
               open={this.state.alterModel}
               handleClose={() =>
                 this.setState({
@@ -125,7 +182,7 @@ class SettingsPage extends Component {
                 <Button
                   text={"Select"}
                   disabled={!this.state.selectedIcon}
-                  onClick={() => this.setState({ alterModel: false })}
+                  onClick={this.updateProfile}
                   primary
                 />
               </div>
