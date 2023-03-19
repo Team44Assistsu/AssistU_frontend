@@ -66,24 +66,24 @@ class SettingsPage extends Component {
     return (
       <>
         <NavigationBar isSetting />
-        <div className="settingClass">
-          <div className="avataorIcon">
+        <div className='settingClass'>
+          <div className='avataorIcon'>
             <AddIcon
-              className="addIcon"
+              className='addIcon'
               onClick={() => this.setState({ alterModel: true })}
             />
 
             <img
-              id="defaultAvatar"
+              id='defaultAvatar'
               src={
                 this.state.selectedIcon
                   ? AvatarList[this.state.selectedIcon]
                   : AvatarList[0]
               }
-              alt="selected avatar"
+              alt='selected avatar'
             />
           </div>
-          <div className="button_settings">
+          <div className='button_settings'>
             <Button
               onClick={() => this.setState({ avatarAccount: true })}
               text={"Avatar Account"}
@@ -108,11 +108,11 @@ class SettingsPage extends Component {
                 endIcon={<ArrowForwardIosIcon />}
               ></Button>
             )}
-            <Button
+            {/* <Button
               onClick={() => this.setState({ therapistAccess: true })}
               text={"Therapists Permissions"}
               endIcon={<ArrowForwardIosIcon />}
-            ></Button>
+            ></Button> */}
           </div>
           {this.state.avatarAccount && (
             <AvatarAccount
@@ -159,9 +159,9 @@ class SettingsPage extends Component {
               }
               close
             >
-              <div className="avatarList">
-                <div className="title">Choose Avatar</div>
-                <div className="avatarsDisplay">
+              <div className='avatarList'>
+                <div className='title'>Choose Avatar</div>
+                <div className='avatarsDisplay'>
                   {Object.entries(AvatarList)?.map(([key, val]) => {
                     return (
                       <div
