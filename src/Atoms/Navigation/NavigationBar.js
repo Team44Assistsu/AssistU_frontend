@@ -6,9 +6,9 @@ import { useNavigate } from "react-router-dom";
 const NavigationBar = (props) => {
   const navigate = useNavigate();
   return (
-    <div className="NavigationBar">
-      <div className="Title">Assists-U</div>
-      <div className="Navs">
+    <div className='NavigationBar'>
+      <div className='Title'>Assists-U</div>
+      <div className='Navs'>
         <div onClick={() => navigate("/home")}>Home</div>
         {!props.isChat && (
           <div onClick={() => navigate("/chat-room")}>Chat Room</div>
@@ -26,15 +26,28 @@ const NavigationBar = (props) => {
           <div onClick={() => navigate("/therapist-homepage")}>Support</div>
         )}
       </div>
-      {localStorage.getItem("patientId") && (
-        <Button
-          text={"LogOut"}
-          onClick={() => {
-            localStorage.clear();
-            navigate("/", { replace: true });
-          }}
-        />
-      )}
+      <>
+        {localStorage.getItem("patientId") && (
+          <Button
+            text={"LogOut"}
+            onClick={() => {
+              localStorage.clear();
+              navigate("/", { replace: true });
+            }}
+          />
+        )}
+        {localStorage.getItem("alterId") && (
+          <Button
+            text={"Landing Page"}
+            onClick={() => {
+              localStorage.removeItem("alterId");
+              localStorage.removeItem("alterName");
+              localStorage.removeItem("host");
+              navigate("/landing-page", { replace: true });
+            }}
+          />
+        )}
+      </>
     </div>
   );
 };
