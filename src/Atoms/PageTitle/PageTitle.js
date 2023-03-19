@@ -8,7 +8,8 @@ const Pagetitle = () => {
   return (
     <div className='PageTitle'>
       <div className='pageName'>Assists-U</div>
-      {localStorage.getItem("patientId") && (
+      {(localStorage.getItem("patientId") ||
+        localStorage.getItem("therapistId")) && (
         <Button
           text='LogOut'
           onClick={() => {
