@@ -26,7 +26,7 @@ const NavigationBar = (props) => {
           <div onClick={() => navigate("/therapist-homepage")}>Support</div>
         )}
       </div>
-      <>
+      <div className='button-collection'>
         {localStorage.getItem("patientId") && (
           <Button
             text={"LogOut"}
@@ -47,7 +47,7 @@ const NavigationBar = (props) => {
             }}
           />
         )}
-      </>
+      </div>
     </div>
   );
 };
