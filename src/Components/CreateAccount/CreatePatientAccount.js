@@ -80,14 +80,15 @@ class CreatePatientAccount extends Component {
 
   validatePatient = () => {
     let err = {};
-    let regex = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
+    let regex = /^[a-zA-Z0-9.]+@+[a-zA-Z0-9]+.+[A-z]/;
     if (!regex.test(this.state.emailID)) {
       err.emailID = "Please enter valid emailId";
     }
     let regexpassword =
       /^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/;
     if (!regexpassword.test(this.state.password)) {
-      err.password = "Is Not Strong Password";
+      err.password =
+        "Password should contains atleast one character,special character,capital letter and Number";
     } else if (this.state.password !== this.state.repassword) {
       err.repassword = "Please enter same password as above";
     }
@@ -133,8 +134,8 @@ class CreatePatientAccount extends Component {
               checked={this.props?.checked}
               handleChange={() => this.props?.onChangeSwitch()}
             />
-            <div className='CreateDetailsPatient'>
-              <div className='formArea'>
+            <div className="CreateDetailsPatient">
+              <div className="formArea">
                 <TextBox
                   title={"Patient Name"}
                   required
@@ -155,7 +156,7 @@ class CreatePatientAccount extends Component {
                 />
                 <DropDown
                   onChange={(e) => this.setState({ gender: e.target.value })}
-                  label='Gender'
+                  label="Gender"
                   value={this.state.gender}
                   options={this.state.options}
                 />
@@ -175,16 +176,16 @@ class CreatePatientAccount extends Component {
                   onChange={(e) => this.setState({ password: e.target.value })}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position='end'>
+                      <InputAdornment position="end">
                         <IconButton
-                          aria-label='toggle password visibility'
+                          aria-label="toggle password visibility"
                           onClick={() =>
                             this.setState({
                               showPassword: !this.state.showPassword,
                             })
                           }
                           style={{ marginTop: "0px" }}
-                          edge='start'
+                          edge="start"
                         >
                           {this.state.showPassword ? (
                             <VisibilityOff />
@@ -210,16 +211,16 @@ class CreatePatientAccount extends Component {
                   helperText={this.state.errors?.repassword}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position='end'>
+                      <InputAdornment position="end">
                         <IconButton
-                          aria-label='toggle password visibility'
+                          aria-label="toggle password visibility"
                           onClick={() =>
                             this.setState({
                               showPassword: !this.state.showPassword,
                             })
                           }
                           style={{ marginTop: "0px" }}
-                          edge='start'
+                          edge="start"
                         >
                           {this.state.showPassword ? (
                             <VisibilityOff />
