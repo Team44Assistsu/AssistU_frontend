@@ -91,7 +91,7 @@ class SettingsPage extends Component {
             ></Button>
             <Button
               onClick={() => this.setState({ changepassword: true })}
-              text={"Change Avatar Password"}
+              text={"Change Avatar Pin"}
               endIcon={<ArrowForwardIosIcon />}
             ></Button>
             {host === "true" && (
