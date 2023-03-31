@@ -61,7 +61,7 @@ class ChangePassword extends Component {
         handleClose={this.props.close}
         close
       >
-        <div className="title"> Change Password</div>
+        <div className="title"> Change Pin</div>
         <div className="Changepassword">
           <div className="PasswordText">
             <TextBox
