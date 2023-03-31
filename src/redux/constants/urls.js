@@ -16,4 +16,5 @@ export const URLS = {
   AVATAR_PROFILE_URL: "/updateAlterProfImg",
   LOGIN_PASSWORD_UPDATE_URL: "/updatePassword",
   GET_ALTER_DETAIL_BYID: "/getAlter",
+  SEND_OTP_URL: "/sendOTP",
 };

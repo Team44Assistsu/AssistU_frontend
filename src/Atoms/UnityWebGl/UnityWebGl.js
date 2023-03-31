@@ -4,10 +4,10 @@ import "./style.scss";
 
 const UnityWebGl = () => {
   const { unityProvider } = useUnityContext({
-    loaderUrl: "Myroom/RWAsprint3.loader.js",
-    dataUrl: "Myroom/RWAsprint3.data",
-    frameworkUrl: "Myroom/RWAsprint3.framework.js",
-    codeUrl: "Myroom/RWAsprint3.wasm",
+    loaderUrl: "Myroom/Updatedunity.loader.js",
+    dataUrl: "Myroom/Updatedunity.data",
+    frameworkUrl: "Myroom/Updatedunity.framework.js",
+    codeUrl: "Myroom/Updatedunity.wasm",
   });
   return (
     <div className='Unity_Room'>

@@ -13,9 +13,6 @@ import AvatarList from "../../avataricon";
 class CreateTherapistAccount extends Component {
   state = {
     Name: "",
-    userName: "",
-    password: "",
-    repassword: "",
     emailID: "",
     phoneNumber: "",
     errors: {},
@@ -35,7 +32,7 @@ class CreateTherapistAccount extends Component {
     }
   }
   createTherapist = () => {
-    const { Name, userName, password, emailID, mobileNumber } = this.state;
+    const { Name, emailID, mobileNumber } = this.state;
 
     if (!this.validateTherapist()) {
       this.setState({ errors: {} });
@@ -43,28 +40,15 @@ class CreateTherapistAccount extends Component {
         therapistName: Name,
         mobileNumber: mobileNumber,
         email: emailID,
-        userName: userName,
-        password: password,
       });
     }
   };
 
   validateTherapist = () => {
     let err = {};
-    let regex = /^[a-zA-Z0-9]+@+[a-zA-Z0-9]+.+[A-z]/;
+    let regex = /^[a-zA-Z0-9.]+@+[a-zA-Z0-9]+.+[A-z]/;
     if (!regex.test(this.state.emailID)) {
       err.emailID = "Please enter valid emailId";
-    }
-    let regexpassword =
-      /^(?=(.*[a-z]){1,})(?=(.*[A-Z]){1,})(?=(.*[0-9]){1,})(?=(.*[!@#$%^&*()\-__+.]){1,}).{8,}$/;
-    if (!regexpassword.test(this.state.password)) {
-      err.password = "Is Not Strong Password";
-    } else if (this.state.password !== this.state.repassword) {
-      err.repassword = "Please enter same password as above";
-    }
-    let reguserName = /^([A-za-z0-9]{4,})$/;
-    if (!reguserName.test(this.state.userName)) {
-      err.userName = "user Name should contain alphanumeric characters";
     }
     let regMobileNo = /^(\+[0-9]{11})$/;
     if (!regMobileNo.test(this.state.phoneNumber)) {
@@ -105,75 +89,6 @@ class CreateTherapistAccount extends Component {
               onChange={(e) => this.setState({ emailID: e.target.value })}
               error={this.state.errors?.emailID}
               helperText={this.state.errors?.emailID}
-            />
-            <TextBox
-              title={"UserName"}
-              required
-              value={this.state.userName}
-              onChange={(e) => this.setState({ userName: e.target.value })}
-              error={this.state.errors?.userName}
-              helperText={this.state.errors?.userName}
-            />
-            <TextBox
-              title={"Password"}
-              required
-              type={this.state.showPassword ? "text" : "password"}
-              value={this.state.password}
-              onChange={(e) => this.setState({ password: e.target.value })}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='end'>
-                    <IconButton
-                      aria-label='toggle password visibility'
-                      onClick={() =>
-                        this.setState({
-                          showPassword: !this.state.showPassword,
-                        })
-                      }
-                      style={{ marginTop: "0px" }}
-                      edge='start'
-                    >
-                      {this.state.showPassword ? (
-                        <VisibilityOff />
-                      ) : (
-                        <Visibility />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              error={this.state.errors?.password}
-              helperText={this.state.errors?.password}
-            />
-            <TextBox
-              title={"Confirm Password"}
-              required
-              value={this.state.repassword}
-              onChange={(e) => this.setState({ repassword: e.target.value })}
-              InputProps={{
-                endAdornment: (
-                  <InputAdornment position='end'>
-                    <IconButton
-                      aria-label='toggle password visibility'
-                      onClick={() =>
-                        this.setState({
-                          showPassword: !this.state.showPassword,
-                        })
-                      }
-                      style={{ marginTop: "0px" }}
-                      edge='start'
-                    >
-                      {this.state.showPassword ? (
-                        <VisibilityOff />
-                      ) : (
-                        <Visibility />
-                      )}
-                    </IconButton>
-                  </InputAdornment>
-                ),
-              }}
-              error={this.state.errors?.repassword}
-              helperText={this.state.errors?.repassword}
             />
             <TextBox
               title={"Phone Number"}
