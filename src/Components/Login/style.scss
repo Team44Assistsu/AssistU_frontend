@@ -44,3 +44,17 @@
     color: var(--primary-color) solid;
   }
 }
+.sendOtpModal {
+  width: 600px !important;
+  height: 200px !important;
+  top: calc(100% - 50% - 100px) !important;
+  left: calc(100% - 50% - 300px) !important;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: space-around;
+  flex-direction: column;
+  .textBox {
+    align-self: center;
+  }
+}

@@ -21,6 +21,27 @@ export function loginError(error) {
   };
 }
 
+export function sendOtp(data) {
+  return {
+    type: USER_ACTIONS.OTP,
+    payload: data,
+  };
+}
+
+export function sendOtpSuccess(data) {
+  return {
+    type: USER_ACTIONS.OTP_SUCCESS,
+    payload: data,
+  };
+}
+
+export function sendOtpError(error) {
+  return {
+    type: USER_ACTIONS.OTP_ERROR,
+    payload: error,
+  };
+}
+
 export function createPatient(data) {
   return {
     type: USER_ACTIONS.CREATE_PATIENT,
