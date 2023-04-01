@@ -21,14 +21,95 @@ import * as avatarAction from "../../redux/action/avatarActions";
 class CreateRoom extends Component {
   state = {
     selectedAlter: null,
+    openModal: false,
+    message: null,
+    reply: null,
+    sendMessageModal: false,
+    options: [],
+    sendMessageTo: null,
+    alterId: null,
+    listenSpeech: false,
   };
   componentDidMount() {
     const alterId = localStorage.getItem("alterId");
     this.props.messageActions.getMessage({ receiverId: alterId });
+
+    const patientId = localStorage.getItem("patientId");
+    this.props.messageActions.getMessage({ receiverId: alterId });
+    this.props.avatarActions.getAvatar({ patientId });
+    this.setState({ alterId });
+  }
+
+  componentDidUpdate(prevProps) {
+    const cur = this.props?.MessageReducer;
+    const prev = prevProps?.MessageReducer;
+    const curAva = this.props?.AvatarReducer;
+    const prevAva = prevProps?.AvatarReducer;
+
+    if (
+      prev?.sendMessage !== cur?.sendMessage &&
+      cur?.isSendMessage &&
+      cur?.sendMessage
+    ) {
+      this.setState({
+        message: null,
+        reply: null,
+        openModal: false,
+        sendMessageTo: null,
+        sendMessageModal: false,
+      });
+
+      alert("Message Sent Successfully");
+    }
+
+    if (
+      prevAva?.getAvatar !== curAva?.getAvatar &&
+      curAva?.getAvatar &&
+      curAva?.isGetAvatar
+    ) {
+      const { alterId } = this.state;
+      const idList = [];
+      const options = [];
+      curAva?.getAvatar?.map((avatar) => {
+        const id = avatar?.alterId;
+        if (id != alterId) {
+          idList.push(id);
+          options.push({
+            value: [id],
+            option: avatar?.alterName,
+          });
+        }
+        return null;
+      });
+      curAva?.getAvatar?.length > 2 &&
+        options.push({ value: idList, option: "All Avatars" });
+      this.setState({ options });
+    }
   }
   alterSelected = (alter) => {
     console.log(alter);
     this.setState({ selectedAlter: alter });
+  };
+
+  sendMessage = () => {
+    const { sendMessageTo, reply, alterId } = this.state;
+    if (reply) {
+      this.props?.messageActions?.sendMessage({
+        from: alterId,
+        text: reply,
+        recevierIds: sendMessageTo,
+      });
+    }
+  };
+  replyMessage = () => {
+    const { message, reply, alterId } = this.state;
+    if (reply) {
+      this.props?.messageActions?.sendMessage({
+        from: alterId,
+        text: reply,
+        recevierIds: [message?.fromAlter?.alterId],
+      });
+    }
   };
   render() {
     return (
