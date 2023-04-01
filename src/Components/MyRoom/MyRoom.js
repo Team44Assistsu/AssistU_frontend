@@ -17,6 +17,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as messageAction from "../../redux/action/messageActions";
 import * as avatarAction from "../../redux/action/avatarActions";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
 class CreateRoom extends Component {
   state = {
@@ -57,6 +58,7 @@ class CreateRoom extends Component {
         openModal: false,
         sendMessageTo: null,
         sendMessageModal: false,
+        selectedAlter: null,
       });
 
       alert("Message Sent Successfully");
@@ -92,25 +94,16 @@ class CreateRoom extends Component {
   };
 
   sendMessage = () => {
-    const { sendMessageTo, reply, alterId } = this.state;
+    const { reply, alterId, selectedAlter } = this.state;
     if (reply) {
       this.props?.messageActions?.sendMessage({
         from: alterId,
         text: reply,
-        recevierIds: sendMessageTo,
+        recevierIds: [selectedAlter?.fromAlter?.alterId],
       });
     }
   };
-  replyMessage = () => {
-    const { message, reply, alterId } = this.state;
-    if (reply) {
-      this.props?.messageActions?.sendMessage({
-        from: alterId,
-        text: reply,
-        recevierIds: [message?.fromAlter?.alterId],
-      });
-    }
-  };
+
   render() {
     return (
       <>
@@ -126,31 +119,48 @@ class CreateRoom extends Component {
                     {this.state.selectedAlter?.fromAlter?.alterName}
                   </div>
                 )}
-              <UnityWebGl />
+              {/* <UnityWebGl /> */}
             </div>
             <div className='ChatSapce'>
               {this.state.selectedAlter ? (
                 <div className='replySection'>
+                  {/* <Example /> */}
                   <div className='message-title'>
+                    <ArrowBackIcon
+                      onClick={() => this.setState({ selectedAlter: null })}
+                    />{" "}
                     From:{" "}
                     {this.state.selectedAlter &&
                       this.state.selectedAlter?.fromAlter &&
                       this.state.selectedAlter?.fromAlter?.alterName}
                   </div>
                   <div className='message-sec'>
-                    <DropDown
-                      label='Select Avatar'
-                      options={this.state.options}
-                      onChange={(e) =>
-                        this.setState({ sendMessageTo: e.target.value })
+                    <div className='message'>
+                      Message:{" "}
+                      {this.state.selectedAlter &&
+                        this.state.selectedAlter?.msgText}
+                    </div>
+                    <TextToSpeech
+                      value={this.state.selectedAlter?.msgText}
+                      className='speech-button'
+                      voice={
+                        this.state.selectedAlter?.fromAlter?.alterGender ===
+                        "Female"
+                          ? 12
+                          : 0
                       }
+                      //  parseInt(Math.random() * 10)
                     />
                     <TextBox
                       title='Message'
-                      value={this.state.reply}
-                      rows={10}
+                      value={this.state.reply ? this.state.reply : ""}
+                      rows={5}
                       multiline
-                      focused={this.state.listenSpeech || this.state.reply}
+                      focused={
+                        this.state.listenSpeech || this.state.reply
+                          ? true
+                          : false
+                      }
                       onChange={(e) => this.setState({ reply: e.target.value })}
                     />
                     <SpeechToText

@@ -173,10 +173,14 @@ class Chatroom extends Component {
                   <div className='message-send'>
                     <TextBox
                       title='Reply'
-                      value={this.state.reply}
+                      value={this.state.reply ? this.state.reply : ""}
                       rows={4}
                       multiline
-                      focused={this.state.listenSpeech || this.state.reply}
+                      focused={
+                        this.state.listenSpeech || this.state.reply
+                          ? true
+                          : false
+                      }
                       onChange={(e) => this.setState({ reply: e.target.value })}
                     />
                     <SpeechToText
@@ -231,10 +235,12 @@ class Chatroom extends Component {
                   />
                   <TextBox
                     title='Message'
-                    value={this.state.reply}
+                    value={this.state.reply ? this.state.reply : ""}
                     rows={10}
                     multiline
-                    focused={this.state.listenSpeech || this.state.reply}
+                    focused={
+                      this.state.listenSpeech || this.state.reply ? true : false
+                    }
                     onChange={(e) => this.setState({ reply: e.target.value })}
                   />
                   <SpeechToText
