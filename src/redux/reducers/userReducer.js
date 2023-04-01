@@ -9,6 +9,8 @@ const initialState = {
   isCreateTherapist: false,
   getPatients: null,
   isPatientList: false,
+  sendOtp: null,
+  isSendOtp: false,
 };
 
 export function UserReducer(state = initialState, action) {
@@ -30,6 +32,24 @@ export function UserReducer(state = initialState, action) {
         ...state,
         login: null,
         isLoggedIn: false,
+      };
+    case USER_ACTIONS.OTP:
+      return {
+        ...state,
+        isSendOtp: false,
+        sendOtp: null,
+      };
+    case USER_ACTIONS.OTP_SUCCESS:
+      return {
+        ...state,
+        isSendOtp: true,
+        sendOtp: action.payload,
+      };
+    case USER_ACTIONS.OTP_ERROR:
+      return {
+        ...state,
+        sendOtp: null,
+        isSendOtp: false,
       };
     case USER_ACTIONS.CREATE_PATIENT:
       return {

@@ -9,6 +9,8 @@ import {
   createTherapistSuccess,
   getPatientsError,
   getPatientsSuccess,
+  sendOtpError,
+  sendOtpSuccess,
 } from "../action/userAction";
 import apiJunction from "../utils/api";
 
@@ -22,6 +24,19 @@ function* login(action) {
     yield put(loginSuccess(result.data));
   } catch (e) {
     yield put(loginError(e.response.data));
+  }
+}
+
+function* sendOtp(action) {
+  try {
+    const result = yield call(apiJunction.makeRequest, {
+      method: "post",
+      headers: action.payload,
+      url: URLS.SEND_OTP_URL,
+    });
+    yield put(sendOtpSuccess(result.data));
+  } catch (e) {
+    yield put(sendOtpError(e.response.data));
   }
 }
 
@@ -70,5 +85,6 @@ export default function* userSaga() {
     takeLatest(USER_ACTIONS.CREATE_PATIENT, createPatient),
     takeLatest(USER_ACTIONS.CREATE_THERAPIST, createTherapist),
     takeLatest(USER_ACTIONS.GET_PATIENTS, getPatients),
+    takeLatest(USER_ACTIONS.OTP, sendOtp),
   ]);
 }
