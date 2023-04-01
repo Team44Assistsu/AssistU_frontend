@@ -103,13 +103,32 @@ class CreateRoom extends Component {
       });
     }
   };
+  replyMessage = () => {
+    const { sendMessageTo, reply, alterId } = this.state;
+    if (reply) {
+      this.props?.messageActions?.sendMessage({
+        from: alterId,
+        text: reply,
+        recevierIds: sendMessageTo,
+      });
+    }
+  };
 
   render() {
     return (
       <>
         <NavigationBar isRoom />
         <div>
-          <div className='title'>My Room Space</div>
+          <div className='main-mroom'>
+            <div className='title'>My Room Space</div>
+            <div className='button_create'>
+              <Button
+                text={"Send Message"}
+                primary
+                onClick={() => this.setState({ sendMessageModal: true })}
+              />
+            </div>
+          </div>
           <div className='RoomChatSpace'>
             <div className='unityspace'>
               {this.state.selectedAlter &&
@@ -119,7 +138,11 @@ class CreateRoom extends Component {
                     {this.state.selectedAlter?.fromAlter?.alterName}
                   </div>
                 )}
-              {/* <UnityWebGl /> */}
+              <UnityWebGl />
+              <div className='supportText'>
+                t/T: for talking the message | l/L: for listening the message |
+                h/H: to wave
+              </div>
             </div>
             <div className='ChatSapce'>
               {this.state.selectedAlter ? (
@@ -203,6 +226,57 @@ class CreateRoom extends Component {
             </div>
           </div>
         </div>
+        {this.state.sendMessageModal && (
+          <Modal
+            open={this.state.sendMessageModal}
+            handleClose={() =>
+              this.setState({
+                sendMessageModal: false,
+                reply: "",
+                sendMessageTo: null,
+              })
+            }
+            close
+            className='sendMessageMyRoom'
+          >
+            <div className='semdMessageModal'>
+              <div className='message-sec'>
+                <DropDown
+                  label='Select Avatar'
+                  options={this.state.options}
+                  onChange={(e) =>
+                    this.setState({ sendMessageTo: e.target.value })
+                  }
+                />
+                <TextBox
+                  title='Message'
+                  value={this.state.reply ? this.state.reply : ""}
+                  rows={10}
+                  multiline
+                  focused={
+                    this.state.listenSpeech || this.state.reply ? true : false
+                  }
+                  onChange={(e) => this.setState({ reply: e.target.value })}
+                />
+                <SpeechToText
+                  change={(transcript) =>
+                    this.setState({
+                      reply: transcript,
+                    })
+                  }
+                  listen={(listen) => this.setState({ listenSpeech: listen })}
+                  transcript={this.state.reply}
+                />
+                <Button
+                  text='Send'
+                  primary
+                  endIcon={<SendIcon />}
+                  onClick={this.replyMessage}
+                />
+              </div>
+            </div>
+          </Modal>
+        )}
       </>
     );
   }
