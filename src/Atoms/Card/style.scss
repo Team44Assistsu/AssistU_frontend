@@ -1,12 +1,15 @@
+//Display the card container as a flex container with a column layout
 .card-main {
   display: flex;
   flex-direction: column;
   border-color: var(--primary-color) solid;
   margin-top: 20px;
   width: 300px;
+  //Set the width of the card media (image) to 150 pixels
   [class$="MuiCardMedia-root"] {
     width: 150px;
   }
+  //Customize the styling of the Material UI Card component
   [class$="MuiPaper-root-MuiCard-root"].MuiCard-root {
     color: var(--secondary-color);
     border: 2px solid var(--primary-color);

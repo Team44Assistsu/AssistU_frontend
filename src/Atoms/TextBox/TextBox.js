@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import TextField from "@mui/material/TextField";
 import "./style.scss";
-
+/*class component for the Textbox it uses differnet type of input props focused,required
+rows,type,title,value,on change,className */
 class TextBox extends Component {
   render() {
     return (
@@ -13,7 +14,7 @@ class TextBox extends Component {
         required={this.props.required}
         error={this.props.error}
         helperText={this.props.helperText}
-        id='outlined-required'
+        id="outlined-required"
         onChange={this.props.onChange}
         label={this.props.title}
         value={this.props.value}

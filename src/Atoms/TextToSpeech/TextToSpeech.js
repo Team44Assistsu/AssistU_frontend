@@ -1,6 +1,7 @@
+//Import the react component and reach speech package
 import React from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
-
+//Functional component for text to speech
 const Texttospeech = (props) => {
   const { speak, voices } = useSpeechSynthesis();
   return (

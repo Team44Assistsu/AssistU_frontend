@@ -1,27 +1,33 @@
+// Styles for the .btn-main container
 .btn-main {
+  //Styles for the Material-UI Button component within the container
   .MuiButton-root {
     text-align: center;
     text-transform: capitalize;
   }
-
+  //Styles for the end icon within the button component
   .MuiButton-endIcon {
     svg {
       font-size: 18px;
     }
   }
+  //Styles for the contained primary variant of the button component
   .MuiButton-contained.MuiButton-containedPrimary {
     background-color: var(--primary-color);
     color: var(--white);
   }
+  //Styles for the contained primary variant of the button component on hover
   .MuiButton-contained.MuiButton-containedPrimary[class$="MuiButtonBase-root-MuiButton-root"]:hover {
     color: var(--primary-color);
     background-color: transparent;
     border: var(--primary-color) 1px solid;
   }
+  //Styles for the outlined variant of the button component
   .MuiButton-root.MuiButton-outlined {
     color: var(--primary-color);
     border: var(--primary-color) 1px solid;
   }
+  // Styles for the outlined variant of the button component on hover
   .MuiButton-root.MuiButton-outlined[class$="MuiButtonBase-root-MuiButton-root"]:hover {
     background-color: var(--primary-color);
     color: var(--white);

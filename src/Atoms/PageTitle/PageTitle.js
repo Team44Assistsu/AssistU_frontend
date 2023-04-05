@@ -1,18 +1,19 @@
+// Importing necessary dependencies
 import React from "react";
 import "./style.scss";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
-
+// Functional component for page title section
 const Pagetitle = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Initializing useNavigate hook
   return (
-    <div className='PageTitle'>
-      <div className='pageName'>Assists-U</div>
-      <div className='button-collection'>
+    <div className="PageTitle">
+      <div className="pageName">Assists-U</div>
+      <div className="button-collection">
         {(localStorage.getItem("patientId") ||
           localStorage.getItem("therapistId")) && (
           <Button
-            text='LogOut'
+            text="LogOut"
             onClick={() => {
               localStorage.clear();
               navigate("/", { replace: true });
@@ -20,13 +21,13 @@ const Pagetitle = () => {
           />
         )}
         {localStorage.getItem("alterId") && (
-          <Button
-            text='Landing Page'
+          <Button //Conditional rendering for Landing Page button
+            text="Landing Page"
             onClick={() => {
-              localStorage.removeItem("alterId");
+              localStorage.removeItem("alterId"); // Removing item from local storage
               localStorage.removeItem("alterName");
               localStorage.removeItem("host");
-              navigate("/landing-page", { replace: true });
+              navigate("/landing-page", { replace: true }); // Navigating to landing page
             }}
           />
         )}
@@ -34,5 +35,5 @@ const Pagetitle = () => {
     </div>
   );
 };
-
+// export the component
 export default Pagetitle;
