@@ -22,7 +22,6 @@ const SpeechToText = (props) => {
   });
   useEffect(() => {
     props.change(transcript);
-    console.log(transcript);
   }, [transcript]);
 
   useEffect(() => {

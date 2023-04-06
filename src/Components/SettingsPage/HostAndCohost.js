@@ -7,7 +7,6 @@ class HostAndCohost extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     const alterId = localStorage.getItem("alterId");
     this.props.settingActions.getAlterList({ alterId });
   }
@@ -41,7 +40,6 @@ class HostAndCohost extends Component {
       alterdetail.cohost = value === "on" ? true : false;
       alterList[index] = alterdetail;
     }
-    console.log(alterList);
     this.setState({ alterList });
   };
   render() {
@@ -55,18 +53,17 @@ class HostAndCohost extends Component {
     // ];
     return (
       <Modal
-        className="ModelHostAndCohost"
+        className='ModelHostAndCohost'
         open={this.props.open}
         handleClose={this.props.close}
         close
       >
-        <div className="title">Co-Host Permissions Access </div>
-        <div className="Co-HostStyle">
+        <div className='title'>Co-Host Permissions Access </div>
+        <div className='Co-HostStyle'>
           <div>
             {this.state.alterList.map((alter, index) => (
-              <div className="TextStyle" key={alter.alterId}>
+              <div className='TextStyle' key={alter.alterId}>
                 {alter.alterName}
-                {console.log(alter.cohost)}
                 <CheckBox
                   onClick={(e) =>
                     this.updateAlter(e.target.value, alter.alterId, index)

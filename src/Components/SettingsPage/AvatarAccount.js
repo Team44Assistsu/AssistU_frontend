@@ -9,7 +9,6 @@ class AvatarAccount extends Component {
     description: "",
   };
   componentDidMount() {
-    console.log(this.props);
     const alterDetail = this.props.SettingsReducer?.settingGetAlter;
     this.setState({
       alterName: alterDetail?.alterName,
@@ -58,15 +57,15 @@ class AvatarAccount extends Component {
   render() {
     return (
       <Modal
-        className="ModelAvatar"
+        className='ModelAvatar'
         open={this.props.open}
         handleClose={this.props.close}
         close
       >
-        <div className="AvatarAccount">
-          <div className="avatarAccountChange">
-            <img id="defaultAvatar" src={defaultAvatar} alt="Default avatar" />
-            <div className="avatarText">
+        <div className='AvatarAccount'>
+          <div className='avatarAccountChange'>
+            <img id='defaultAvatar' src={defaultAvatar} alt='Default avatar' />
+            <div className='avatarText'>
               <TextBox
                 title={"Avatar Name"}
                 value={this.state.alterName}

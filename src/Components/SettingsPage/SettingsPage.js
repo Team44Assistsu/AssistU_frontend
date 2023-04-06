@@ -24,7 +24,6 @@ class SettingsPage extends Component {
     selectedIcon: 0,
   };
   componentDidMount() {
-    console.log(this.props);
     const alterId = localStorage.getItem("alterId");
     const patientId = localStorage.getItem("patientId");
     this.props.settingActions.getAlterById({ alterId, patientId });

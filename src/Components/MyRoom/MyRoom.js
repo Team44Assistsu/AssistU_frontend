@@ -89,7 +89,6 @@ class CreateRoom extends Component {
     }
   }
   alterSelected = (alter) => {
-    console.log(alter);
     this.setState({ selectedAlter: alter });
   };
 

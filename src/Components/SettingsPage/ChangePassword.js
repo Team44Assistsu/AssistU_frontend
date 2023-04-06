@@ -6,9 +6,7 @@ class ChangePassword extends Component {
     newPassword: "",
     confirmPassword: "",
   };
-  componentDidMount() {
-    console.log(this.props);
-  }
+
   componentDidUpdate(prevProps) {
     const prev = prevProps?.SettingsReducer;
     const cur = this.props?.SettingsReducer;
@@ -56,14 +54,14 @@ class ChangePassword extends Component {
   render() {
     return (
       <Modal
-        className="ModelChangePassword"
+        className='ModelChangePassword'
         open={this.props.open}
         handleClose={this.props.close}
         close
       >
-        <div className="title"> Change Pin</div>
-        <div className="Changepassword">
-          <div className="PasswordText">
+        <div className='title'> Change Pin</div>
+        <div className='Changepassword'>
+          <div className='PasswordText'>
             <TextBox
               title={"Old Pin"}
               required

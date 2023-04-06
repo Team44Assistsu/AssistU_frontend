@@ -31,8 +31,6 @@ class CreatePatientAccount extends Component {
       cur?.createPatient &&
       cur?.createPatient?.patientId
     ) {
-      //   this.props?.history?.push("/");
-      //   window.location.href = "/";
       this.setState({
         isAlter: true,
         patientId: cur?.createPatient?.patientId,
