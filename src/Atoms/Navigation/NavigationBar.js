@@ -13,9 +13,6 @@ const NavigationBar = (props) => {
       <div className="Navs">
         /* Navigation links */
         <div onClick={() => navigate("/home")}>Home</div>
-        {/* {!props.isChat && (
-          <div onClick={() => navigate("/chat-room")}>Chat Room</div>
-        )} */}
         {!props.isRoom && (
           <div onClick={() => navigate("/my-room")}>My Room</div>
         )}

@@ -134,7 +134,7 @@ class Login extends Component {
               }}
               error={this.state.errors?.passWord}
               helperText={this.state.errors?.passWord}
-            />{" "}
+            />
             <Button onClick={this.login} text={"login"} />
           </Modal>
         )}

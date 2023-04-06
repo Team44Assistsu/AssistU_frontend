@@ -43,7 +43,6 @@ class CreateRoom extends Component {
     this.setState({ alterId });
   }
   alterSelected = (alter) => {
-    console.log(alter);
     // update state with the selected alter
     this.setState({ selectedAlter: alter });
   };
@@ -102,7 +101,6 @@ class CreateRoom extends Component {
             <div className="ChatSapce">
               {this.state.selectedAlter ? (
                 <div className="replySection">
-                  {/* <Example /> */}
                   <div className="message-title">
                     <ArrowBackIcon
                       onClick={() => this.setState({ selectedAlter: null })}
@@ -127,7 +125,6 @@ class CreateRoom extends Component {
                           ? 12
                           : 0
                       }
-                      //  parseInt(Math.random() * 10)
                     />
                     <TextBox
                       title="Message"

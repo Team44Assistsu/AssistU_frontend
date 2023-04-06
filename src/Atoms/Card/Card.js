@@ -6,14 +6,12 @@ import "./style.scss";
 //functional component for the card which takes props
 const CardComp = (props) => {
   return (
-    <div className="card-main">
+    <div className='card-main'>
       <Card>
         <CardMedia
-          component="img"
+          component='img'
           image={props.image}
           onClick={props.onClick}
-          // image="/static/images/cards/contemplative-reptile.jpg"
-          //   title="green iguana"
         />
         {props.children}
       </Card>

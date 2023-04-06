@@ -27,7 +27,6 @@ class SettingsPage extends Component {
   };
   // Method to get data on initial mount
   componentDidMount() {
-    console.log(this.props);
     const alterId = localStorage.getItem("alterId");
     const patientId = localStorage.getItem("patientId");
     this.props.settingActions.getAlterById({ alterId, patientId });
@@ -117,11 +116,6 @@ class SettingsPage extends Component {
                 endIcon={<ArrowForwardIosIcon />}
               ></Button>
             )}
-            {/* <Button
-              onClick={() => this.setState({ therapistAccess: true })}
-              text={"Therapists Permissions"}
-              endIcon={<ArrowForwardIosIcon />}
-            ></Button> */}
           </div>
           {this.state.avatarAccount && (
             <AvatarAccount

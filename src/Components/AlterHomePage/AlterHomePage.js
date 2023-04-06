@@ -18,11 +18,6 @@ const Alterhomepage = () => {
           For Alters To communicate
         </div>
         <div className="button_alignment">
-          {/* <Button
-            onClick={() => navigate("/chat-room")}
-            text={"Chat Room"}
-            endIcon={<ArrowForwardIosIcon />}
-          ></Button> */}
           <Button
             onClick={() => navigate("/my-room")} // navigate to the "/my-room" page when this button is clicked
             text={"My Room"}

@@ -24,7 +24,6 @@ const SpeechToText = (props) => {
   });
   useEffect(() => {
     props.change(transcript);
-    console.log(transcript);
   }, [transcript]);
   // Update parent component state with listening state
   useEffect(() => {

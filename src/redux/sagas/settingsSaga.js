@@ -50,7 +50,6 @@ function* getAlterById(action) {
       headers: action.payload,
       url: URLS.GET_ALTER_DETAIL_BYID,
     });
-    console.log(result.data);
     yield put(getAlterByIdSuccess(result.data));
   } catch (e) {
     yield put(getAlterByIdError(e.response.data));

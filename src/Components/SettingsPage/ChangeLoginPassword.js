@@ -7,10 +7,6 @@ class ChangeLoginPassword extends Component {
     confirmLoginPassword: "",
   };
   // Log the props when the component mounts
-  componentDidMount() {
-    console.log(this.props);
-  }
-  // Check if the settingLoginPassword has changed and if the new password has been set
   componentDidUpdate(prevProps) {
     const prev = prevProps?.SettingsReducer;
     const cur = this.props?.SettingsReducer;
