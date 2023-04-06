@@ -4,7 +4,6 @@ import local from "./localStorage";
 class ApiJunction {
   makeRequest(params) {
     let token = params.token || local.getItem("token");
-    // axios.interceptors.request.use(setHeaders(token));
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     axios.defaults.headers.common["Content-Type"] = `application/json`;
     axios.defaults.headers.common["Access-Control-Allow-Origin"] = "*";
@@ -15,7 +14,6 @@ class ApiJunction {
         return null;
       });
     }
-    // return axios[params.method](params.url, params.body)
     if (params.method === "get") {
       return axios.get(params.url, { params: params.params });
     } else if (params.method === "post") {
@@ -43,16 +41,5 @@ class ApiJunction {
     return axios.post(params.url, params.body);
   }
 }
-
-// function setHeaders(token) {
-//     return function (config) {
-
-//         let tokenHeader = `Bearer ${token}`
-//         config.headers['Authorization'] = tokenHeader;
-//         config.headers['Content-Type'] = 'application/json';
-
-//         return config;
-//     };
-// }
 
 export default new ApiJunction();

@@ -43,14 +43,6 @@ class HostAndCohost extends Component {
     this.setState({ alterList });
   };
   render() {
-    // const Alters = [
-    //   { id: 1, Alter: "Avatar1" },
-    //   { id: 2, Alter: "Avatar2" },
-    //   { id: 3, Alter: "Avatar3" },
-    //   { id: 4, Alter: "Avatar4" },
-    //   { id: 5, Alter: "Avatar5" },
-    //   { id: 6, Alter: "Avatar6" },
-    // ];
     return (
       <Modal
         className='ModelHostAndCohost'
