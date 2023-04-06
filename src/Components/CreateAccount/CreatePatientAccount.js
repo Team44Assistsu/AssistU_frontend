@@ -9,7 +9,7 @@ import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import { DropDown, Button, TextBox, Switch } from "../../Atoms";
 import Alter from "../CreateAlter/CreateAlter";
-
+//create class component for the patient account
 class CreatePatientAccount extends Component {
   state = {
     patientName: "",
@@ -64,7 +64,7 @@ class CreatePatientAccount extends Component {
       });
     }
   };
-
+  //validation for the fields
   validatePatient = () => {
     let err = {};
     let regex = /^[a-zA-Z0-9.]+@+[a-zA-Z0-9]+.+[A-z]/;
@@ -88,6 +88,7 @@ class CreatePatientAccount extends Component {
     });
     return Object.keys(err).length > 0;
   };
+  //function to display the fields in UI
   render() {
     return (
       <>
@@ -109,8 +110,8 @@ class CreatePatientAccount extends Component {
               checked={this.props?.checked}
               handleChange={() => this.props?.onChangeSwitch()}
             />
-            <div className='CreateDetailsPatient'>
-              <div className='formArea'>
+            <div className="CreateDetailsPatient">
+              <div className="formArea">
                 <TextBox
                   title={"Patient Name"}
                   required
@@ -131,7 +132,7 @@ class CreatePatientAccount extends Component {
                 />
                 <DropDown
                   onChange={(e) => this.setState({ gender: e.target.value })}
-                  label='Gender'
+                  label="Gender"
                   value={this.state.gender}
                   options={this.state.options}
                 />
@@ -172,7 +173,6 @@ function mapDispatchToProps(dispatch) {
     userActions: bindActionCreators(userAction, dispatch),
   };
 }
-
 export default connect(
   mapStateToProps,
   mapDispatchToProps

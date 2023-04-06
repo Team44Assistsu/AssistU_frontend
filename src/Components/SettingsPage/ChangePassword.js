@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Modal, Button, TextBox } from "../../Atoms";
+//class componnet to chnage pin of the avatar account
 class ChangePassword extends Component {
   state = {
     oldPassword: "",
@@ -20,6 +21,7 @@ class ChangePassword extends Component {
       this.props.close();
     }
   }
+  //function to update the pin
   updatePassword = () => {
     const { oldPassword, newPassword, confirmPassword } = this.state;
     let err = {};
@@ -53,6 +55,7 @@ class ChangePassword extends Component {
       this.setState({ errors: err });
     }
   };
+  //render the function of the changepassword component
   render() {
     return (
       <Modal

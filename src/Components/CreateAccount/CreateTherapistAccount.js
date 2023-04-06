@@ -9,7 +9,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 import AvatarList from "../../avataricon";
-
+//Class component for therapist
 class CreateTherapistAccount extends Component {
   state = {
     Name: "",
@@ -31,6 +31,7 @@ class CreateTherapistAccount extends Component {
       window.location.href = "/";
     }
   }
+  //create a account with fields for therapist
   createTherapist = () => {
     const { Name, emailID, mobileNumber } = this.state;
 
@@ -43,7 +44,7 @@ class CreateTherapistAccount extends Component {
       });
     }
   };
-
+  //validation for the therapist fields
   validateTherapist = () => {
     let err = {};
     let regex = /^[a-zA-Z0-9.]+@+[a-zA-Z0-9]+.+[A-z]/;
@@ -72,8 +73,8 @@ class CreateTherapistAccount extends Component {
           checked={this.props?.checked}
           handleChange={() => this.props?.onChangeSwitch()}
         />
-        <div className='CreateTherapistAccount'>
-          <div className='formArea'>
+        <div className="CreateTherapistAccount">
+          <div className="formArea">
             <TextBox
               title={"Name"}
               required

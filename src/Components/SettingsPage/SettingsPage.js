@@ -1,3 +1,4 @@
+//import required components and modals from other files
 import React, { Component } from "react";
 import "./style.scss";
 import { Button, NavigationBar, Modal } from "../../Atoms";
@@ -12,8 +13,9 @@ import HostAndCohost from "./HostAndCohost";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as settingActions from "../../redux/action/settingActions";
-
+//class component for settings page
 class SettingsPage extends Component {
+  // Setting initial state of component
   state = {
     alterModel: false,
     avatarAccount: false,
@@ -23,15 +25,18 @@ class SettingsPage extends Component {
     changeLoginpassword: false,
     selectedIcon: 0,
   };
+  // Method to get data on initial mount
   componentDidMount() {
     console.log(this.props);
     const alterId = localStorage.getItem("alterId");
     const patientId = localStorage.getItem("patientId");
     this.props.settingActions.getAlterById({ alterId, patientId });
   }
+  //Method to update state when props are updated
   componentDidUpdate(prevProps) {
     const prev = prevProps?.SettingsReducer;
     const cur = this.props?.SettingsReducer;
+    // Set state when alter data is fetched from API
     if (
       prev.settingGetAlter !== cur.settingGetAlter &&
       cur?.settingGetAlter &&
@@ -39,6 +44,7 @@ class SettingsPage extends Component {
     ) {
       this.setState({ selectedIcon: cur?.settingGetAlter?.profImgKey });
     }
+    // Close modal when alter profile is updated
     if (
       prev.settingProfile !== cur.settingProfile &&
       cur?.settingProfile &&
@@ -47,6 +53,7 @@ class SettingsPage extends Component {
       this.setState({ alterModel: false });
     }
   }
+  //function to update alter profile data
   updateProfile = () => {
     const { selectedIcon } = this.state;
     let err = {};
@@ -54,6 +61,7 @@ class SettingsPage extends Component {
       this.setState({ errors: {} });
       const alterId = localStorage.getItem("alterId");
       const isHost = localStorage.getItem("host");
+      //Update alter profile image using Redux action
       this.props.settingActions.updateAlterProfImg({
         profImgKey: selectedIcon ? selectedIcon : 0,
         alterId: Number(alterId),
@@ -61,29 +69,30 @@ class SettingsPage extends Component {
       });
     }
   };
+  // Render component
   render() {
     const host = localStorage.getItem("host");
     return (
       <>
         <NavigationBar isSetting />
-        <div className='settingClass'>
-          <div className='avataorIcon'>
+        <div className="settingClass">
+          <div className="avataorIcon">
             <AddIcon
-              className='addIcon'
+              className="addIcon"
               onClick={() => this.setState({ alterModel: true })}
             />
 
             <img
-              id='defaultAvatar'
+              id="defaultAvatar"
               src={
                 this.state.selectedIcon
                   ? AvatarList[this.state.selectedIcon]
                   : AvatarList[0]
               }
-              alt='selected avatar'
+              alt="selected avatar"
             />
           </div>
-          <div className='button_settings'>
+          <div className="button_settings">
             <Button
               onClick={() => this.setState({ avatarAccount: true })}
               text={"Avatar Account"}
@@ -159,9 +168,9 @@ class SettingsPage extends Component {
               }
               close
             >
-              <div className='avatarList'>
-                <div className='title'>Choose Avatar</div>
-                <div className='avatarsDisplay'>
+              <div className="avatarList">
+                <div className="title">Choose Avatar</div>
+                <div className="avatarsDisplay">
                   {Object.entries(AvatarList)?.map(([key, val]) => {
                     return (
                       <div

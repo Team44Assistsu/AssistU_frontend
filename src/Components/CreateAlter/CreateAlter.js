@@ -14,7 +14,7 @@ import * as avatarAction from "../../redux/action/avatarActions";
 import defaultAvatar from "../../Assests/images/a.png";
 import AddIcon from "@mui/icons-material/Add";
 import AvatarList from "../../avataricon";
-
+//Class component for the alter account creation
 class CreateAlter extends Component {
   state = {
     alterName: "",
@@ -60,7 +60,7 @@ class CreateAlter extends Component {
       }
     }
   }
-
+  //Create a an avatar with the fields  name,age,description,gender
   createAvatar = () => {
     const {
       alterAge,
@@ -91,7 +91,7 @@ class CreateAlter extends Component {
       });
     }
   };
-
+  //validate the fields using the regex and should not be null values
   isValidate = () => {
     let validate = true;
     const { alterAge, alterName, pin, reenterPin } = this.state;
@@ -126,27 +126,27 @@ class CreateAlter extends Component {
       <>
         <Notification notify={this.state.notify} />
         <PageTitle />
-        <div className='CreateAlter'>
-          <div className='avataorIcon'>
+        <div className="CreateAlter">
+          <div className="avataorIcon">
             <AddIcon
-              className='addIcon'
+              className="addIcon"
               onClick={() => this.setState({ alterModel: true })}
             />
             {this.state.selectedIcon ? (
               <img
-                id='defaultAvatar'
+                id="defaultAvatar"
                 src={AvatarList[this.state.selectedIcon]}
-                alt='selected avatar'
+                alt="selected avatar"
               />
             ) : (
               <img
-                id='defaultAvatar'
+                id="defaultAvatar"
                 src={defaultAvatar}
-                alt='Default avatar'
+                alt="Default avatar"
               />
             )}
           </div>
-          <div className='formArea'>
+          <div className="formArea">
             <TextBox
               required
               title={"Alter Name"}
@@ -156,7 +156,7 @@ class CreateAlter extends Component {
               helperText={this.state.error?.name}
             />
             <TextBox
-              type='number'
+              type="number"
               title={"Alter Age"}
               value={this.state.alterAge}
               error={this.state.error?.age}
@@ -165,7 +165,7 @@ class CreateAlter extends Component {
             />
             <DropDown
               onChange={(e) => this.setState({ alterGender: e.target.value })}
-              label='Gender'
+              label="Gender"
               value={this.state.alterGender}
               options={this.state.options}
             />
@@ -203,9 +203,9 @@ class CreateAlter extends Component {
             }
             close
           >
-            <div className='avatarList'>
-              <div className='title'>Choose Avatar</div>
-              <div className='avatarsDisplay'>
+            <div className="avatarList">
+              <div className="title">Choose Avatar</div>
+              <div className="avatarsDisplay">
                 {Object.entries(AvatarList)?.map(([key, val]) => {
                   return (
                     <>

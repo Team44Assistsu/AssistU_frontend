@@ -6,9 +6,11 @@ class ChangeLoginPassword extends Component {
     newLoginPassword: "",
     confirmLoginPassword: "",
   };
+  // Log the props when the component mounts
   componentDidMount() {
     console.log(this.props);
   }
+  // Check if the settingLoginPassword has changed and if the new password has been set
   componentDidUpdate(prevProps) {
     const prev = prevProps?.SettingsReducer;
     const cur = this.props?.SettingsReducer;
@@ -20,6 +22,7 @@ class ChangeLoginPassword extends Component {
       this.props.close();
     }
   }
+  //function to update the login password
   updateLoginPassword = () => {
     const { oldLoginPassword, newLoginPassword, confirmLoginPassword } =
       this.state;
@@ -55,6 +58,7 @@ class ChangeLoginPassword extends Component {
       this.setState({ errors: err });
     }
   };
+  //render the function component
   render() {
     return (
       <Modal

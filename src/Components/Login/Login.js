@@ -9,6 +9,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import InputAdornment from "@mui/material/InputAdornment";
 import IconButton from "@mui/material/IconButton";
 
+//class component for Login page
 class Login extends Component {
   state = {
     userName: "",
@@ -17,9 +18,11 @@ class Login extends Component {
     errors: {},
     sendOtp: false,
   };
+  // Clears local storage on component mount
   componentDidMount() {
     localStorage.clear();
   }
+  // Checks if there is a change in login or sendOtp state, and redirects user based on their role after login
   componentDidUpdate(prevProps) {
     const prev = prevProps?.UserReducer;
     const cur = this.props?.UserReducer;
@@ -40,6 +43,7 @@ class Login extends Component {
       this.setState({ sendOtp: true });
     }
   }
+  // Sends OTP to the email entered by the user
   sendOtp = () => {
     const { userName } = this.state;
     let err = {};
@@ -53,6 +57,7 @@ class Login extends Component {
       this.props.userActions.sendOtp({ toEmail: userName });
     }
   };
+  // Logs the user in by validating their email and password
   login = () => {
     const { userName, passWord } = this.state;
 
@@ -63,19 +68,20 @@ class Login extends Component {
       alert("Enter password recieved in email");
     }
   };
+  // Renders the Login component
   render() {
     return (
       <>
         <PageTitle />
-        <div className='LoginPage'>
-          <div className='CreateAccount'>
+        <div className="LoginPage">
+          <div className="CreateAccount">
             <Button
               primary
               onClick={() => (window.location.href = "/create-account")}
               text={"Create Account"}
             />
           </div>
-          <div className='broder'>
+          <div className="broder">
             <TextBox
               required
               title={"Email"}
@@ -133,7 +139,7 @@ class Login extends Component {
               })
             }
             close
-            className='sendOtpModal'
+            className="sendOtpModal"
           >
             <TextBox
               required
@@ -143,16 +149,16 @@ class Login extends Component {
               onChange={(e) => this.setState({ passWord: e.target.value })}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position='end'>
+                  <InputAdornment position="end">
                     <IconButton
-                      aria-label='toggle password visibility'
+                      aria-label="toggle password visibility"
                       onClick={() =>
                         this.setState({
                           showPassword: !this.state.showPassword,
                         })
                       }
                       style={{ marginTop: "0px" }}
-                      edge='start'
+                      edge="start"
                     >
                       {this.state.showPassword ? (
                         <VisibilityOff />
