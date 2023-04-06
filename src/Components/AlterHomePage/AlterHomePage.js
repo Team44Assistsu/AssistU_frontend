@@ -9,10 +9,11 @@ const Alterhomepage = () => {
   const navigate = useNavigate();
 
   return (
+    // a component that renders the page title
     <>
-      <PageTitle /> // a component that renders the page title
+      <PageTitle />
       <div className="AlterPage">
-        <div className="title">WELCOME</div> // a title for the page
+        <div className="title">WELCOME</div>
         <div className="subtitle">
           We Created This Virtual Space To Provide A Safe And Secure Environment
           For Alters To communicate
