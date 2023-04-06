@@ -5,7 +5,7 @@ import { AvatarIcon, Button, PageTitle, Modal, TextBox } from "../../Atoms";
 import { useDispatch, useSelector } from "react-redux";
 import * as avatarActions from "../../redux/action/avatarActions";
 import AvatarList from "../../avataricon";
-
+// Initialize state variables and constants
 const Landingpagepatient = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -15,22 +15,22 @@ const Landingpagepatient = (props) => {
   const [alter, setAlter] = useState({});
   const [error, setError] = useState("");
   const result = useSelector((state) => state.AvatarReducer);
-
+  // Effect hook to retrieve the list of avatars when the component mounts
   useEffect(() => {
     const patientId = localStorage.getItem("patientId");
     dispatch(avatarActions.getAvatar({ patientId }));
   }, []);
-
+  // Effect hook to update the list of avatars when the redux store changes
   useEffect(() => {
     setAvatarList(result?.getAvatar);
   }, [result?.getAvatar]);
-
+  // Function to handle the login button click
   const login = () => {
     if (validate()) {
       dispatch(avatarActions.checkPin({ alterId: alter?.alterId, pin: pin }));
     }
   };
-
+  // Effect hook to handle the result of the checkPin action
   useEffect(() => {
     localStorage.removeItem("alterId");
     if (
@@ -46,7 +46,7 @@ const Landingpagepatient = (props) => {
       navigate("/home");
     }
   }, [result?.checkPin]);
-
+  // Function to validate the PIN entered by the user
   const validate = () => {
     if (pin !== null && !pin.match(/^\d{4}$/)) {
       setError("Enter valid 4 digit pin");

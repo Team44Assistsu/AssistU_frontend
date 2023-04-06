@@ -1,35 +1,42 @@
 .dropdown {
-  width: 300px;
+  width: 300px; // sets the width of the component to 300 pixels
   svg {
-    color: var(--primary-color);
+    color: var(
+      --primary-color
+    ); // sets the color of the svg icon to the primary color
   }
   [class$="MuiFormLabel-root-MuiInputLabel-root"] {
-    color: var(--white);
+    color: var(--white); // sets the color of the label to white
   }
   #dropdown-main {
-    color: var(--white);
-    font-family: "Croissant One", cursive;
+    color: var(
+      --white
+    ); // sets the color of the selected item in the drop-down to white
+    font-family: "Croissant One", cursive; // sets the font-family of the drop-down text to "Croissant One"
   }
   [class$="MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.MuiSelect-select"] {
-    color: var(--white);
+    color: var(--white); // sets the color of the drop-down text to white
   }
-
   [class$="MuiFormLabel-root-MuiInputLabel-root"].Mui-focused {
-    color: var(--primary-color) !important;
+    color: var(
+      --primary-color
+    ) !important; // sets the color of the label to the primary color when focused
   }
   .MuiOutlinedInput-notchedOutline,
   [class$="MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"].Mui-focused
     .MuiOutlinedInput-notchedOutline {
-    border: var(--primary-color) 1px solid;
+    border: var(--primary-color) 1px solid; // sets the border color of the drop-down when focused to the primary color
   }
   [class$="MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root"]:hover
     .MuiOutlinedInput-notchedOutline {
-    border-color: var(--white);
+    border-color: var(
+      --white
+    ); // sets the border color of the drop-down when hovered to white
   }
   @media (max-width: 1024px) {
-    width: 40%;
+    width: 40%; // reduces the width of the component to 40% when the screen size is less than or equal to 1024px
   }
   @media (max-width: 480px) {
-    width: 100%;
+    width: 100%; // sets the width of the component to 100% when the screen size is less than or equal to 480px
   }
 }

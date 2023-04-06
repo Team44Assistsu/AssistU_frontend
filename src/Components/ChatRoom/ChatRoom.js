@@ -1,3 +1,4 @@
+//Import the required dependecies and packages
 import React, { Component } from "react";
 import "./style.scss";
 import { Canvas } from "@react-three/fiber";
@@ -112,20 +113,20 @@ class Chatroom extends Component {
     return (
       <>
         <NavigationBar isChat />
-        <div className='ChatRoom'>
-          <div className='button_create'>
+        <div className="ChatRoom">
+          <div className="button_create">
             <Button
               text={"Send Message"}
               primary
               onClick={() => this.setState({ sendMessageModal: true })}
             />
           </div>
-          <div className='title'>Chat Room</div>
-          <div className='subtitle'>
+          <div className="title">Chat Room</div>
+          <div className="subtitle">
             Welcome, buddy! Today is going to be great for you are here!
           </div>
 
-          <div className='chat-space'>
+          <div className="chat-space">
             {this.props?.MessageReducer?.getMessage?.map((message, index) => {
               return (
                 <ChatAvatar
@@ -145,23 +146,23 @@ class Chatroom extends Component {
               }
               close
             >
-              <div className='modal3Dmessage'>
+              <div className="modal3Dmessage">
                 <Canvas
-                  className='canva'
+                  className="canva"
                   camera={{ position: [1, 1.5, 2.5], fov: 50 }}
                   shadows
                 >
                   <Experience />
                 </Canvas>
-                <div className='message-sec'>
-                  <div className='ChatSec'>
-                    <div className='message-title'>Message Section</div>
-                    <div className='message-text'>
+                <div className="message-sec">
+                  <div className="ChatSec">
+                    <div className="message-title">Message Section</div>
+                    <div className="message-text">
                       {this.state.message?.msgText}
                     </div>
                     <TextToSpeech
                       value={this.state.message?.msgText}
-                      className='speech-button'
+                      className="speech-button"
                       voice={
                         this.state.message?.fromAlter?.alterGender === "Female"
                           ? 12
@@ -170,9 +171,9 @@ class Chatroom extends Component {
                       //  parseInt(Math.random() * 10)
                     />
                   </div>
-                  <div className='message-send'>
+                  <div className="message-send">
                     <TextBox
-                      title='Reply'
+                      title="Reply"
                       value={this.state.reply ? this.state.reply : ""}
                       rows={4}
                       multiline
@@ -195,7 +196,7 @@ class Chatroom extends Component {
                       transcript={this.state.reply}
                     />
                     <Button
-                      text='Send'
+                      text="Send"
                       primary
                       endIcon={<SendIcon />}
                       onClick={this.replyMessage}
@@ -217,24 +218,24 @@ class Chatroom extends Component {
               }
               close
             >
-              <div className='semdMessageModal'>
+              <div className="semdMessageModal">
                 <Canvas
-                  className='canva'
+                  className="canva"
                   camera={{ position: [1, 1.5, 2.5], fov: 50 }}
                   shadows
                 >
                   <Experience />
                 </Canvas>
-                <div className='message-sec'>
+                <div className="message-sec">
                   <DropDown
-                    label='Select Avatar'
+                    label="Select Avatar"
                     options={this.state.options}
                     onChange={(e) =>
                       this.setState({ sendMessageTo: e.target.value })
                     }
                   />
                   <TextBox
-                    title='Message'
+                    title="Message"
                     value={this.state.reply ? this.state.reply : ""}
                     rows={10}
                     multiline
@@ -253,7 +254,7 @@ class Chatroom extends Component {
                     transcript={this.state.reply}
                   />
                   <Button
-                    text='Send'
+                    text="Send"
                     primary
                     endIcon={<SendIcon />}
                     onClick={this.sendMessage}

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Modal, CheckBox, Button } from "../../Atoms";
-
+//class for the host and co-host settings
 class HostAndCohost extends Component {
   state = {
     alterList: [],
@@ -29,6 +29,7 @@ class HostAndCohost extends Component {
       this.props.close();
     }
   }
+  //function to update the co-host details of the avatar
   updateCohost = () => {
     const { alterList } = this.state;
     this.props.settingActions.updateCohost(alterList);

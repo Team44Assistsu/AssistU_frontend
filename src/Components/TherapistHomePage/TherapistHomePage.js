@@ -6,10 +6,12 @@ import { bindActionCreators } from "redux";
 import * as userAction from "../../redux/action/userAction";
 import { PageTitle, Card } from "../../Atoms";
 import AvatarList from "../../avataricon";
+//Class componnet for the therapist home page
 class TherapistHomePage extends Component {
   state = {
     patients: [],
   };
+  //Get the therapist id from the local storage
   componentDidMount() {
     const therapistId = localStorage.getItem("therapistId");
     this.props?.userActions.getPatients({ therapistId });
@@ -26,11 +28,12 @@ class TherapistHomePage extends Component {
       this.setState({ patients: cur?.getPatients?.patients });
     }
   }
+  //render the Therapist home page component
   render() {
     return (
       <>
         <PageTitle />
-        <div className='TherapistHomePage'>
+        <div className="TherapistHomePage">
           {this.state.patients?.map((item) => (
             <Card
               image={AvatarList[item.profImgKey ? item.profImgKey : 0]}

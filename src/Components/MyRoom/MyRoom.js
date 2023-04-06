@@ -19,9 +19,10 @@ import * as messageAction from "../../redux/action/messageActions";
 import * as avatarAction from "../../redux/action/avatarActions";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 
+//class component for the room
 class CreateRoom extends Component {
   state = {
-    selectedAlter: null,
+    selectedAlter: null, // initialize state with selectedAlter set to null
     openModal: false,
     message: null,
     reply: null,
@@ -32,63 +33,17 @@ class CreateRoom extends Component {
     listenSpeech: false,
   };
   componentDidMount() {
+    // get the id of the current user's alter from local storage
     const alterId = localStorage.getItem("alterId");
+    // dispatch action to get all messages sent to the current user's alter
     this.props.messageActions.getMessage({ receiverId: alterId });
-
     const patientId = localStorage.getItem("patientId");
     this.props.messageActions.getMessage({ receiverId: alterId });
     this.props.avatarActions.getAvatar({ patientId });
     this.setState({ alterId });
   }
-
-  componentDidUpdate(prevProps) {
-    const cur = this.props?.MessageReducer;
-    const prev = prevProps?.MessageReducer;
-    const curAva = this.props?.AvatarReducer;
-    const prevAva = prevProps?.AvatarReducer;
-
-    if (
-      prev?.sendMessage !== cur?.sendMessage &&
-      cur?.isSendMessage &&
-      cur?.sendMessage
-    ) {
-      this.setState({
-        message: null,
-        reply: null,
-        openModal: false,
-        sendMessageTo: null,
-        sendMessageModal: false,
-        selectedAlter: null,
-      });
-
-      alert("Message Sent Successfully");
-    }
-
-    if (
-      prevAva?.getAvatar !== curAva?.getAvatar &&
-      curAva?.getAvatar &&
-      curAva?.isGetAvatar
-    ) {
-      const { alterId } = this.state;
-      const idList = [];
-      const options = [];
-      curAva?.getAvatar?.map((avatar) => {
-        const id = avatar?.alterId;
-        if (id != alterId) {
-          idList.push(id);
-          options.push({
-            value: [id],
-            option: avatar?.alterName,
-          });
-        }
-        return null;
-      });
-      curAva?.getAvatar?.length > 2 &&
-        options.push({ value: idList, option: "All Avatars" });
-      this.setState({ options });
-    }
-  }
   alterSelected = (alter) => {
+    // update state with the selected alter
     this.setState({ selectedAlter: alter });
   };
 
@@ -118,9 +73,9 @@ class CreateRoom extends Component {
       <>
         <NavigationBar isRoom />
         <div>
-          <div className='main-mroom'>
-            <div className='title'>My Room Space</div>
-            <div className='button_create'>
+          <div className="main-mroom">
+            <div className="title">My Room Space</div>
+            <div className="button_create">
               <Button
                 text={"Send Message"}
                 primary
@@ -128,25 +83,25 @@ class CreateRoom extends Component {
               />
             </div>
           </div>
-          <div className='RoomChatSpace'>
-            <div className='unityspace'>
+          <div className="RoomChatSpace">
+            <div className="unityspace">
               {this.state.selectedAlter &&
                 this.state.selectedAlter?.fromAlter &&
                 this.state.selectedAlter?.fromAlter?.alterName && (
-                  <div className='altertag'>
+                  <div className="altertag">
                     {this.state.selectedAlter?.fromAlter?.alterName}
                   </div>
                 )}
               <UnityWebGl />
-              <div className='supportText'>
+              <div className="supportText">
                 t/T: for talking the message | l/L: for listening the message |
                 h/H: to wave
               </div>
             </div>
-            <div className='ChatSapce'>
+            <div className="ChatSapce">
               {this.state.selectedAlter ? (
-                <div className='replySection'>
-                  <div className='message-title'>
+                <div className="replySection">
+                  <div className="message-title">
                     <ArrowBackIcon
                       onClick={() => this.setState({ selectedAlter: null })}
                     />{" "}
@@ -155,15 +110,15 @@ class CreateRoom extends Component {
                       this.state.selectedAlter?.fromAlter &&
                       this.state.selectedAlter?.fromAlter?.alterName}
                   </div>
-                  <div className='message-sec'>
-                    <div className='message'>
+                  <div className="message-sec">
+                    <div className="message">
                       Message:{" "}
                       {this.state.selectedAlter &&
                         this.state.selectedAlter?.msgText}
                     </div>
                     <TextToSpeech
                       value={this.state.selectedAlter?.msgText}
-                      className='speech-button'
+                      className="speech-button"
                       voice={
                         this.state.selectedAlter?.fromAlter?.alterGender ===
                         "Female"
@@ -172,7 +127,7 @@ class CreateRoom extends Component {
                       }
                     />
                     <TextBox
-                      title='Message'
+                      title="Message"
                       value={this.state.reply ? this.state.reply : ""}
                       rows={5}
                       multiline
@@ -194,8 +149,9 @@ class CreateRoom extends Component {
                       }
                       transcript={this.state.reply}
                     />
+
                     <Button
-                      text='Send'
+                      text="Send"
                       primary
                       endIcon={<SendIcon />}
                       onClick={this.sendMessage}
@@ -204,7 +160,7 @@ class CreateRoom extends Component {
                 </div>
               ) : (
                 <>
-                  <div className='message-title'>Messages</div>
+                  <div className="message-title">Messages</div>
                   {this.props?.MessageReducer?.getMessage?.map(
                     (message, index) => {
                       return (
@@ -234,19 +190,19 @@ class CreateRoom extends Component {
               })
             }
             close
-            className='sendMessageMyRoom'
+            className="sendMessageMyRoom"
           >
-            <div className='semdMessageModal'>
-              <div className='message-sec'>
+            <div className="semdMessageModal">
+              <div className="message-sec">
                 <DropDown
-                  label='Select Avatar'
+                  label="Select Avatar"
                   options={this.state.options}
                   onChange={(e) =>
                     this.setState({ sendMessageTo: e.target.value })
                   }
                 />
                 <TextBox
-                  title='Message'
+                  title="Message"
                   value={this.state.reply ? this.state.reply : ""}
                   rows={10}
                   multiline
@@ -265,7 +221,7 @@ class CreateRoom extends Component {
                   transcript={this.state.reply}
                 />
                 <Button
-                  text='Send'
+                  text="Send"
                   primary
                   endIcon={<SendIcon />}
                   onClick={this.replyMessage}

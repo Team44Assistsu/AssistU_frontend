@@ -1,3 +1,4 @@
+// Importing necessary packages
 import React, { Component } from "react";
 import {
   NotificationContainer,
@@ -5,6 +6,7 @@ import {
 } from "react-notifications";
 import "react-notifications/lib/notifications.css";
 
+// Whenever the component updates, check if there's a new notification and create it
 class Notifications extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (
@@ -17,6 +19,7 @@ class Notifications extends Component {
       );
     }
   }
+  // A function to create a notification based on the provided type and message
   createNotification = (type, message) => {
     switch (type) {
       case "info":
@@ -35,6 +38,7 @@ class Notifications extends Component {
         break;
     }
   };
+  // Render the notification container
   render() {
     return <NotificationContainer />;
   }

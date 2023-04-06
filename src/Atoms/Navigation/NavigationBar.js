@@ -2,13 +2,16 @@ import React from "react";
 import "./style.scss";
 import { Button } from "..";
 import { useNavigate } from "react-router-dom";
-
+// NavigationBar component
 const NavigationBar = (props) => {
+  // Get the navigate function from react-router-dom to navigate to different routes
   const navigate = useNavigate();
   return (
-    <div className='NavigationBar'>
-      <div className='Title'>Assists-U</div>
-      <div className='Navs'>
+    // NavigationBar container
+    <div className="NavigationBar">
+      <div className="Title">Assists-U</div>
+      <div className="Navs">
+        /* Navigation links */
         <div onClick={() => navigate("/home")}>Home</div>
         {!props.isRoom && (
           <div onClick={() => navigate("/my-room")}>My Room</div>
@@ -25,9 +28,9 @@ const NavigationBar = (props) => {
           </div>
         )}
       </div>
-      <div className='button-collection'>
+      <div className="button-collection">
         {localStorage.getItem("patientId") && (
-          <Button
+          <Button //Collection of buttons
             text={"LogOut"}
             onClick={() => {
               localStorage.clear();
@@ -35,7 +38,10 @@ const NavigationBar = (props) => {
             }}
           />
         )}
-        {localStorage.getItem("alterId") && (
+
+        {localStorage.getItem(
+          "alterId"
+        ) /* Landing page button for alternate users*/ && (
           <Button
             text={"Landing Page"}
             onClick={() => {

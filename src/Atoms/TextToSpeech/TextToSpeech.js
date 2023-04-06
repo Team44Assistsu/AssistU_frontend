@@ -1,6 +1,9 @@
+//Import the react component and reach speech package
 import React from "react";
 import { useSpeechSynthesis } from "react-speech-kit";
 import useKeypress from "react-use-keypress";
+
+//Functional component for text to speech
 const Texttospeech = (props) => {
   const { speak, voices } = useSpeechSynthesis();
   useKeypress(["t", "T"], (event) => {

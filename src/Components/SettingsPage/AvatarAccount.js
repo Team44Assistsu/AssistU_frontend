@@ -1,13 +1,15 @@
+// Importing necessary dependencies and components
 import React, { Component } from "react";
 import { Modal, Button, TextBox } from "../../Atoms";
 import "./style.scss";
 import defaultAvatar from "../../Assests/images/a.png";
-
+// class component for AvatarAccount
 class AvatarAccount extends Component {
   state = {
     alterName: "",
     description: "",
   };
+  //component mounts, used to fetch the alter details from the store
   componentDidMount() {
     const alterDetail = this.props.SettingsReducer?.settingGetAlter;
     this.setState({
@@ -15,6 +17,7 @@ class AvatarAccount extends Component {
       description: alterDetail?.description,
     });
   }
+  //component updates, used to get the updated avatar details and close
   componentDidUpdate(prevProps) {
     const prev = prevProps?.SettingsReducer;
     const cur = this.props?.SettingsReducer;
@@ -29,6 +32,7 @@ class AvatarAccount extends Component {
       this.props.close();
     }
   }
+  // Function to handle the avatar update event
   AvatarAccount = () => {
     const { alterName, description } = this.state;
     let err = {};
@@ -54,6 +58,7 @@ class AvatarAccount extends Component {
       this.setState({ errors: err });
     }
   };
+  // Render function of the avataraccount component
   render() {
     return (
       <Modal
