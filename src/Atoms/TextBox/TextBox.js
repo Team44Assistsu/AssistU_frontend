@@ -7,7 +7,7 @@ class TextBox extends Component {
   render() {
     return (
       <TextField
-        focused={this.props.focused}
+        focused={this.props.focused ? this.props.focused : false}
         multiline={this.props.multiline}
         rows={this.props.rows}
         type={this.props.type}

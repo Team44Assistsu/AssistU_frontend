@@ -3,10 +3,6 @@ import "./style.scss";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userAction from "../../redux/action/userAction";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
 import { DropDown, Button, TextBox, Switch } from "../../Atoms";
 import Alter from "../CreateAlter/CreateAlter";
 //create class component for the patient account
@@ -16,7 +12,7 @@ class CreatePatientAccount extends Component {
     age: "",
     gender: "",
     emailID: "",
-    mobileNo: "",
+    mobileNumber: "",
     options: [
       { value: "Female", option: "Female" },
       { value: "Male", option: "Male" },
@@ -24,7 +20,7 @@ class CreatePatientAccount extends Component {
     errors: {},
     showPassword: false,
     isAlter: false,
-    patientId: null,
+    patientId: "",
   };
 
   componentDidUpdate(prevProps) {
@@ -92,7 +88,7 @@ class CreatePatientAccount extends Component {
   render() {
     return (
       <>
-        {this.state.isAlter ? (
+        {this.state.isAlter && this.state.patientId ? (
           <Alter
             isPatient
             data={{

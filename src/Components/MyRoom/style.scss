@@ -1,4 +1,9 @@
 //Styling for the My room page
+.main-mroom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 .RoomChatSpace {
   display: flex;
   width: 100%;
@@ -32,6 +37,29 @@
       text-align: center;
       text-decoration: underline;
     }
+    .message-sec {
+      width: 90%;
+      padding: 20px;
+      .dropdown,
+      .textBox {
+        margin-bottom: 20px;
+        width: 100%;
+      }
+      .message {
+        color: var(--white);
+        padding-bottom: 10px;
+      }
+      .speech-button {
+        margin-bottom: 10px;
+        padding: 5px;
+        border: 1px solid var(--primary-color);
+        width: fit-content;
+        border-radius: 5px;
+      }
+    }
+    .SpeechToText {
+      flex-wrap: wrap;
+    }
     width: 30%;
     overflow: auto;
     max-height: 100%;
@@ -39,6 +67,24 @@
     scrollbar-width: none; /* Firefox */
     &::-webkit-scrollbar {
       display: none; /* Safari and Chrome */
+    }
+  }
+}
+.sendMessageMyRoom {
+  width: 450px;
+
+  left: calc(50% - 225px);
+  .semdMessageModal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    .message-sec {
+      padding: 20px;
+      .dropdown,
+      .textBox {
+        margin-bottom: 20px;
+        width: 100%;
+      }
     }
   }
 }

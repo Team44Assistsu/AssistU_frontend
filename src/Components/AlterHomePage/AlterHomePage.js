@@ -16,14 +16,13 @@ const Alterhomepage = () => {
         <div className="subtitle">
           We Created This Virtual Space To Provide A Safe And Secure Environment
           For Alters To communicate
-        </div>{" "}
-        // a subtitle that provides some context for the page
+        </div>
         <div className="button_alignment">
-          <Button
-            onClick={() => navigate("/chat-room")} // navigate to the "/chat-room" page when this button is clicked
-            text={"Chat Room"} // the text to display on the button
-            endIcon={<ArrowForwardIosIcon />} // an icon to display at the end of the button text
-          ></Button>
+          {/* <Button
+            onClick={() => navigate("/chat-room")}
+            text={"Chat Room"}
+            endIcon={<ArrowForwardIosIcon />}
+          ></Button> */}
           <Button
             onClick={() => navigate("/my-room")} // navigate to the "/my-room" page when this button is clicked
             text={"My Room"}

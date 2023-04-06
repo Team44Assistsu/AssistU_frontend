@@ -13,9 +13,9 @@ const NavigationBar = (props) => {
       <div className="Navs">
         /* Navigation links */
         <div onClick={() => navigate("/home")}>Home</div>
-        {!props.isChat && (
+        {/* {!props.isChat && (
           <div onClick={() => navigate("/chat-room")}>Chat Room</div>
-        )}
+        )} */}
         {!props.isRoom && (
           <div onClick={() => navigate("/my-room")}>My Room</div>
         )}
@@ -25,8 +25,10 @@ const NavigationBar = (props) => {
         {!props.isSupport && (
           <div onClick={() => navigate("/support")}>Support</div>
         )}
-        {!props.isTherapistHomePage && (
-          <div onClick={() => navigate("/therapist-homepage")}>Support</div>
+        {!props.isTherapistHomePage && localStorage.getItem("therapistId") && (
+          <div onClick={() => navigate("/therapist-homepage")}>
+            therapist home
+          </div>
         )}
       </div>
       <div className="button-collection">

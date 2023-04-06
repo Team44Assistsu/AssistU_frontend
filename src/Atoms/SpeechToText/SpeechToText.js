@@ -5,6 +5,8 @@ import SpeechRecognition, {
 } from "react-speech-recognition";
 import { Button } from "..";
 import "./style.scss";
+import useKeypress from "react-use-keypress";
+
 // Define SpeechToText component
 const SpeechToText = (props) => {
   const {
@@ -13,9 +15,16 @@ const SpeechToText = (props) => {
     resetTranscript,
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
-
+  useKeypress(["l", "L", "Enter"], (event) => {
+    if (event.key === "l" || event.key === "L") {
+      SpeechRecognition.startListening({ continuous: true });
+    } else if (event.key === "Enter") {
+      SpeechRecognition.stopListening();
+    }
+  });
   useEffect(() => {
     props.change(transcript);
+    console.log(transcript);
   }, [transcript]);
   // Update parent component state with listening state
   useEffect(() => {

@@ -4,12 +4,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import * as userAction from "../../redux/action/userAction";
 import { Switch, TextBox, Button } from "../../Atoms";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import InputAdornment from "@mui/material/InputAdornment";
-import IconButton from "@mui/material/IconButton";
-import AvatarList from "../../avataricon";
-//Class component for therapist
+
 class CreateTherapistAccount extends Component {
   state = {
     Name: "",

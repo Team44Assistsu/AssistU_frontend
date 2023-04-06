@@ -9,10 +9,11 @@ import a7 from "./Assests/images/n7.png";
 import a8 from "./Assests/images/n8.png";
 import a9 from "./Assests/images/n9.png";
 import a10 from "./Assests/images/n10.png";
+import amain from "./Assests/images/amain.png";
 
 export default {
   0: a,
-  1: a1,
+  1: amain,
   2: a2,
   3: a3,
   4: a4,
@@ -22,4 +23,5 @@ export default {
   8: a8,
   9: a9,
   10: a10,
+  11: a1,
 };

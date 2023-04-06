@@ -150,7 +150,7 @@ class CreateAlter extends Component {
             <TextBox
               required
               title={"Alter Name"}
-              value={this.state.alterName}
+              value={this.state.alterName ? this.state.alterName : ""}
               onChange={(e) => this.setState({ alterName: e.target.value })}
               error={this.state.error?.name}
               helperText={this.state.error?.name}
@@ -158,7 +158,7 @@ class CreateAlter extends Component {
             <TextBox
               type="number"
               title={"Alter Age"}
-              value={this.state.alterAge}
+              value={this.state.alterAge ? this.state.alterAge : ""}
               error={this.state.error?.age}
               helperText={this.state.error?.age}
               onChange={(e) => this.setState({ alterAge: e.target.value })}
@@ -166,17 +166,17 @@ class CreateAlter extends Component {
             <DropDown
               onChange={(e) => this.setState({ alterGender: e.target.value })}
               label="Gender"
-              value={this.state.alterGender}
+              value={this.state.alterGender ? this.state.alterGender : ""}
               options={this.state.options}
             />
             <TextBox
               title={"Something About You"}
-              value={this.state.description}
+              value={this.state.description ? this.state.description : ""}
               onChange={(e) => this.setState({ description: e.target.value })}
             />
             <TextBox
               title={"Create Pin"}
-              value={this.state.pin}
+              value={this.state.pin ? this.state.pin : ""}
               onChange={(e) => this.setState({ pin: e.target.value })}
               error={this.state.error?.pin}
               helperText={
@@ -185,7 +185,7 @@ class CreateAlter extends Component {
             />
             <TextBox
               title={"Re-enter Pin"}
-              value={this.state.reenterPin}
+              value={this.state.reenterPin ? this.state.reenterPin : ""}
               onChange={(e) => this.setState({ reenterPin: e.target.value })}
               error={this.state.error?.reenterPin}
               helperText={this.state.error?.reenterPin}
